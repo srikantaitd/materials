@@ -1,0 +1,199 @@
+
+drop table EmployeeMaster;
+drop table Person_Details;
+drop table emp;
+
+HibernateEx01
+-------------
+coms.stech.vo.Employee.java
+Employee.hbm.xml
+hibernate.cfg.xml
+HibernateTestCase.java
+
+Oracle
+-----
+CREATE TABLE Emp(
+Empno NUMBER(5,0),
+Ename VARCHAR2(12),
+Sal   NUMBER(8,2),
+Deptno NUMBER(2)
+);
+
+mariadb:
+-------
+CREATE TABLE Emp(
+	Empno INT,
+	Ename VARCHAR(12),
+	Sal   DECIMAL(8,2),
+	Deptno INT
+);
+
+INSERT INTO Emp VALUES(101,"E101",1000,10);
+INSERT INTO Emp VALUES(102,"E102",1500,20);
+INSERT INTO Emp VALUES(103,"E103",2000,30);
+INSERT INTO Emp VALUES(101,"E104",1000,10);
+INSERT INTO Emp VALUES(101,"E105",1000,10);
+COMMIT;
+
+CREATE TABLE COURSE
+(
+ COURSEID INT,
+,COURSENAME VARCHAR(15)
+,COURSEFEE  INT
+);
+INSERT INTO COURSE VALUES(1,"JAVA",1000);
+INSERT INTO COURSE VALUES(2,"ORACLE",2000);
+INSERT INTO COURSE VALUES(3,"HIBERNATE",3000);
+COMMIT;
+
+CREATE TABLE EMP_COURSE
+(
+ EID INT
+,CID INT 
+);
+
+INSERT INTO EMP_COURSE VALUES(101,1);
+INSERT INTO EMP_COURSE VALUES(101,2);
+INSERT INTO EMP_COURSE VALUES(102,1);
+INSERT INTO EMP_COURSE VALUES(103,1);
+INSERT INTO EMP_COURSE VALUES(104,2);
+INSERT INTO EMP_COURSE VALUES(104,3);
+INSERT INTO EMP_COURSE VALUES(105,1);
+COMMIT;
+
+SELECT * FROM Emp;
+
+
+ProblemOfgranularity Example:
+----------------------------
+PersonDetails.java
+Address.java
+PersonalDetails.hbm.xml
+hibernate.cfg.xml
+HibernateTestCase.java
+
+
+
+CREATE TABLE person_details(
+ pid  INT 
+,empno INT
+,fname VARCHAR(15)
+,lname VARCHAR(15)
+,email  VARCHAR(50)
+,mobile VARCHAR(12)
+,p_city VARCHAR(15)
+,p_street VARCHAR(15)
+,p_state VARCHAR(15)
+,p_country VARCHAR(15)
+,p_pin VARCHAR(6)
+,c_city VARCHAR(15)
+,c_street VARCHAR(15)
+,c_state VARCHAR(15)
+,c_country VARCHAR(15)
+,c_pin VARCHAR(6)
+);
+
+
+
+Problem Of relationship:
+------------------------
+
+Oracle:
+
+CREATE TABLE EmployeeMaster(
+empno NUMBER(5) CONSTRAINT EmployeeMaster_empno_PK PRIMARY KEY
+,ename VARCHAR(15)
+,sal NUMBER(8,2)
+,deptno NUMBER(2)
+,personId NUMBER(5)
+);
+
+CREATE TABLE EmployeeDetails(
+ empno NUMBER(5) CONSTRAINT EmployeeDetails_empno_PK PRIMARY KEY
+,ename VARCHAR(15)
+,sal NUMBER(8,2)
+,deptno NUMBER(2)
+);
+
+
+maria-db:
+
+CREATE TABLE EmployeeMaster(
+empno INT
+,ename VARCHAR(15)
+,sal DECIMAL(8,2)
+,deptno INT
+,personId INT
+);
+
+
+maria db
+---------
+CREATE TABLE Dept(
+DeptNo INT 
+,Dname VARCHAR(20)
+,Sal  DECIMAL(6,2)
+,Loc  VARCHAR(20)
+)
+
+Oracle:
+------
+CREATE TABLE Dept(
+DeptNo NUMBER(2)
+,Dname VARCHAR2(20)
+,Sal  NUMBER(6,2)
+,Loc  VARCHAR2(20)
+)
+);
+
+ProblemOfSubtype
+---------------
+
+CREATE TABLE EmployeeInfo(
+Empno  INT(5)
+,Deptno INT(2)
+,Ename  VARCHAR(20)
+,Salary DECIMAL(6,2)
+,MaxhrPerDay INT
+,RatePerHr INT
+,EmpType   CHAR(1)
+);
+
+Table Per Subclass:
+------------------
+CREATE TABLE EmpGeneralInfo(
+Empno  INT(5)
+,Deptno INT(2)
+,Ename  VARCHAR(20) 
+);
+CREATE TABLE EmpHourlyInfo(
+EID INT(5)
+,MaxhrPerDay INT
+,RatePerHr INT
+);
+
+CREATE TABLE EmpSalariedInfo(
+EID INT(5),
+Salary DECIMAL(6,2)
+);
+
+Table Per Concrete Class:
+------------------------
+
+CREATE TABLE EmpHourlyInfo(
+Empno  INT(5)
+,Deptno INT(2)
+,Ename  VARCHAR(20)
+,MaxhrPerDay INT
+,RatePerHr INT
+);
+
+
+CREATE TABLE EmpSalariedInfo(
+Empno  INT(5)
+,Deptno INT(2)
+,Ename  VARCHAR(20)
+,Salary DECIMAL(6,2)
+);
+
+

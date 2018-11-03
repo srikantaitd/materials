@@ -1,0 +1,4 @@
+@Configuration
+@Import
+@Bean
+@Scope

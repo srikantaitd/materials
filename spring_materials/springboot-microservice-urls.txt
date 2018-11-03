@@ -1,0 +1,11 @@
+http://www.springboottutorial.com/microservices-with-spring-boot-part-5-eureka-naming-server
+http://www.springboottutorial.com/spring-boot-and-h2-in-memory-database
+http://www.springboottutorial.com/spring-boot-tutorials-for-beginners
+
+https://www.udemy.com/microservices-with-spring-boot-and-spring-cloud/?couponCode=SBTWEBSITE
+
+junit course:
+-------------
+username: srikantaitd@gmail.com
+pass:     In28minutespass@9029
+https://in28minutes1.teachable.com/courses/257253/lectures/3995631

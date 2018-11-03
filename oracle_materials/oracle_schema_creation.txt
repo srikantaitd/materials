@@ -1,0 +1,21 @@
+step:1
+CREATE USER mgsdbs
+  IDENTIFIED BY mgs@123
+  DEFAULT TABLESPACE tbs_perm_01
+  TEMPORARY TABLESPACE tbs_temp_01
+  QUOTA 20M on tbs_perm_01;
+
+
+step:2
+
+GRANT create session TO smithj;
+GRANT create table TO smithj;
+GRANT create view TO smithj;
+GRANT create any trigger TO smithj;
+GRANT create any procedure TO smithj;
+GRANT create sequence TO smithj;
+GRANT create synonym TO smithj;
+
+
+step:3
+Create objects in the schema 

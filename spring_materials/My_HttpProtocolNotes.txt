@@ -1,0 +1,39 @@
+What is meant by authentication header?
+---------------------------------------
+Authentication Header (AH) is a protocol and part of the Internet Protocol Security (IPsec) protocol suite, which authenticates the origin of IP packets (datagrams) and guarantees the integrity of the data.
+
+HTTP Authorization header
+-------------------------
+-- A client that wants to authenticate itself with a server can then do so by including an Authorization request header field with the credentials. ... In the case of a "Basic" authentication like shown in the figure, the exchange must happen over an HTTPS (TLS) connection to be secure.
+-- Using the HTTP Authorization header is the most common method of providing authentication information. Except for POST requests and requests that are signed by using query parameters, all Amazon S3 bucket operations and object operations use the Authorization request header to provide authentication information.
+
+Authentication Scheme Name	Reference		Notes
+--------------------------  ---------
+Basic						[RFC7617]	
+Bearer						[RFC6750]	
+Digest						[RFC7616]	
+HOBA						[RFC7486, Section 3] 
+								The HOBA scheme can be used with either HTTP servers or proxies. When used in response to a 407 Proxy Authentication Required indication, the appropriate proxy authentication header fields are used instead, as with any other HTTP authentication scheme.
+Mutual						[RFC8120]	
+Negotiate					[RFC4559, Section 3]	
+								This authentication scheme violates both HTTP semantics (being connection-oriented) and syntax (use of syntax incompatible with the WWW-Authenticate and Authorization header field syntax).
+OAuth						[RFC5849, Section 3.5.1]	
+SCRAM-SHA-1					[RFC7804]	
+SCRAM-SHA-256				[RFC7804]	
+vapid						[RFC 8292, Section 3]
+
+
+Internet Standard Specifications:
+--------------------------------
+"HTTP State Management Mechanism" [RFC6265]  
+	https://tools.ietf.org/pdf/rfc6265.pdf
+Checking the Certificate Revocation List (CRL) [RFC5280]. 
+	https://tools.ietf.org/pdf/rfc5280.pdf
+"HTTP Over TLS" [RFC2818]. 
+	https://tools.ietf.org/pdf/rfc2818.pdf
+
+
+https://tools.ietf.org/pdf/rfc6750.pdf
+https://tools.ietf.org/pdf/rfc2617.pdf
+https://tools.ietf.org/pdf/rfc6749.pdf
+http://qnimate.com/understanding-http-authentication-in-depth/	

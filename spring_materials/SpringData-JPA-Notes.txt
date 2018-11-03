@@ -1,0 +1,255 @@
+Spring Data:
+-----------
+-  The main goal of Spring Data Framework is to reduce the amount of boiler plate code involved in implementing the data access 
+   layer for different persistent store.
+-  The Central interface in SpringData Repository abstraction is Repository interface.
+-  It takes the domain class to manage as well as the id type of the domain class as type argument. 
+-  It primarily acts as a marker interface to capture the types to work with and to help to discover the interface that 
+   implements this one.
+-  CRUDRepository that extends Repository interface provides sophisticated CRUD functionalities for the domain object which is
+   being managed.
+	
+	public interface CrudRepository<T, ID extends Serializable> extends Repository<T, ID> {
+		<S extends T> S save(S entity);
+		T findOne(ID primaryKey);
+		Iterable<T> findAll();
+		Long count();
+		void delete(T entity);
+		boolean exists(ID primaryKey);
+		// … more functionality omitted.
+	}
+	
+- Usually we will have persistent technology specific sub-interfaces to include additional technology specific methods.
+
+- PagingAndSortingRepository interface adds extra paging functionalities related methods to CRUDRepository.
+
+	public interface PagingAndSortingRepository<T, ID extends Serializable> extends CrudRepository<T, ID> {
+		Iterable<T> findAll(Sort sort);
+		Page<T> findAll(Pageable pageable);
+	}	
+
+	Accessing the second page of User by a page size of 20 can be done something like this:
+	
+    PagingAndSortingRepository<User, Long> repository = // … get access to a bean
+	Page<User> users = repository.findAll(new PageRequest(1, 20));	
+
+Query methods:
+=============
+- To implement CRUD Functionality with Spring Data we need to follow the following 4 steps:
+	1. Declare an interface implementing CRUDRepository or any of its Sub-interfaces
+	     public interface PersonRepository extends Repository<User, Long> { … }
+	
+	2. Declare the required query methods as per the requirement.
+		 List<Person> findByLastname(String lastname);
+	
+	3. Configure Spring to Create Proxies to For These interface.
+			
+			<?xml version="1.0" encoding="UTF-8"?>
+			<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns="http://www.springframework.org/schema/data/jpa"
+			xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/data/jpa
+			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+				<repositories base-package="com.acme.repositories" />
+
+			</beans>
+	
+	4. Declare the interface as a dependency in DAO Class to Autowire and use it.
+	
+		public class SomeClient 
+		{
+		  @Autowired
+		  private PersonRepository repository;
+
+		  public void doSomething() {
+			List<Person> persons = repository.findByLastname("Matthews");
+		  }
+		}
+
+NOTE: It is not mandatory rule that Every repository classes should implement Repository,CRUDRepository, PagingAndSortingRepository
+      interface. Alternatively we can add @RepositoryDefinition to our own repository interfaces.
+      
+Defining repository interfaces:
+==============================	
+- Extending CrudRepository exposes a complete set of methods to manipulate your entities. 
+  If you prefer to be selective about the methods being exposed, simply copy the ones you want to expose from CrudRepository 
+  into your domain repository.
+   
+   Example: (Selectively exposing CRUD methods)
+   --------
+	public interface MyBaseRepository<T, ID extends Serializable> extends Repository<T, ID> {
+		T findOne(ID id);
+		T save(T entity);
+	}
+
+	public interface UserRepository extends MyBaseRepository<User, Long> {
+		User findByEmailAddress(EmailAddress emailAddress);
+	}
+
+Defining query methods:
+======================	
+- The repository proxies have two ways to derive a store-specific query for the declared query methods .
+	1. The query can be derived from the method name as per the method naming convention
+	2. It can be derived from the additionally created query.
+	
+- A query resolving strategy needs to be specified so that spring data will use that strategy to resolve the query.
+- There are 3 different strategy as follows:
+	1. CREATED
+		- With this strategy Spring will try to construct store-specific query from the method name.
+		- While creating the query ,some given well known prefixes will be removed from the query method name 
+		  and the rest of things will be parsed to build the query.
+	
+	2. USE_DECLARED_QUERY
+	    - With this approach Spring will try to find a declared query and throws exception if not found.
+		- This query can be defined by an @Query annotation on the query methods or can be declared by other means.
+	
+	3. CREATE_IF_NOT_FOUND (default)
+		- This is default approach that spring follows.
+		- This strategy combines both USE_DECLARED_QUERY and CREATED . First it finds for a declared query.
+		- If not found it uses the method name to derive the query by removing the well known given prefixes (find…By, read…
+			By, and get…By   etc..).	
+
+Query Creation:
+===============
+- At a very basic level the conditions can be provided on entity properties and concatenate them with And and Or
+    
+	Example:(Query creation from method names)
+	========
+	public interface PersonRepository extends Repository<User, Long> 
+	{
+	
+		List<Person> findByEmailAddressAndLastname(EmailAddress emailAddress, String lastname);
+	
+		// Enables the distinct flag for the query
+		List<Person> findDistinctPeopleByLastnameOrFirstname(String lastname, String firstname);
+		
+		List<Person> findPeopleDistinctByLastnameOrFirstname(String lastname, String firstname);
+		
+		// Enabling ignoring case for an individual property
+		List<Person> findByLastnameIgnoreCase(String lastname);
+		
+		// Enabling ignoring case for all suitable properties
+		List<Person> findByLastnameAndFirstnameAllIgnoreCase(String lastname, String firstname);
+		
+		// Enabling static ORDER BY for a query
+		List<Person> findByLastnameOrderByFirstnameAsc(String lastname);
+		
+		List<Person> findByLastnameOrderByFirstnameDesc(String lastname);
+	}
+
+Note: The Actual Result of parsing the method depends on the Persistent Store For Which the Query is Created.
+
+
+Creating repository instances:
+=============================
+- Repository class instance can be created by configuring the repository namespace provided by spring with each SpringDataModule.
+- Using Xml Configuration:
+  -----------------------
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/data/jpa
+	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+		
+		<repositories base-package="com.acme.repositories" />
+	
+	</beans:beans>
+	
+- We can use include or exclude specific repository classes using <include-filter /> and <exclude-filter /> 
+  elements inside <repositories />.
+	
+	<repositories base-package="com.acme.repositories">
+		<context:exclude-filter type="regex" expression=".*SomeRepository" />
+	</repositories>
+
+- Using Java Config:
+  -----------------
+	@Configuration
+	@EnableJpaRepositories("com.acme.repositories")
+	class ApplicationConfiguration {
+		
+		@Bean
+		public EntityManagerFactory entityManagerFactory() {
+			// …
+		}
+	}
+	
+	
+
+PART- II  JPA Repository
+========================
+Activating/Instantiating repository interfaces Using XML Configuration:
+----------------------------------------------------------------------
+
+-Spring namespace: Spring Data JPA Module contains one jpa namespace. This namespace contains "repositories" element.
+
+-This element takes the package name of the repository interfaces as part of "base-package" value attribute.
+	
+	example:
+	--------
+	<jpa:repositories base-package="com.acme.repositories" />
+	
+-Using this element will scan the com.acme.repositories package and its sub-packages for the interfaces that implements
+ Repository interface or any of its sub-interfaces and instantiates them with proxies.
+
+-It also activates persistence exception translation to convert the exceptions thrown from JPA to springs 
+ DataAccessException.
+
+- <repositories..> element also have few more attributes as follows:
+	
+	entity-manager-factory-ref :
+		-Explicitly wire the EntityManagerFactory to be used with the repositories being detected 
+		 by the repositories element
+	    -It is used if multiple EntityManagerFactory beans are used within the application.
+		
+	transaction-manager-ref :
+		-Explicitly wire the PlatformTransactionManager to be used with the repositories being detected by
+		 the repositories element.
+		-It is required in case if multiple transaction manager and/or EntityManager s are involved.
+
+Activating/Instantiating repository interfaces Using Java Config Annotations:
+----------------------------------------------------------------------------
+- repository interfaces can also be configured to instantiated using annotation as follows:
+ 
+ 
+	@Configuration
+	@EnableJpaRepositories
+	@EnableTransactionManagement
+	public class MyJpaConfig
+	{
+	
+	@Bean
+	public DataSource dataSource()
+	{
+	  EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+	  return builder.setType(EmbeddedDatabaseType.HSQL).build();
+	}
+	
+	@Bean
+	public EntityManagerFactory entityManagerFactory()
+	{
+		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		vendorAdapter.setGenerateDdl(true);
+
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setJpaVendorAdapter(vendorAdapter);
+		factory.setPackagesToScan("com.acme.domain");
+		factory.setDataSource(dataSource());
+		factory.afterPropertiesSet();
+		return factory.getObject();
+	}
+	
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		JpaTransactionManager txManager = new JpaTransactionManager();
+		txManager.setEntityManagerFactory(entityManagerFactory());
+		return txManager;
+	}
+	
+	}//class
