@@ -1,0 +1,459 @@
+Note Points:
+
+Spring Boot Maven Plugin
+------------------------
+1. To create an executable jar, we need to add the spring-boot-maven-plugin to our pom.xml. To do so, insert the following lines just below the dependencies section:
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+Inheriting the Starter Parent
+-----------------------------
+2.To configure your project to inherit from the spring-boot-starter-parent, set the parent as follows:
+	<!-- Inherit defaults from Spring Boot -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.5.RELEASE</version>
+	</parent>
+ 
+   You should need to specify only the Spring Boot version number on this dependency. If you import additional starters, you can safely omit the version number.
+
+Overriding the default version of particular library:
+----------------------------------------------------
+3. you can also override individual dependencies by overriding a property in your ownproject. 
+   For instance, to upgrade to another Spring Data release train, you would add the following to your pom.xml:
+	
+		<properties>
+			<spring-data-releasetrain.version>Fowler-SR2</spring-data-releasetrain.version>
+		</properties>   
+
+		
+Starters
+--------
+4. Starters are a set of convenient dependency descriptors that you can include in your application. You get a one-stop shop for all the Spring and related technologies that you need without having to hunt 
+   through sample code and copy-paste loads of dependency descriptors. For example, if you want to get started using Spring and JPA 
+   for database access, include the spring-boot-starter-data-jpa dependency in your project.
+   
+   The starters contain a lot of the dependencies that you need to get a project up and running quickly and with a consistent, 
+   supported set of managed transitive dependencies.
+
+Structuring Your Code
+---------------------
+5. 	When a class does not include a package declaration, it is considered to be in the “default package”.
+	The use of the “default package” is generally discouraged and should be avoided. 
+	It can cause particular problems for Spring Boot applications that use the @ComponentScan, @EntityScan, or @SpringBootApplication annotations, 
+	since every class from every jar is read.
+
+
+Sprinboot annotations:
+---------------------
+
+@RestController 
+	-The @RestController annotation tells Spring to designate the annotated class as a controller to handle http requests.
+	
+@RequestMapping
+	-This annotation provides “routing” information. 
+	-It tells Spring that any HTTP request with the / path should be mapped to the home method. 
+to render the resulting string directly back to the caller.
+
+@EnableAutoConfiguration
+	-This annotation tells Spring Boot to “guess” how you want to configure Spring, based on the jar dependencies that you have added.
+
+
+Note: @ComponentScan when added in a default package class directly or indirectly , it gives error.
+
+@SpringBootApplication
+	If you don’t want to use @SpringBootApplication, the @EnableAutoConfiguration and @ComponentScan annotations that 
+	it imports defines that behaviour so you can also use that instead.
+	
+	@SpringBootApplication= @EnableAutoConfiguration + @ComponentScan + @Configuration
+
+	Example:
+	-------
+	@SpringBootApplication
+	public class Application {
+		public static void main(String[] args) {
+			SpringApplication.run(Application.class, args);
+		}
+	}
+	
+	-SpringBootApplication annotated class acts as a entry point to the application.
+	A single @SpringBootApplication annotation can be used to enable those three features, that is:
+	• @EnableAutoConfiguration: enable Spring Boot’s auto-configuration mechanism
+	• @ComponentScan: enable @Component scan on the package where the application is located (see the best practices)
+	• @Configuration: allow to register extra beans in the context or import additional configuration classes
+	
+	The @SpringBootApplication annotation is equivalent to using @Configuration, @EnableAutoConfiguration, and @ComponentScan 
+	with their default attributes.
+	
+	None of these features are mandatory and we may choose to replace this single annotation by any of the features that it enables. 
+	For instance, you may not want to use component scan in your application:
+	
+	package com.example.myapplication;
+	
+	import org.springframework.boot.SpringApplication;
+	import org.springframework.context.annotation.ComponentScan
+	import org.springframework.context.annotation.Configuration;
+	import org.springframework.context.annotation.Import;
+	
+	@Configuration
+	@EnableAutoConfiguration
+	@Import({ MyConfig.class, MyAnotherConfig.class })
+	public class Application {
+		public static void main(String[] args) {
+			SpringApplication.run(Application.class, args);
+		}
+	}
+Configuration Classes
+---------------------
+	Spring Boot favors Java-based configuration. 
+	Although it is possible to use SpringApplication with XML sources, it generally recommend that to make primary source 
+	be 	a single @Configuration class.
+
+	Usually the class that defines the main method is a good candidate as the primary @Configuration.
+
+Importing Additional Configuration Classes
+------------------------------------------
+@Import
+	The @Import annotation can be used to import additional configuration classes. 
+	Alternatively, you can use @ComponentScan to automatically pick up all Spring components, including @Configuration classes.
+
+Importing XML Configuration
+---------------------------
+
+@ImportResource
+	You can then use an @ImportResource annotation to load XML configuration files.
+
+Auto-configuration
+------------------
+
+@EnableAutoConfiguration
+	This feature of spring-boot framework tries to automaticaly identify how to configure the application based on the jar dependency
+	present in class path.
+	
+	We need to opt-in this feature by applying @EnableAutoConfiguration/@SpringBootApplication annotation to one of the Configuration class.
+
+
+Replacing Auto-configuration
+----------------------------
+	Usally the Auto-configuration feature is non-invasiv. When we define our own configuration than those default will be not applied.
+	For Emaple when working with spring-data-jpa, by default , spring-boot configures an in-memory database when it finds 
+	H2 database library in the classpath. But when we add our own DataSourcce configuration then these default configuration will not 
+	be applied.
+
+Disabling Specific Auto-configuration Classes
+---------------------------------------------
+	As per the application need when we dont want a particular configuration to be applied then we can exclude that poarticular configuration
+	by using the exclude attribute of @EnableAutoConfiguration to disable them, as shown in the following:
+	
+	Example:
+	-------
+	import org.springframework.boot.autoconfigure.*;
+	import org.springframework.boot.autoconfigure.jdbc.*;
+	import org.springframework.context.annotation.*;
+	@Configuration
+	@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+	public class MyConfiguration {
+		//code-goes here
+	}
+
+	We can also control the list of auto-configuration classes to exclude by using the spring.autoconfigure.exclude property.
+	
+
+Running as a Packaged Application:
+----------------------------------
+If we are using Spring Boot Maven or Gradle plugins to create an executable jar, we can run application using below command :
+	java -jar target/myapplication-0.0.1-SNAPSHOT.jar
+
+The Spring Boot Maven plugin includes a run goal that can be used to quickly compile and run the application:
+	mvn spring-boot:run
+
+Externalized Configuration
+-------------------------
+ @ConfigurationProperties
+ @PropertySource(value = "file:C:\\database.properties")
+ @Validated
+
+	As per the industry standard it is always recommend to keep the configuration properties in an single pojo binded to an 
+	external properties..
+	
+	Spring Boot lets us externalize the configuration file so that we can work with the same application code in different environment.
+	
+	It provides @ConfigurationProperties annotation to enable the properties file externalization.
+	
+	It is a class level annotation and also can be applied to a @Bean method.
+	
+	@ConfigurationProperties annotated class must contain attributes corresponding to each parameters declared in properties file.
+	
+	By Default spring-boot searches for the values of the attribute of  @ConfigurationProperties annotated class from the classpath with
+	filename application.properties.
+	
+	We can also specify the configuration properties file from a different location using @PropertySource annotation. It is a class level
+	annotation.
+	
+	In Spring Boot application, we can have @ConfigurationProperties classes validated via JSR-303/349 (Java EE Bean Validation specification) 
+	annotations.
+	
+	To make it work, we need to use Spring @Validated annotation on our configuration class. 
+	We also need to add a JSR-303/349 implementation in the classpath.
+	
+	
+	Example:
+	-------	
+		@Configuration
+		@ConfigurationProperties
+		@PropertySource(value = "file:C:\\database.properties")
+		@Validated
+		public class MyProperties {
+			private String orausername;
+			private String password;
+			private String url;
+			private String driverClassName;
+		
+			//getters & setters
+		}
+
+Note: Configuration propeties files can be externalized in multiple ways in spring environment as mentioned below. 
+      One of the better way is mentioned just above.
+
+@EnableConfigurationProperties 
+	- This annotation is used activate list of all @Configuration annotated class.
+	- This needs to bea applied in @SpringBootApplication annotated class.
+
+
+	Externalizing configuration files using XML approach:(In Traditional Spring application)
+	----------------------------------------------------
+		<?xml version="1.0" encoding="UTF-8"?>
+		<beans xmlns="http://www.springframework.org/schema/beans"
+		   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		   xmlns:context="http://www.springframework.org/schema/context"
+		   xsi:schemaLocation="
+			  http://www.springframework.org/schema/beans 
+			  http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+			  http://www.springframework.org/schema/context 
+			  http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+		 
+			  <context:property-placeholder location="classpath:foo.properties" />
+		 
+		</beans>
+	- The foo.properties file should be placed under /src/main/resources so that it will be available on the classpath at runtime.
+	- In case multiple <property-placeholder> elements are present in the Spring context, there are a few best practices that 
+	  should be followed:
+	- The order attribute needs to be specified to fix the order in which these are processed by Spring
+		1.All property placeholders minus the last one (highest order) should have ignore-unresolvable=”true” to allow the resolution mechanism to pass to others in the context without throwing an exception.
+		
+
+	Externalizing configuration files using Annotation approach:
+	-----------------------------------------------------------
+	@PropertySource
+		- Spring3.1 onwards we can externalize the properties files using @PropertySource annotation as a convenient mechanism for adding property sources to the environment. 
+		
+		- This annotation is to be used in conjunction with Java based configuration and the @Configuration annotation:
+			@Configuration
+			@PropertySource("classpath:foo.properties")
+			public class PropertiesWithJavaConfig {
+				//...
+				
+				public DataSource dataSource()
+				{
+				  DataSource ds=new DataSource();
+				   ds.setUsername(username);
+				   ...
+				  return ds;
+				}
+			}
+
+		- One other very useful way of registering a new properties file is using a placeholder to allow you to dynamically 
+		  select the right environment specific file at runtime; 
+		  for example:
+
+			@PropertySource({ 
+			  "classpath:persistence-${envTarget:mysql}.properties"
+			})
+
+		- It can also be done in xml approach:
+				 
+				<context:property-placeholder  
+						location="classpath*:*persistence-${envTarget}.properties" />
+				 
+Note : The envTarget variable can be set in the OS/environment or as a parameter to the JVM command line: 
+			-DenvTarget=dev
+
+	For integration tests that need persistence enabled – we’ll simply set the envTarget property in the pom.xml:
+	
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			   <configuration>
+				  <systemPropertyVariables>
+					 <envTarget>h2_test</envTarget>
+				  </systemPropertyVariables>
+			   </configuration>
+			</plugin>
+	
+	The corresponding persistence-h2_test.properties file can be placed in src/test/resources so that it will only be used for testing 
+	and not unnecessarily included and deployed with the war at runtime.	
+	
+	Injecting a property with the @Value annotation is straightforward:
+		@Value( "${jdbc.url}" )
+		private String jdbcUrl;
+		
+	A default value of the property can also be specified:
+		@Value( "${jdbc.url:aDefaultUrl}" )
+		private String jdbcUrl;
+	
+	Using properties in Spring XML configuration:
+		<bean id="dataSource">
+			<property name="url" value="${jdbc.url}" />
+		</bean>
+
+Note:
+	Both the older PropertyPlaceholderConfigurer and the new PropertySourcesPlaceholderConfigurer added in Spring 3.1 
+	resolve ${…} placeholders within bean definition property values and @Value annotations.
+	
+	PropertySourcesPlaceholderConfigurer is designed as a general replacement for PropertyPlaceholderConfigurer. 
+	It is used by default to support the property-placeholder element in working against the spring-context-3.1 or higher XSD; 
+	whereas, spring-context versions <= 3.0 default to PropertyPlaceholderConfigurer to ensure backward compatibility. 
+
+Environment Specific Properties File In Spring-Boot:
+---------------------------------------------------
+If we need to target different environments, there’s a build-in mechanism for that in Boot.
+
+We can simply define an “application-environment.properties” file in the “src/main/resources” directory – and then set a Spring profile 
+with the same environment name.
+
+For example, if we define a “staging” environment, that means we’ll have to define a staging profile and then application-staging.properties.
+
+Test Specific Properties File
+-----------------------------
+@TestPropertySource
+	This allows us to set test properties for a specific test context.
+	
+	Very Often we need different property values specially when application is under testing. 
+	Springboot automatically bydefault looks for application.properties file from src/test/main while running Testcases.
+	
+	If we want to take further more controll on those configuration files we can @TestPropertySource(value="file name") annotation
+	to specify the file name.
+	
+	If we don’t want to use a file, we can specify names and values directly:
+		@ContextConfiguration
+		@TestPropertySource("foo=bar", "bar=foo")
+		public class IntegrationTests {
+			// tests
+		}
+	We can also achieve a similar effect using the properties argument of the @SpringBootTest annotation:
+		@SpringBootTest(properties = {"foo=bar", "bar=foo"})
+		public class IntegrationTests {
+			// tests
+		}
+
+
+
+
+Configuration using Raw Beans in Spring 3.0 – the PropertyPlaceholderConfigurer
+------------------------------------------------------------------------------
+JavaConfig:
+	@Bean
+	public static PropertyPlaceholderConfigurer properties() {
+	  PropertyPlaceholderConfigurer ppc= new PropertyPlaceholderConfigurer();
+	  Resource[] resources = new ClassPathResource[]{ new ClassPathResource( "foo.properties" ) };
+	  ppc.setLocations( resources );
+	  ppc.setIgnoreUnresolvablePlaceholders( true );
+	  return ppc;
+	}
+	
+XML:
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+        <list>
+            <value>classpath:foo.properties</value>
+        </list>
+    </property>
+    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+	</bean>
+	
+Configuration using Raw Beans in Spring 3.1 – the PropertySourcesPlaceholderConfigurer
+-------------------------------------------------------------------------------------
+Similarly, in Spring 3.1, the new PropertySourcesPlaceholderConfigurer can also be configured manually:
+Java configuration:
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer properties(){
+	  PropertySourcesPlaceholderConfigurer pspc= new PropertySourcesPlaceholderConfigurer();
+	  Resource[] resources = new ClassPathResource[ ]{ new ClassPathResource( "foo.properties" ) };
+	  pspc.setLocations( resources );
+	  pspc.setIgnoreUnresolvablePlaceholders( true );
+	  return pspc;
+	}
+
+XML Configuration:
+	<bean
+	class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+    <property name="locations">
+        <list>
+            <value>classpath:foo.properties</value>
+        </list>
+    </property>
+    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+	</bean>
+	
+Note:
+----
+Before Spring 3.1
+	Spring 3.1 introduced the convenient option of defining properties sources using annotations – but before that, 
+	XML Configuration was necessary for these.
+
+	The <context:property-placeholder> XML element automatically registers a new PropertyPlaceholderConfigurer bean in the Spring Context. 
+	For backward compatibility, this is also the case in Spring 3.1 and above if the XSD schemas are not yet upgraded to point 
+	to the new 3.1 XSD versions.	
+
+After Spring 3.1	
+	From Spring 3.1 onward, the XML <context:property-placeholder> will no longer register the old PropertyPlaceholderConfigurer 
+	but the newly introduced PropertySourcesPlaceholderConfigurer. 
+	
+	This replacement class was created to be more flexible and to better interact with the newly introduced Environment and PropertySource mechanism.
+
+Profile-specific Properties:
+===========================
+	In addition to application.properties files, profile-specific properties can also be defined by using naming convention: 
+	application-{profile}.properties
+
+	Profile-specific properties are loaded from the same locations as standard application.properties, with profile-specific files 
+	always overriding the non-specific ones.
+	
+	If no profiles are explicitly activated, then properties from application-default.properties are loaded.
+	
+	If several profiles are specified, a last-wins strategy applies.
+	
+	Profile value can be specified by the spring.profiles.active in application.properties file.
+	
+Placeholders in Properties:
+==========================
+	The values in application.properties are filtered through the existing Environment when they are used, so we can use the previously defined values at next level of property assignment.
+	
+	For example:
+		app.name=MyApp
+		app.description=${app.name} is a Spring Boot application
+
+Reading List/Set type values from properties file:
+-------------------------------------------------
+	List or Set type of values also can be read from the properties file :
+	For Example:
+		my.servers[0]=dev.example.com
+		my.servers[1]=another.example.com
+		
+		@ConfigurationProperties(prefix="my")
+		public class Config {
+		private List<String> servers = new ArrayList<String>();
+			public List<String> getServers() {
+				return this.servers;
+			}
+		}
+		
+	
