@@ -1,0 +1,26 @@
+SVN:
+===
+tags
+branches
+trunk
+
+Technically "tag" & "branch" Both Are Same In The Context Of Subersive is a Copy Of The Codebase As It Appears At Given Time.
+
+"tag" are Looked Upon More Of As a Constant Snapshot Of a Project And They Do Not Change Overtime And Can Be Used To Main The Released Stable Code. Can Also Be Used As a Check Point.
+
+"branches" Are Mostly Used For Different Aspect Of Project(release management) and Later Merged To trunk.
+
+"trunk" Should Always Be Kept As Stable As Possible, This Is The Place For Developers To Workon.
+
+"merge" Basically Is A Way To Pull Changes From branch Back to trunk.
+
+=========================================================================
+
+trunk  - Used For Development Purpose.
+
+branch - Once Development is Done, Release Has To Happen . In That Situation New Branch will  Created For That Release.And Once The 
+         Release Is Done, The Branch Loses Its Existence, As Equivalent To It Does Not Exists.
+
+tag    - Once The Release Is Done. The Released Version Of Code Will Be Pushed Into a label Called tag.
+	       For Any Maintainance Or HotFix Delivery , a New Branch Needs To Be Created From tag. Because tag Contains The Latest Released 	
+         Stable Code.
