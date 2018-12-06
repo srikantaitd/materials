@@ -1,0 +1,207 @@
+<HTML>
+<HEAD>
+	<script>
+	   console.log("Understanding Closure in Javascript.");
+	   console.log("");
+	   console.log("Closure is a Special Function in Javascript, Which Significantly Remembers Its State In Which it is Declared.");
+	   console.log("");
+	   console.log("Closure Can Be Executed Outside Its Scope in Which It Was Created, Essentially Even After The Scope is Destroyed Also.");
+	   var a=10;
+	   
+	   function outer(){
+	      var b=20;
+		  
+		  function inner(){
+		   var c=30;
+		   var d=b;
+		   console.log(a);
+		   console.log(b);
+		   console.log(c);
+		   console.log(d);
+		  }
+		  
+		  return inner;
+	   }
+	   
+	   console.log("");
+	   var inner01=outer();
+	   console.log("Executing Closure.");
+	   console.log("");
+	   inner01();
+	</script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+	<script>
+	   console.log("Understanding Closure in Javascript.");
+	   console.log("");
+	   console.log("Closure is a Special Function in Javascript, Which Significantly Remembers Its State In Which it is Declared.");
+	   console.log("");
+	   console.log("Closure Can Be Executed Outside Its Scope in Which It Was Created, Essentially Even After The Scope is Destroyed Also.");
+	   var a=10;
+	   
+	   function outer(){
+	      var b=20;
+		  
+		  var innerFn=function(){
+		   a++;
+		   b++;
+		   console.log(a);
+		   console.log(b);
+		  };
+		  
+		  return innerFn;
+	   }
+	   
+	   console.log("");
+	   var innerFnObj=outer();
+	   console.log("Executing Closure.");
+	   console.log("");
+	   innerFnObj();
+	   
+	   console.log("");
+	   var innerFnObj=outer();
+	   console.log("Executing Closure Second Time.");
+	   console.log("");
+	   innerFnObj();
+	</script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+	<script>
+	   console.log("Executing a Function With Time Delay in Javascript Using Callback Mechanisim.");
+	   console.log("");
+	   var a=10;
+	   
+	   var fn1=function(){
+		   console.log(a);
+	   };
+
+	   //wait for 3 seconds before executing the function
+	   
+	   setTimeout(fn1,3000);
+	   
+	   console.log("Done");
+	   </script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+	<script>
+	   console.log("Managing Data Privacy Using Closure in Javascript With The Help Of Module Pattern.");
+	   
+	   function protectData(){
+			var fname="Srikant";
+			var lname="Sahu";
+			var dataObject = {
+							  "getFirstName" : function(){
+												return fname;
+												},
+							  "getLastName"  : function(){
+												return lname;
+												},
+							  "setFirstName" : function(firstname){
+												 fname=firstname;
+												},
+							  "setLastName" : function(lastname) {
+												lname=lastname;
+												}
+							}
+			
+			return dataObject;
+	   }
+	   
+	   var personalDetail=protectData();
+	   
+	   console.log(personalDetail.getFirstName());
+	   
+	   console.log(personalDetail.fname);
+	   </script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+	<script>
+	console.log("Data Abstraction in Javascript Using Module Pattern With Help Of Clousre");
+	function dataContainer(){
+		var firstName="Marry";
+		var	lastName="Kom";
+		
+		var dataObject={
+			"getFirstName":function(){
+			return firstName;
+			},
+			"getLastName":function(){
+			return lastName;
+			}
+		};
+		return dataObject;
+	}
+	
+	var personalDetails=dataContainer();
+	
+	console.log(personalDetails);
+	console.log(personalDetails.getFirstName());
+	console.log("");
+	console.log("In This Case The Variables Can Not be Accessed Directly As They Are Not Part Of the Object Reference Scope. Can Only Be Accessed By Getters & Setters, Hence It is Secure.");
+	console.log("");	
+	console.log(personalDetails.lastName);
+	
+	</script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+	<script>
+	console.log("Approach-1 : Working With Closures in Asyn Environment");
+	
+	var i=0;
+	
+	for(i=0;i<10;i++)
+	{
+		(
+			function(val){
+				setTimeout(
+						function(){
+							console.log(val);
+						},1000);
+			}
+		)(i);
+	}
+	
+	</script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+	<script>
+	console.log("Approach-2 : Working With Closures in Asyn Environment");
+	
+	var i=0;
+	
+	for(i=0;i<10;i++)
+	{
+		(
+		 function(){
+		    var val = i;
+			setTimeout(print(val),1000);
+		 }
+		)();
+	}
+	
+	function print(val){
+		console.log(val);
+	}
+	
+	</script>
+</HEAD>
+</HTML>
+----------------------------
