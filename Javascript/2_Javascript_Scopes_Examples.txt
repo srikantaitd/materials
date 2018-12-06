@@ -1,0 +1,144 @@
+<HTML>
+<HEAD>
+ <script>
+    (
+		function()
+		{
+		var x=10;
+		var y=20;
+		console.log(x+y);
+		}
+	)();
+ </script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+ <script>
+    var a=10;
+	
+	var fn1=function(){
+		console.log(a);
+	};
+	
+	setTimeout(fn1,1000);
+	console.log("Done");
+ </script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+ <script>
+	console.log("scopes in JavaScript");
+    var a=10;
+	
+	var fn1=function(){
+		var b=20;
+		console.log("From LocalScope:"+b);
+		console.log("From GlobalScope:"+a);
+	};
+	
+	fn1();
+ </script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+ <script>
+	console.log("same variable with two different scope in JavaScript");
+    var a=10;
+	
+	var fn1=function(){
+		var b=20;
+		var a=30;
+		console.log("From LocalScope:"+b);
+		console.log("From LocalScope:"+a);
+		console.log("If Same Variable is Present in Two Different Scope ,Then The Variable In Local Scope Will Take The Highest Priority.");
+	};
+	
+	fn1();
+ </script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+ <script>
+	console.log("Understanding Scope Chain in Javascript.");
+    var a=10;
+	
+	var fn1=function(){
+		var b=20;
+		var a=30;
+		c=40;
+		console.log("From LocalScope:"+b);
+		console.log("From LocalScope:"+a);
+		console.log("Undeclared Variable Dynamically Space Allocated By Interpreter in Global Scope:"+c);
+		console.log("If Same Variable is Present in Two Different Scope ,Then The Variable In Local Scope Will Take The Highest Priority.");
+	};
+	
+	fn1();
+ </script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+ <script>
+	console.log("Understanding Compilation & Interpretion Phase Associated Scope Chain in Javascript.");
+    console.log("a="+a);
+	var a=10;
+ </script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+ <script>
+	console.log("Understanding Compilation & Interpretion Phase Associated With Read Write Operation in Javascript.");
+    a=10;
+	console.log("Javascipt Allows Write Operation For Undeclared Variable.");
+	console.log("a="+a);
+ </script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+ <script>
+	console.log("Understanding Compilation & Interpretion Phase Associated With Read Operation in Javascript.");
+	console.log("Javascipt Does Not Allow Read Operation For Undeclared Variable.");
+	console.log("a="+a);
+ </script>
+</HEAD>
+</HTML>
+----------------------------
+<HTML>
+<HEAD>
+	<script>
+		console.log("Understanding Scopes in Javascript.")
+	   var a=10;
+	   
+	   function outer(){
+	      var b=20;
+		  
+		  function inner(){
+		   var c=30;
+		   var d=b;
+		   console.log(a);
+		   console.log(b);
+		   console.log(c);
+		   console.log(d);
+		  }
+		  
+		  inner();
+	   }
+	   
+	   outer();
+	</script>
+</HEAD>
+</HTML>
+----------------------------
