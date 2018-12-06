@@ -1,0 +1,353 @@
+<HTML>
+ <HEAD>
+    <script>
+		console.log("Demonstraction Of Prototype In Javascript");
+		console.log("-----------------------------------------");
+		console.log("Prototype In Javascript Allows To Create Objects From A Template.");
+		console.log("");
+		console.log("Javascript Objects Doesn't Own Methods, They Just Have Properties And Any Properties Can Be a Function");
+		console.log("");
+		console.log("There is \"class\" keyword introduced in New Version Of Javascript(ES6), Which Simulates The Class Like Behaviour, But Javascript Does Not Have The class Concept Like Any Other Object Oriented Programming Languages(C++,Java)");
+		console.log("");
+		console.log("But Javascript Supports To Declare Common Behaviours In One Place And Have Them Inherited To Use In Multiple Places");
+		console.log("");
+		console.log("For Every Function Declared in Javascript , The Runtime Engine Creates 2 Objects As Follows:");
+		console.log("	1. The Function Object Itself");
+		console.log("	2. prototype Object");
+		console.log("");
+		console.log("prototype Objects Gets Created When Function Objcet Is Created.");
+		console.log("");
+		console.log("Irrespective Of Any Number Of Objects Created All Will Refer To The Same Object.");
+		console.log("");
+		console.log("Whenever Any Property Is Accessed From Any Object ,");
+		console.log("Javascript Engine Checks For That Property Is Present Or Not.");
+		console.log("	If It Has It Returns The Value Of That Property.");
+		console.log("	If It Does Not Find That Property Than It Searches For That Property in __proto__ Object");
+		console.log("	If The __proto__ Object Also Does Not Contains That Property ,Only Than It Returns undefined");
+		console.log("The __proto__ is Also Referred As \"dunder-proto\"");
+	</script>
+ </HEAD>
+</HTML>
+------------------------------------
+<HTML>
+ <HEAD>
+    <script>
+		console.log("Demonstration Of prototype & __proto__ Properties");
+		console.log("--------------------------------------------------");
+		function Foo(){}
+		
+		console.log(Foo.prototype);
+		
+		var myObj=new Foo();
+		
+		console.log(Foo.prototype === myObj.__proto__);
+		
+	</script>
+ </HEAD>
+</HTML>
+------------------------------------
+<HTML>
+ <HEAD>
+    <script>
+		console.log("Demonstration Of __proto__");
+		console.log("---------------------------");
+		function Foo(){}
+		
+		var myObj=new Foo();
+		console.log(myObj.testprop);
+		
+		myObj.__proto__.testprop="10";
+		
+		console.log(myObj.testprop);
+		
+		myObj.testprop="20";
+		
+		console.log(myObj.testprop);
+		console.log(myObj.__proto__.testprop);
+	</script>
+ </HEAD>
+</HTML>
+------------------------------------
+<HTML>
+ <HEAD>
+    <script>
+		console.log("Function Reusability In Javascript Using prototype");
+		console.log("---------------------------------------------------");
+		console.log("Declaring Common Behaviours in __proto__ and Accessing Them Globally From Any Object.");
+		
+		function Foo(){}
+		
+		var myObj1=new Foo();
+		var myObj2=new Foo();
+		
+		console.log(myObj1.__proto__ === myObj2.__proto__);
+		
+		myObj2.__proto__.add=function(num1,num2){
+			return num1 + num2;
+			};
+		
+		console.log(myObj1.add(10,20));
+		
+		console.log(myObj2.add(20,30));
+		
+	</script>
+ </HEAD>
+</HTML>
+------------------------------------
+<HTML>
+ <HEAD>
+    <script>
+		console.log("Global \"Object\" function in Javascript");
+		console.log("---------------------------------------------------");
+		console.log("Declaring Common Behaviours in __proto__ and Accessing Them Globally From Any object.");
+		
+		function Foo(){}
+		
+		var myObj1=new Foo();
+		var myObj2=new Foo();
+		
+		console.log(myObj1.__proto__ === myObj2.__proto__);
+		
+		myObj2.__proto__.add=function(num1,num2){
+			return num1 + num2;
+			};
+		
+		console.log(myObj1.add(10,20));
+		
+		console.log(myObj2.add(20,30));
+		
+	</script>
+ </HEAD>
+</HTML>
+------------------------------------
+<HTML>
+	<HEAD>
+		<script>
+			console.log("constructor Property Of Prototype Object");
+			console.log("-----------------------------------------");
+			
+			function CreateAddressObject(street,city,state,country,pin){
+			 this.street=street;
+			 this.city=city;
+			 this.state=state;
+			 this.country=country;
+			 this.pin=pin;
+			}
+			
+			console.log(CreateAddressObject);
+			console.log("");
+			
+			console.log("prototype property => "+CreateAddressObject.prototype);
+			
+			var permanentAddress=new CreateAddressObject("Lokgram","Kalyan","MAH","IND",421306);
+			
+			console.log(permanentAddress);
+			console.log("");
+			console.log("prototype property => "+CreateAddressObject.prototype);
+			console.log("");
+			console.log("constructor property of __proto__ => "+permanentAddress.__proto__.constructor);
+			
+			console.log("");
+			var commAddress=new permanentAddress.__proto__.constructor("Gachibowli","HYD","TELENGANA","IND",500032);
+			console.log(commAddress);
+			console.log("");
+			console.log(permanentAddress.__proto__ === commAddress.__proto__);
+			
+			console.log("It Is Recomended Not To Use __proto__ , Instead It is Always Better to Use prototype Property Of Function");
+			console.log("Every Time When We Create An Object Of Any Function , The Javascript Engine Creates Object Of Prototype, And This prototype Object Has One Property Called constructor Which Is Refering Back To The Function Itself.")
+		</script>
+	</HEAD>
+</HTML>
+------------------------------------
+<HTML>
+	<HEAD>
+		<script>
+			console.log("Object Function In Javascript");
+			console.log("------------------------------");
+			var simple={};
+			console.log(simple);
+			console.log("");
+			console.log(simple.__proto__.constructor);
+			
+			var obj=new Object();
+			console.log("");
+			console.log(Object.prototype.constructor);
+			console.log("");
+			console.log(obj.__proto__.constructor);
+			
+			console.log("");
+			console.log(simple.__proto__ === obj.__proto__);
+			console.log("");
+			console.log(simple.__proto__ === Object.prototype);
+			console.log("");
+			console.log("The Approach Of Creating Empty Object Using Object Function In Constructor And Using Shortcut \({}\) Approach Is One And The Same.")
+		</script>
+	</HEAD>
+</HTML>
+------------------------------------
+<HTML>
+	<HEAD>
+		<script>
+			console.log("The Prototype Object");
+			console.log("--------------------");
+			console.log("The Automatically Created prototype object Is Actually Created Using Object Function in Constructor Mode As Mentioned Below :");
+			console.log("new Object()");
+			console.log("And As Part Of This prototype object For Object Function Also Gets Created ,Whose prototypes dhunder-proto \(__proto__\) Points to Null, to Avoid Infinite Hiharchy. ")
+			console.log("");
+			
+			function Employee(ename,job){
+			  this.ename=ename;
+			  this.job=job;
+			}
+			
+			var emp1=new Employee("Mike","Analyst");
+			
+			console.log(emp1);
+			
+			emp1.__proto__.empName="Parent Of Employee Object";
+			
+			console.log(emp1.empName);
+			
+			console.log(emp1.empGrandName);
+			
+			emp1.__proto__.__proto__.empGrandName="Grandparent Of Employee";
+			console.log(emp1.empGrandName);
+			
+			console.log(emp1.__proto__.__proto__ === Object.prototype);
+			
+		</script>
+	</HEAD>
+</HTML>
+------------------------------------
+<HTML>
+	<HEAD>
+		<script>
+			console.log("Inheritance In Javascript");
+			console.log("-------------------------");
+						
+			function Employee(name){
+				this.name=name;
+			}
+			
+			function Manager(name,dept)
+			{
+			 this.name=name;
+			 this.dept=dept;
+			}
+			
+			Employee.prototype.getName=function(){
+				return this.name;
+			};
+			
+			Manager.prototype.getDept=function(){
+			 return this.dept;
+			};
+			
+			var emp=new Employee("Mike");
+			console.log("Employee : "+emp.getName());
+			console.log("");
+			
+			console.log(Employee.prototype === Manager.prototype);
+			console.log("");
+			var manager= new Manager("John",4000);
+			console.log("Department No : "+manager.getDept());
+			console.log("Manager Name  : "+manager.getName());
+			
+		</script>
+	</HEAD>
+</HTML>
+------------------------------------
+<HTML>
+	<HEAD>
+		<script>
+			console.log("Inheritance In Javascript");
+			console.log("-------------------------");
+			console.log("This is Not The Correct Way Of Sharing The Behaviour In The Hirarchy.");
+			console.log("Here The Problem Is Behaviours Are Becoming More Global, So Any Other Irrelavent Objects Can Access The Behaviour, Creating Security Breach.");
+			console.log("");
+						
+			function Employee(name){
+				this.name=name;
+			}
+			
+			function Manager(name,dept)
+			{
+			 this.name=name;
+			 this.dept=dept;
+			}
+			
+			Object.prototype.getName=function(){
+				return this.name;
+			};
+			
+			Manager.prototype.getDept=function(){
+			 return this.dept;
+			};
+			
+			var emp=new Employee("Mike");
+			console.log("Employee : "+emp.getName());
+			console.log("");
+			
+			var manager= new Manager("John",4000);
+			console.log("Department No : "+manager.getDept());
+			console.log("Manager Name  : "+manager.getName());
+			
+			function Foo(){}
+			
+			var foo=new Foo();
+			console.log("");
+			
+			console.log("name : "+foo.getName());
+			
+		</script>
+	</HEAD>
+</HTML>
+------------------------------------
+<HTML>
+	<HEAD>
+		<script>
+			console.log("Inheritance In Javascript");
+			console.log("-------------------------");
+			console.log("Correct Way Of Sharing The Behaviour In The Right Hirarchy.");
+			console.log("");
+			
+			function Employee(name){
+				this.name=name;
+			}
+			
+			function Manager(name,dept)
+			{
+			 this.name=name;
+			 this.dept=dept;
+			}
+			
+			Employee.prototype.getName=function(){
+				return this.name;
+			};
+			
+			Manager.prototype.getDept=function(){
+			 return this.dept;
+			};
+			
+			var emp=new Employee("Mike");
+			console.log("Employee Name: "+emp.getName());
+			console.log("");
+			
+			var manager= new Manager("John",4000);
+			
+			manager.__proto__.__proto__= emp.__proto__;
+				
+			console.log("Department No : "+manager.getDept());
+			console.log("Manager Name  : "+manager.getName());
+			
+			function Foo(){}
+			
+			var foo=new Foo();
+			console.log("");
+			
+			console.log("name : "+foo.getName());
+			
+		</script>
+	</HEAD>
+</HTML>
+------------------------------------
