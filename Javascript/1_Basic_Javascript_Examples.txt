@@ -1,0 +1,390 @@
+<HTML>
+<BODY>
+ <script>
+	console.log("Sample Javascript Demonstration");
+	var myVar=10;
+	console.log(myVar);
+	myVar="Variable Value Changed";	
+	console.log(myVar);
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+	console.log("Data Types In Java Script");
+	console.log("-------------------------");
+	var myVar;
+	console.log(typeof myVar);
+	myVar = 10;
+	console.log(typeof myVar);
+	myVar = "Variable Value Changed";	
+	console.log(typeof myVar);
+	myVar = null;
+	console.log(typeof myVar);
+	myVar = false;
+	console.log(typeof myVar);
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+	console.log("Type Coersion in Javascript");
+	console.log("-------------------------");
+	var myVar1=10;
+	console.log(myVar1);
+	var myVar2 = "10";
+	console.log(myVar2);
+	console.log("Checking if both Values Are Equal Using == Operator.");
+	console.log(myVar1==myVar2);
+	console.log("== Operator Does The Type Coersion Before Comparing The Values, Hence Even If The Values Are in Different Types, It Returns TRUE.");
+	console.log("Checking if both Values Are Equal Using === Operator.");
+	console.log(myVar1===myVar2);
+	console.log("");
+	console.log("=== is Considered As Type Precise Type Checking Operator.");
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+	console.log("Object Type Declaration in Javascript");
+	console.log("-------------------------------------");
+	var empObject;
+	console.log(typeof empObject);
+	empObject = {};
+	console.log(typeof empObject);
+	console.log("Assign Values to Object At Runtime.");
+	empObject.empID = "1001";
+	empObject.EName = "SMITH";
+	empObject.Job 	 = "ANALYST";
+	empObject.Sal 	 = "3000$";
+	empObject.HireDate = "24-DEC-1981";
+	empObject.Deptno = 30;
+	console.log("Employee Details Are Stored in Object as Follows : ");
+	console.log(empObject);
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+	console.log("Accesing Property From Object Using dot(.) Operator");
+	console.log("-------------------------------------");
+	var empObject = {"empID" : "1001","EName" : "SMITH","Job" : "ANALYST","Sal" : "3000$","HireDate" : "24-DEC-1981","Deptno" : 30};
+	console.log(empObject);
+	console.log("");
+	console.log("Employee Details Are as Follows : ");
+	console.log("");
+	console.log("Employee ID:", empObject.empID);
+	console.log("Employee Name:", empObject.EName);
+	console.log("Designation:", empObject.Job);
+	console.log("Baisc Salary:", empObject.Sal);
+	console.log("Joining Date:", empObject.HireDate);
+	console.log("Department No:", empObject.Deptno);
+	
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+	console.log("Accesing Property From Object Using Square Bracket([]) Operator");
+	console.log("-------------------------------------");
+	var empObject = {"empID" : "1001","EName" : "SMITH","Job" : "ANALYST","Sal" : "3000$","HireDate" : "24-DEC-1981","Deptno" : 30};
+	console.log(empObject);
+	console.log("");
+	console.log("Employee Details Are as Follows : ");
+	console.log("");
+	console.log("Employee ID:", empObject["empID"]);
+	console.log("Employee Name:", empObject["EName"]);
+	console.log("Designation:", empObject["Job"]);
+	console.log("Baisc Salary:", empObject["Sal"]);
+	console.log("Joining Date:", empObject["HireDate"]);
+	console.log("Department No:", empObject["Deptno"]);
+ </script>
+</BODY>
+</HTML>
+
+<HTML>
+<BODY>
+ <script>
+	console.log("Nested Object Property Access In Javascript.");
+	console.log("-------------------------------------");
+	var empObject = {
+		"empID" : "1001",
+		"EName" : "SMITH",
+		"Job" : "ANALYST",
+		"Sal" : "3000$",
+		"HireDate" : "24-DEC-1981",
+		"Dept" : {
+			"Deptno" : "10",
+			"Dname" : "ACCOUNTING",
+			"Loc" : "CHICAGO"
+		}
+	};
+	console.log(empObject);
+	console.log("");
+	console.log("Employee Details Are as Follows : ");
+	console.log("");
+	console.log("Employee ID:", empObject["empID"]);
+	console.log("Employee Name:", empObject["EName"]);
+	console.log("Designation:", empObject["Job"]);
+	console.log("Baisc Salary:", empObject["Sal"]);
+	console.log("Joining Date:", empObject["HireDate"]);
+	console.log("Department No:", empObject.Dept["Deptno"]);
+	console.log("Department Name:", empObject.Dept["Dname"]);
+	console.log("Location:", empObject.Dept["Loc"]);
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+	console.log("Deleting Property From An Object In Javascript.");
+	console.log("-------------------------------------");
+	var empObject = {
+		"empID" : "1001",
+		"EName" : "SMITH",
+		"Job" : "ANALYST",
+		"Sal" : "3000$",
+		"HireDate" : "24-DEC-1981",
+		"Dept" : {
+			"Deptno" : "10",
+			"Dname" : "ACCOUNTING",
+			"Loc" : "CHICAGO"
+		}
+	};
+	console.log(empObject);
+	console.log("");
+	delete empObject.Dept;
+	console.log("Department Element Deleted Successfully.");
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+	console.log("Wrapper Object In Javascript");
+	console.log("-------------------------------------");
+	var sampVar="datamodel";
+	console.log("Length Of String "+sampVar+" is: "+sampVar.length);
+	console.log("");
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+    console.log("Working With Functions In Javascript");
+	console.log("-------------------------------------");
+	
+	function greet1(message)
+	{
+	 console.log(message);
+	}
+	
+	function greet2(message,optional)
+	{
+	 console.log(message,optional);
+	}
+	
+	greet1("Javascript Does Not Supports Function Overloading.");
+	greet2("Optional - ","Hi Friends Good Morning. Have a Wonderful Day Ahead.");
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+    console.log("Function As a Value In Javascript");
+	console.log("-------------------------------------");
+	
+	var myFunc=	function greet(message)
+				{
+				 console.log(message);
+				}
+	
+	myFunc("Function Executed As a Value In The Implementation.");
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+    console.log("Function As an Argument to Other Function in Javascript.");
+	console.log("-------------------------------------");
+	
+	var greeting=function wish()
+	{
+		console.log("Hello Friend Good Morning.");
+	}
+	
+	var greeter=function greet(greeting)
+	{
+	 greeting();
+	}
+	
+	greeter(greeting);
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+    console.log("Anonymous Function Expression in Javascript.");
+	console.log("-------------------------------------------");
+	
+	var greeting=function()
+	{
+		console.log("Hello Friend Good Morning From Anonymous Function.");
+	}
+	
+	greeting();
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+    console.log("Anonymous Function Expression in Javascript.");
+	console.log("-------------------------------------------");
+	
+	var greeting=function()
+	{
+		console.log("Hello Friend Good Morning From Anonymous Function.");
+	}
+	
+	greeting();
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+    console.log("Arrays in Javascript.");
+	console.log("---------------------");
+	
+	var dataArr=[1,2,3,4,5,"ada"];
+	
+	console.log(dataArr);
+	console.log(dataArr["0"]);
+	console.log(dataArr["1"]);
+	console.log(dataArr["2"]);
+	console.log(dataArr[3]);
+	console.log(dataArr[4]);
+	console.log(dataArr[5]);
+	console.log("Array Length = "+dataArr.length)
+	
+	dataArr[6]="new";
+	console.log(dataArr);
+	delete dataArr[5];
+	console.log(dataArr);
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+	console.log("this keyword In Javascript.");
+	console.log("--------------------------");
+	var empObject = {
+		"EmpID" : "1001",
+		"EName" : "SMITH",
+		"Job" : "ANALYST",
+		"Sal" : "3000$",
+		"HireDate" : "24-DEC-1981",
+		"Dept" : {
+			"Deptno" : "10",
+			"Dname" : "ACCOUNTING",
+			"Loc" : "CHICAGO"
+		},
+		"Address" : {
+			"Street" : "10",
+			"City" : "MEXICO",
+			"State" : "CHICAGO",
+			"Country" : "USA"
+		},
+		"ifFromCountry" : function(ctry){
+							return this.Address.Country === ctry;
+						  }
+	};
+	console.log(empObject);
+	console.log("");
+	console.log(empObject.ifFromCountry("IND"));
+	console.log(empObject.ifFromCountry("USA"));
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+	console.log("Array Builtin Methods in Javascript.");
+	console.log("-------------------------------------");
+	var dataArr = [10,"Ten","One Zero"];
+	console.log(dataArr);
+	console.log("");
+	console.log(dataArr.push(20));
+	console.log(dataArr);
+	console.log(dataArr.pop());
+	console.log(dataArr);
+	console.log(dataArr.shift());
+	console.log(dataArr);
+	console.log(dataArr.unshift("New"));
+	console.log(dataArr);
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+	console.log("foreach loop in Javascript.");
+	console.log("-------------------------------------");
+	
+	var operation=function(element,index,array){
+	console.log(element+" - index -> "+index);
+	};
+	
+	var dataArr = [10,"Ten","One Zero"];
+	console.log(dataArr);
+	console.log("");
+	
+	dataArr.forEach(operation);
+ </script>
+</BODY>
+</HTML>
+---------------------------------
+<HTML>
+<BODY>
+ <script>
+	console.log("default arguments in Javascript.");
+	console.log("--------------------------------");
+	
+	var operation=function(param1,param2){
+	console.log(arguments);
+	console.log(param1);
+	console.log(param2);
+	};
+	
+	operation("Apple","Mango","Banana Robusta");
+ </script>
+</BODY>
+</HTML>
+---------------------------------
