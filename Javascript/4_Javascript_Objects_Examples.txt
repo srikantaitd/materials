@@ -1,0 +1,220 @@
+<HTML>
+<HEAD>
+	<script>
+	console.log("Object Creation Startegies.");
+	
+	console.log("Startegy-1.");
+	var company1= {};
+	company1.name="DBS Bank";
+	company1.employees="500";
+	company1.location="HYD";
+	
+	var company2= {};
+	company2.name="UCO Bank";
+	company2.employees="500";	
+	company2.location="SG";
+	
+	console.log(company1);
+	
+	console.log(company2);
+	
+	console.log("");
+	console.log("Startegy-2 Using Function.");
+	
+	function createCompany(name, empCount, location){
+		var company = {};
+		company.name=name;
+		company.empCount=empCount;
+		company.location=location;
+		return company;
+	}
+	
+	var company3=createCompany("BOA","400","SG");
+	
+	console.log(company3);
+	
+	console.log("");
+	console.log("Startegy-3 Using Constructor.");
+	
+	function Company(name,empCount,location){
+	  this.name=name;
+	  this.employees=empCount;
+	  this.location=location;
+	  return this;
+	}
+	
+	var company4=new Company("CREDIT SUICE","560","SG");
+	
+	console.log(company4);
+
+	/** Below Code Shows Function Can Be Invoked With Or Without new Operator For Creating Object. 
+		**/
+	var company5=new createCompany("SBI","560","SG");
+	
+	console.log(company5);
+
+	var company6=new createCompany("SBI","560","SG");
+	
+	console.log(company6);
+
+	
+	/** Below Code Does Not Work. Hence Kept Commented For Demonstration Purpose.
+		Reason: Constructor Can Be Called To Execute For Creating Object Using new Keyword
+		**/
+	//var company7=Company("CREDIT SUICE","560","SG");
+	//console.log(company7);
+	</script>
+</HEAD>
+</HTML>
+--------------------------------
+<HTML>
+<HEAD>
+	<script>
+		console.log("Different Ways Of Executing A Function.");
+		console.log("There Are 4 Ways Of Executing A Function.");
+		function foo()
+		{
+		console.log("Hello Foo.");
+		}
+		
+		console.log("Approach 1:");
+		foo();
+		
+		var obj={};
+		obj.foo=function(){
+			console.log("Object - Foo Function");
+		}
+		
+		console.log("Approach 2:");
+		obj.foo();
+		
+		console.log("Approach 3: Constructor Approach");
+		new foo();
+		
+		console.log("Approach 4: Using Implicit Default call() function");
+		foo.call();
+		
+	</script>
+</HEAD>
+</HTML>
+------------------------------
+<HTML>
+<HEAD>
+ <script>
+	 function showImplicitVar(){
+	  console.log(this);
+	  console.log(arguments);
+	 }
+	 
+	console.log("Every Javascript Function Call Has Two Default Implicit Variables Those Are: arguments & this ");
+	
+	showImplicitVar();
+ </script>
+</HEAD>
+</HTML>
+
+------------------------------
+<HTML>
+<HEAD>
+	<script>
+		console.log("Demonstration Of this Implicit Variable - \" Approach 1: Calling standalone function Directly. \""); 
+		console.log("In This Approach this Points to a Reference to global Object \"Window\" ");
+		
+		printThis();
+		
+		function printThis(){
+		console.log(this)
+		}
+	</script>
+</HEAD>
+</HTML>
+------------------------------
+<HTML>
+<HEAD>
+	<script>
+		console.log("Demonstration Of this Implicit Variable - \" Approach 2: Calling function as a Property Of An Object. \""); 
+		console.log("In This Approach this Refers to an Object upon Which The Function has Been Called Or Belongs To.");
+		
+		var funObj={};
+		funObj.myFun=function(){
+			console.log(this);
+			};
+			
+		funObj.myFun();
+	</script>
+</HEAD>
+</HTML>
+------------------------------
+<HTML>
+<HEAD>
+	<script>
+		console.log("Demonstration Of this Implicit Variable - \" Approach 2: Calling function as a Property Of An Object. \""); 
+		console.log("In This Approach this Refers to an Object upon Which The Function has Been Called Or Belongs To.");
+		var obj={};
+
+		obj.foo=function(){
+			console.log(this);
+		};
+		
+		obj.foo();
+	</script>
+</HEAD>
+</HTML>
+	
+------------------------------
+<HTML>
+<HEAD>
+	<script>
+		console.log("Demonstration Of this Implicit Variable - \" Approach 3: Calling Function As A Constructor \""); 
+		console.log("In This Approach this Refers to The Newly Created Object.");
+
+		function Foo(){
+		 //var this={};
+		 console.log("I am This Object Itself.");
+		 console.log(this);
+		 //return this;
+		};
+		
+		new Foo();
+	</script>
+</HEAD>
+</HTML>
+--------------------------------
+<HTML>
+<HEAD>
+	<script>
+		console.log("Demonstration Of this Implicit Variable - \" Approach 4: Executing Function Using call()\""); 
+
+		function Bicycle(color,wheel,engine,tyrePressure){
+			this.color=color;
+			this.wheel=wheel;
+			this.engine=engine;
+			this.tyrePressure=tyrePressure;
+			this.increasePressure=function (){
+				this.tyrePressure=tyrePressure+2;
+			};
+		}
+		
+		function BikeMechanic(name){
+			this.name=name;
+		}
+		
+		var cycle1=new Bicycle("Blue","4","OR10C2378",10);
+		console.log(cycle1);
+
+		var cycle2=new Bicycle("Red","4","OR10C2377",50);
+		console.log(cycle2);
+		
+		var mechanic1= new BikeMechanic("Srikant");
+		mechanic1.increasePressure=cycle1.increasePressure;
+		mechanic1.increasePressure.call(cycle1);
+		
+		var mechanic2= new BikeMechanic("Srikant");
+		mechanic2.increasePressure=cycle2.increasePressure;
+		mechanic2.increasePressure.call(cycle2);
+
+		mechanic1.increasePressure();
+	</script>
+</HEAD>
+</HTML>
+
