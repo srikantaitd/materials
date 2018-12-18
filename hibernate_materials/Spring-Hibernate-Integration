@@ -1,0 +1,333 @@
+This page was exported from - TechnicalStack
+Export date: Tue Dec 18 4:50:50 2018 / +0000 GMT
+===============================================
+Spring Hibernate Integration Example (Spring 4 & Hibernate 3 )
+===============================================
+- Spring Hibernate combination is widely used across industry.
+- Below is the sample tutorial with detailed steps on how to configure Spring with Hibernate.
+- Spring ORM artifact supports both Hibernate 3 and Hibernate 4, let list all the dependencies required for this post.
+- Also noticed that all spring and hibernate versions are not compatible,If you are using some other versions and getting
+  java.lang.NoClassDefFoundError, then it means that they are not compatible. Mostly it's because Hibernate classes are moved from
+  one package to another causing this error. For example org.hibernate.engine.FilterDefinition class is moved to
+  org.hibernate.engine.spi.FilterDefinition in latest hibernate versions.
+- Spring Framework Version: 4.0.3.RELEASE
+- Hibernate Core and Hibernate EntityManager Version: 3.6.9.Final and 4.3.5.Final
+- Spring ORM Version: 4.0.3.RELEASE
+  Lets begin by creating our Database
+    CREATE TABLE `Person` (
+     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+     `name` varchar(20) NOT NULL DEFAULT '',
+     `country` varchar(20) DEFAULT NULL,
+     PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+    commit;
+- Maven Dependencies
+    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <modelVersion>4.0.0</modelVersion>
+     <groupId>org.springframework.samples</groupId>
+     <artifactId>SpringHibernateExample</artifactId>
+     <version>0.0.1-SNAPSHOT</version>
+     <properties>
+     <!-- Generic properties -->
+     <java.version>1.6</java.version>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+     <!-- Spring -->
+     <spring-framework.version>4.0.3.RELEASE</spring-framework.version>
+     <!-- Hibernate / JPA -->
+     <!-- <hibernate.version>4.3.5.Final</hibernate.version> -->
+     <hibernate.version>3.6.9.Final</hibernate.version>
+     <!-- Logging -->
+     <logback.version>1.0.13</logback.version>
+     <slf4j.version>1.7.5</slf4j.version>
+     Output as PDF file has been powered by [ Universal Post Manager ] plugin from www.ProfProjects.com | Page 1/8 |
+    This page was exported from - TechnicalStack
+    Export date: Tue Dec 18 4:50:50 2018 / +0000 GMT
+     </properties>
+     <dependencies>
+     <!-- Spring and Transactions -->
+     <dependency>
+     <groupId>org.springframework</groupId>
+     <artifactId>spring-context</artifactId>
+     <version>${spring-framework.version}</version>
+     </dependency>
+     <dependency>
+     <groupId>org.springframework</groupId>
+     <artifactId>spring-tx</artifactId>
+     <version>${spring-framework.version}</version>
+     </dependency>
+     <!-- Spring ORM support -->
+     <dependency>
+     <groupId>org.springframework</groupId>
+     <artifactId>spring-orm</artifactId>
+     <version>${spring-framework.version}</version>
+     </dependency>
+     <!-- Logging with SLF4J & LogBack -->
+     <dependency>
+     <groupId>org.slf4j</groupId>
+     <artifactId>slf4j-api</artifactId>
+     <version>${slf4j.version}</version>
+     <scope>compile</scope>
+     </dependency>
+     <dependency>
+     <groupId>ch.qos.logback</groupId>
+     <artifactId>logback-classic</artifactId>
+     <version>${logback.version}</version>
+     <scope>runtime</scope>
+     </dependency>
+     <!-- Hibernate -->
+     <dependency>
+     <groupId>org.hibernate</groupId>
+     <artifactId>hibernate-entitymanager</artifactId>
+     <version>${hibernate.version}</version>
+     </dependency>
+     <dependency>
+     <groupId>org.hibernate</groupId>
+     <artifactId>hibernate-core</artifactId>
+     <version>${hibernate.version}</version>
+     </dependency>
+     <dependency>
+     <groupId>mysql</groupId>
+     <artifactId>mysql-connector-java</artifactId>
+     <version>5.1.9</version>
+     </dependency>
+     <dependency>
+     <groupId>commons-dbcp</groupId>
+     <artifactId>commons-dbcp</artifactId>
+     <version>1.4</version>
+     </dependency>
+     </dependencies>
+    </project>
+
+-- Explanation:
+    - spring-context and spring-tx for core Spring functionalities. Notice we are using version 4.0.3.RELEASE.
+    - spring-orm dependency for Spring ORM support, it's required for hibernate integration in our spring project.
+    - hibernate-entitymanager and hibernate-core dependencies for Hibernate framework. Notice that version is 3.6.9.Final,
+    Incase if you are using Hibernate 4 we need is to change it to 4.3.5.Final as commented in above pom.xml file.
+    - mysql-connector-java for MySQL driver for database connection.
+    Model Class or Entity Bean
+    We can use Hibernate XML based mapping as well as JPA annotation based mapping. Here we will be using JPA annotations for
+    mapping because hibernate provides JPA implementation.
+    Person.java
+    package com.technicalstack.model;
+    import javax.persistence.Column;
+    import javax.persistence.Entity;
+    import javax.persistence.GeneratedValue;
+    import javax.persistence.GenerationType;
+    import javax.persistence.Id;
+    import javax.persistence.Table;
+    /**
+     * Entity bean with JPA annotations
+     * Hibernate provides JPA implementation
+     * @author admin
+     *
+     */
+    @Entity
+    @Table(name="Person")
+    public class Person {
+     @Id
+     @Column(name="id")
+     @GeneratedValue(strategy=GenerationType.IDENTITY)
+     private int id;
+
+     Output as PDF file has been powered by [ Universal Post Manager ] plugin from www.ProfProjects.com | Page 3/8 |
+    This page was exported from - TechnicalStack
+    Export date: Tue Dec 18 4:50:50 2018 / +0000 GMT
+     private String name;
+
+     private String country;
+     public int getId() {
+     return id;
+     }
+     public void setId(int id) {
+     this.id = id;
+     }
+     public String getName() {
+     return name;
+     }
+     public void setName(String name) {
+     this.name = name;
+     }
+     public String getCountry() {
+     return country;
+     }
+     public void setCountry(String country) {
+     this.country = country;
+     }
+
+     @Override
+     public String toString(){
+     return "id="+id+", name="+name+", country="+country;
+     }
+    }
+DAO Classes:
+===========
+- We will implement two methods in our DAO classes, first to save the Person object into table and second that will fetch all the
+  records from the table and returns the list of Persons.
+
+PersonDAO.java
+==============
+package com.technicalstack.dao;
+import java.util.List;
+import com.technicalstack.model.Person;
+public interface PersonDAO {
+  public void save(Person p);
+
+  public List<Person> list();
+ }
+ 
+Above DAO class implementation: 
+
+PersonDAOImpl.java
+==================
+
+package com.technicalstack.dao;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import com.technicalstack.model.Person;
+public class PersonDAOImpl implements PersonDAO {
+ private SessionFactory sessionFactory;
+ public void setSessionFactory(SessionFactory sessionFactory) {
+ this.sessionFactory = sessionFactory;
+ }
+
+ @Override
+ public void save(Person p) {
+ Session session = this.sessionFactory.openSession();
+ Transaction tx = session.beginTransaction();
+ session.persist(p);
+ tx.commit();
+ session.close();
+ }
+ @SuppressWarnings("unchecked")
+ @Override
+ public List<Person> list() {
+ Session session = this.sessionFactory.openSession();
+ List<Person> personList = session.createQuery("from Person").list();
+ session.close();
+ return personList;
+ }
+}
+
+- Notice that this is the only place where we are using Hibernate related classes. This pattern makes our implementation flexible and
+easy to migrate from one technology to another. For example, if we want to use iBatis ORM framework, all we need is to provide a
+DAO implementation for iBatis and then change the spring bean configuration file.
+
+- In above example,Hibernate session transaction management is used. But we can also use Spring declarative transaction
+  management using @Transactional annotation .
+
+- Spring Bean Configuration File for Hibernate 3 Integration
+
+spring.xml
+==========
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+ xmlns:tx="http://www.springframework.org/schema/tx"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+ http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+ <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+ destroy-method="close">
+ <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+ <property name="url" value="jdbc:mysql://localhost:3306/TestDB" />
+ <property name="username" value="admin" />
+ <property name="password" value="admin123" />
+ </bean>
+<!-- Hibernate 3 XML SessionFactory Bean definition-->
+<!-- <bean id="hibernate3SessionFactory"
+ class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+ <property name="dataSource" ref="dataSource" />
+ <property name="mappingResources">
+ <list>
+ <value>person.hbm.xml</value>
+ </list>
+ </property>
+ <property name="hibernateProperties">
+ <value>
+ hibernate.dialect=org.hibernate.dialect.MySQLDialect
+ </value>
+ </property>
+ </bean> -->
+<!-- Hibernate 3 Annotation SessionFactory Bean definition-->
+ <bean id="hibernate3AnnotatedSessionFactory"
+ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+ <property name="dataSource" ref="dataSource" />
+ <property name="annotatedClasses">
+ <list>
+ <value>com.technicalstack.model.Person</value>
+ </list>
+ </property>
+ <property name="hibernateProperties">
+ <props>
+ <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+ <prop key="hibernate.current_session_context_class">thread</prop>
+ <prop key="hibernate.show_sql">false</prop>
+ </props>
+ </property>
+ </bean>
+ 
+ <bean id="personDAO" class="com.technicalstack.dao.PersonDAOImpl">
+   <property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+ </bean>
+</beans>
+
+- There are two ways we can provide database connection details to Hibernate, first by passing everything inhibernateProperties and
+  second by creating a DataSource and then passing it to hibernate. I prefer the second approach, that's why we have Apache
+  Commons DBCP dependency to create a BasicDataSource by setting database connection properties.
+
+- For Spring and Hibernate 3 integration, Spring ORM provides two classes ?
+      org.springframework.orm.hibernate3.LocalSessionFactoryBean when hibernate mappings are XML based and
+      org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean for annotations based mapping. I have provided simple
+      bean configuration of LocalSessionFactoryBean in comments, if you are using XML based mappings. AnnotationSessionFactoryBean
+      extends LocalSessionFactoryBean class, so it has all the basic properties for hibernate integration.
+
+- The properties are self understood and mostly hibernate related, so I will not go into much detail for them. But if you are wondering
+  from where hibernateProperties, annotatedClasses are coming, you need to look into the bean class source code.
+  Notice the bean definition of personDAO, like I said earlier if we have to switch to some other ORM framework, we need to change
+  the implementation class here and set any other properties we need.
+
+Spring 4 Hibernate 3 Test Program
+=================================
+let's write a simple program to test our application: 
+
+SpringHibernateMain.java
+=========================
+
+package com.technicalstack.main;
+import java.util.List;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.technicalstack.dao.PersonDAO;
+import com.technicalstack.model.Person;
+public class SpringHibernateMain {
+ public static void main(String[] args) {
+ ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+
+ PersonDAO personDAO = context.getBean(PersonDAO.class);
+
+ Person person = new Person();
+ person.setName("admin"); person.setCountry("India");
+
+ personDAO.save(person);
+
+ System.out.println("Person::"+person);
+
+ List<Person> list = personDAO.list();
+ for(Person p : list){
+   System.out.println("Person List::"+p);
+ }
+ //close resources
+ context.close();
+ }
+}
+
+When we execute above program, below is the output.
+
+Person::id=3, name=admin, country=India
+Person List::id=1, name=admin, country=India
+Person List::id=2, name=admin, country=India
+Person List::id=3, name=admin, country=India
