@@ -1,0 +1,20 @@
+FOR MyIndex IN StartRange..EndRange
+LOOP
+END LOOP;
+
+WHILE Condition
+LOOP
+END LOOP;
+
+
+LOOP 
+ EXIT WHEN Condition;
+END LOOP;
+
+
+-- Every FOR Loop Has a Loop Counter Or Loop Index,Which is Auto Declared,Auto Initialized,Auto Incremented Or Auto Decremented and Auto Destoyed Along With the Loop Operation.
+-- Loop Counter Is Auto Initialized As Soon As the Loop Begins, And Goes Out Of the Scope When The LoopEnds.
+-- Loop Counter Auto Initialized to The Lower Bound Value Whenever REVERSE Keyword Is Used and Is Incremented By 1 For Every Iteration.
+-- Loop Counter Auto Initialized to The UpperBound Value Whenever REVERSE Keyword Is Used and Is Decremented By 1 For Every Iteration.
+-- Loop Counter Variable Can Be Used As a Reference to Lowebound Value Operational Purpose  Within the Scope of the Loop.
+-- Within the Loop Body Section the Value Of The Loop Counter Can not be Modified.

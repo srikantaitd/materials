@@ -1,0 +1,877 @@
+DECLARE
+V_Num NUMBER:=1;
+V_Result VARCHAR2(200):=NULL;
+BEGIN
+DBMS_OUTPUT.PUT_LINE('------------0o0------------');
+DBMS_OUTPUT.PUT_LINE('FOR Loop Illustration');
+DBMS_OUTPUT.PUT_LINE('------------0o0------------');
+FOR MyIndex IN V_Num..5
+  LOOP
+  V_Result:=V_Result||''||V_Num;
+  V_Num:=V_Num+1;
+  END LOOP;
+DBMS_OUTPUT.PUT_LINE('The Result Value Is: '||V_Result);
+END;
+/
+------------------
+DECLARE
+V_Num NUMBER:=1;
+V_Result VARCHAR2(200):=NULL;
+BEGIN
+DBMS_OUTPUT.PUT_LINE('------------0o0------------');
+DBMS_OUTPUT.PUT_LINE('FOR Loop Illustration');
+DBMS_OUTPUT.PUT_LINE('------------0o0------------');
+FOR MyIndex IN REVERSE V_Num..5
+  LOOP
+  V_Result:=V_Result||' '||V_Num;
+  V_Num:=V_Num+1;
+  END LOOP;
+DBMS_OUTPUT.PUT_LINE('The Result Value Is: '||V_Result);
+END;
+/
+--------------------
+
+Date 1st-August-2018:
+====================
+
+FOR V_Num1..V_Num2 IN
+LOOP 
+END LOOP;
+
+
+DECLARE
+ V_Num1 NUMBER :=0;
+ V_Num2 NUMBER :=5;
+BEGIN
+FOR LIndex IN V_Num1..V_Num2
+LOOP
+ DBMS_OUTPUT.PUT_LINE('The LoopIndex:'||V_LIndex);
+ V_LIndex:=V_LIndex+1;
+END LOOP;
+END;
+/
+
+
+DECLARE
+V_Empno VARCHAR2(20);
+V_Ename VARCHAR2(20);
+V_Job   VARCHAR2(20);
+V_Sal   NUMBER;
+V_Deptno NUMBER;
+BEGIN
+ SELECT Empno,Ename,Job,Sal,Deptno INTO V_Empno,V_Ename,V_Job,V_Sal,V_Deptno
+ FROM Emp
+ WHERE Empno = &Empno;
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('Employee Information Details');
+ DBMS_OUTPUT.PUT_LINE('--------------0o0--------------');
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('  Employee ID:'||V_Empno);
+ DBMS_OUTPUT.PUT_LINE('Employee Name:'||V_Ename);
+ DBMS_OUTPUT.PUT_LINE('   Desination:'||V_Job);
+ DBMS_OUTPUT.PUT_LINE('       Salary:'||V_Sal);
+ DBMS_OUTPUT.PUT_LINE('   Department:'||V_Deptno);
+END;
+
+
+
+======================
+/
+
+
+
+DECLARE
+V_Empno VARCHAR2(20);
+V_Ename VARCHAR2(20);
+V_Job   VARCHAR2(20);
+V_Sal   NUMBER;
+V_Deptno NUMBER;
+BEGIN
+ SELECT Empno,Ename,Job,Sal,Deptno INTO V_Empno,V_Ename,V_Job,V_Sal,V_Deptno
+ FROM Emp
+ WHERE Empno = &Empno;
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('Employee Information Details');
+ DBMS_OUTPUT.PUT_LINE('--------------0o0--------------');
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('  Employee ID:'||V_Empno);
+ DBMS_OUTPUT.PUT_LINE('Employee Name:'||V_Ename);
+ DBMS_OUTPUT.PUT_LINE('   Desination:'||V_Job);
+ DBMS_OUTPUT.PUT_LINE('       Salary:'||V_Sal);
+ DBMS_OUTPUT.PUT_LINE('   Department:'||V_Deptno);
+END;
+
+
+
+====================
+DECLARE
+V_Empno VARCHAR2(20);
+V_Ename VARCHAR2(20);
+V_Job   VARCHAR2(20);
+V_HireDate DATE;
+V_MGR NUMBER;
+V_Sal   NUMBER;
+V_Comm  NUMBER;
+V_Deptno NUMBER;
+BEGIN
+
+ SELECT Empno,Ename,Job,Sal,Deptno,HireDate,MGR,Comm INTO V_Empno,V_Ename,V_Job,V_Sal,V_Deptno,V_HireDate,V_MGR,V_Comm
+ FROM Emp
+ WHERE Empno = &Empno;
+
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('Employee Information Details');
+ DBMS_OUTPUT.PUT_LINE('--------------0o0--------------');
+ DBMS_OUTPUT.PUT_LINE('  Employee ID:'||V_Empno);
+ DBMS_OUTPUT.PUT_LINE('Employee Name:'||V_Ename);
+ DBMS_OUTPUT.PUT_LINE('  Designation:'||V_Job);
+ DBMS_OUTPUT.PUT_LINE(' Joining Date:'||TO_CHAR(V_HireDate,'FMDDTH, Month Year'));
+ DBMS_OUTPUT.PUT_LINE('      Manager:'||V_MGR);
+ DBMS_OUTPUT.PUT_LINE('       Salary:'||V_Sal);
+ DBMS_OUTPUT.PUT_LINE('    Commision:'||NVL(TO_CHAR(V_Comm),'No Commision'));
+ DBMS_OUTPUT.PUT_LINE('   Department:'||V_Deptno);
+END;
+/
+
+
+==============
+
+DECLARE
+V_Empno 	Emp.Empno%TYPE;
+V_Ename 	Emp.Ename%TYPE;
+V_Job   	Emp.Job%TYPE;
+V_HireDate 	Emp.HireDate%TYPE;
+V_MGR 		Emp.MGR%TYPE;
+V_Sal   	Emp.Sal%TYPE;
+V_Comm  	Emp.Commm%TYPE;
+V_Deptno 	Emp.Deptno%TYPE;
+BEGIN
+
+ SELECT Empno,Ename,Job,Sal,Deptno,HireDate,MGR,Comm INTO V_Empno,V_Ename,V_Job,V_Sal,V_Deptno,V_HireDate,V_MGR,V_Comm
+ FROM Emp
+ WHERE Empno = &Empno;
+
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('Employee Information Details');
+ DBMS_OUTPUT.PUT_LINE('--------------0o0--------------');
+ DBMS_OUTPUT.PUT_LINE('  Employee ID:'||V_Empno);
+ DBMS_OUTPUT.PUT_LINE('Employee Name:'||V_Ename);
+ DBMS_OUTPUT.PUT_LINE('  Designation:'||V_Job);
+ DBMS_OUTPUT.PUT_LINE(' Joining Date:'||TO_CHAR(V_HireDate,'FMDDTH, Month Year'));
+ DBMS_OUTPUT.PUT_LINE('      Manager:'||V_MGR);
+ DBMS_OUTPUT.PUT_LINE('       Salary:'||V_Sal);
+ DBMS_OUTPUT.PUT_LINE('    Commision:'||NVL(TO_CHAR(V_Comm),'No Commision'));
+ DBMS_OUTPUT.PUT_LINE('   Department:'||V_Deptno);
+END;
+/
+
+===========================
+
+DECLARE
+EmpRecord Emp%ROWTYPE;
+BEGIN
+
+ SELECT * INTO EmpRecord
+ FROM Emp
+ WHERE Empno = &Empno;
+
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('Employee Information Details');
+ DBMS_OUTPUT.PUT_LINE('--------------0o0--------------');
+ DBMS_OUTPUT.PUT_LINE('  Employee ID:'||EmpRecord.Empno);
+ DBMS_OUTPUT.PUT_LINE('Employee Name:'||EmpRecord.Ename);
+ DBMS_OUTPUT.PUT_LINE('  Designation:'||EmpRecord.Job);
+ DBMS_OUTPUT.PUT_LINE(' Joining Date:'||TO_CHAR(EmpRecord.HireDate,'FMDDTH, Month Year'));
+ DBMS_OUTPUT.PUT_LINE('      Manager:'||EmpRecord.MGR);
+ DBMS_OUTPUT.PUT_LINE('       Salary:'||EmpRecord.Sal);
+ DBMS_OUTPUT.PUT_LINE('    Commision:'||NVL(TO_CHAR(EmpRecord.Comm),'No Commision'));
+ DBMS_OUTPUT.PUT_LINE('   Department:'||EmpRecord.Deptno);
+END;
+/
+
+===========================
+
+
+DECLARE
+EmpRecord Emp%ROWTYPE;
+MyEmp EmpRecord%TYPE;
+BEGIN
+
+ SELECT * INTO MyEmp
+ FROM Emp
+ WHERE Empno = &Empno;
+ 
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('Employee Information Details');
+ 
+ DBMS_OUTPUT.PUT_LINE('--------------0o0--------------');
+ DBMS_OUTPUT.PUT_LINE('  Employee ID:'||MyEmp.Empno);
+ DBMS_OUTPUT.PUT_LINE('Employee Name:'||MyEmp.Ename);
+ DBMS_OUTPUT.PUT_LINE('  Designation:'||MyEmp.Job);
+ DBMS_OUTPUT.PUT_LINE(' Joining Date:'||TO_CHAR(MyEmp.HireDate,'FMDDTH, Month Year'));
+ DBMS_OUTPUT.PUT_LINE('      Manager:'||MyEmp.MGR);
+ DBMS_OUTPUT.PUT_LINE('       Salary:'||MyEmp.Sal);
+ DBMS_OUTPUT.PUT_LINE('    Commision:'||NVL(TO_CHAR(MyEmp.Comm),'No Commision'));
+ DBMS_OUTPUT.PUT_LINE('   Department:'||MyEmp.Deptno);
+END;
+/
+
+===========================
+
+DECLARE
+EmpRecord Emp%ROWTYPE;
+MyEmp EmpRecord%TYPE;
+V_MGRName Emp.Ename%TYPE;
+BEGIN
+ SELECT * INTO MyEmp
+ FROM Emp
+ WHERE Empno = &Empno;
+ IF MyEmp.MGR IS NOT NULL THEN
+  DBMS_OUTPUT.PUT_LINE('If Block');
+  SELECT Ename INTO V_MGRName
+  FROM Emp
+  WHERE Empno=MyEmp.MGR;
+ ELSE 
+  DBMS_OUTPUT.PUT_LINE('Else Block');
+  SELECT Ename INTO V_MGRName
+  FROM Emp
+  WHERE MGR IS NULL;
+ END IF;
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('Employee Information Details');
+ DBMS_OUTPUT.PUT_LINE('--------------0o0--------------');
+ DBMS_OUTPUT.PUT_LINE('  Employee ID:'||MyEmp.Empno);
+ DBMS_OUTPUT.PUT_LINE('Employee Name:'||MyEmp.Ename);
+ DBMS_OUTPUT.PUT_LINE('  Designation:'||MyEmp.Job);
+ DBMS_OUTPUT.PUT_LINE(' Joining Date:'||TO_CHAR(MyEmp.HireDate,'FMDDTH, Month Year'));
+ DBMS_OUTPUT.PUT_LINE('      Manager:'||NVL(TO_CHAR(MyEmp.MGR),'(Not Managable)')||' ,his Name Is :'||V_MGRName);
+ DBMS_OUTPUT.PUT_LINE('       Salary:'||MyEmp.Sal);
+ DBMS_OUTPUT.PUT_LINE('    Commision:'||NVL(TO_CHAR(MyEmp.Comm),'No Commision'));
+ DBMS_OUTPUT.PUT_LINE('   Department:'||MyEmp.Deptno);
+END;
+/
+
+========================
+
+DECLARE
+MyEmp Emp%ROWTYPE;
+V_MGRName Emp.Ename%TYPE;
+SalGradeRecord SalGrade%ROWTYPE;
+DeptRecord Dept%ROWTYPE;
+BEGIN
+ SELECT * INTO MyEmp
+ FROM Emp
+ WHERE Empno = &Empno;
+
+ SELECT * INTO SalGradeRecord
+ FROM SalGrade
+ WHERE MyEmp.Sal BETWEEN LOSAL AND HISAL;
+ 
+ SELECT * INTO DeptRecord 
+ FROM Dept
+ WHERE Deptno=MyEmp.Deptno;
+ 
+ IF MyEmp.MGR IS NOT NULL THEN
+  DBMS_OUTPUT.PUT_LINE('If Block');
+  SELECT Ename INTO V_MGRName
+  FROM Emp
+  WHERE Empno=MyEmp.MGR;
+ ELSE 
+  DBMS_OUTPUT.PUT_LINE('Else Block');
+  SELECT Ename INTO V_MGRName
+  FROM Emp
+  WHERE MGR IS NULL;
+ END IF;
+ 
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('Employee Information Details');
+ DBMS_OUTPUT.PUT_LINE('--------------0o0--------------');
+ DBMS_OUTPUT.PUT_LINE('  Employee ID:'||MyEmp.Empno);
+ DBMS_OUTPUT.PUT_LINE('Employee Name:'||MyEmp.Ename);
+ DBMS_OUTPUT.PUT_LINE('  Designation:'||MyEmp.Job);
+ DBMS_OUTPUT.PUT_LINE(' Joining Date:'||TO_CHAR(MyEmp.HireDate,'FMDDTH, Month Year'));
+ DBMS_OUTPUT.PUT_LINE('      Manager:'||NVL(TO_CHAR(MyEmp.MGR),'(Not Managable)')||' ,his Name Is :'||V_MGRName);
+ DBMS_OUTPUT.PUT_LINE('       Salary:'||MyEmp.Sal||', With SalGrade : '||SalGradeRecord.Grade);
+ DBMS_OUTPUT.PUT_LINE('    Commision:'||NVL(TO_CHAR(MyEmp.Comm),'No Commision'));
+ DBMS_OUTPUT.PUT_LINE('   Department:'||MyEmp.Deptno||', Name:'||DeptRecord.Dname);
+END;
+/
+
+==========================
+CREATE OR REPLACE VIEW MyEmpDetails
+AS
+(
+SELECT E.Empno,M.Ename AS MGRName,E.Ename,E.Job,E.Sal,E.MGR,D.Dname,D.Loc,S.Grade
+FROM Emp E,Emp M,Dept D,SalGrade S
+WHERE E.MGR=M.Empno(+) AND E.Deptno=D.Deptno AND E.Sal BETWEEN S.LoSal AND S.HiSal
+);
+
+
+DECLARE
+TYPE EmpDetailsRecordType IS RECORD
+(
+ Empno Emp.Empno%TYPE,
+ MGRName Emp.Ename%TYPE,
+ Ename Emp.Ename%TYPE,
+ Job   Emp.Job%TYPE,
+ Sal   Emp.Sal%TYPE,
+ MGR   Emp.MGR%TYPE,
+ DName Dept.Dname%TYPE,
+ Loc   Dept.Loc%TYPE,
+ Grade SalGrade.Grade%TYPE
+);
+EmpDetailsRecord EmpDetailsRecordType;
+BEGIN
+ SELECT * INTO EmpDetailsRecord
+ FROM MyEmpDetails
+ WHERE Empno = &GiveEmpno;
+
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('Employee Information Details');
+ DBMS_OUTPUT.PUT_LINE('--------------0o0--------------');
+ DBMS_OUTPUT.PUT_LINE('  Employee ID:'||EmpDetailsRecord.Empno);
+ DBMS_OUTPUT.PUT_LINE('Employee Name:'||EmpDetailsRecord.Ename);
+ DBMS_OUTPUT.PUT_LINE('  Designation:'||EmpDetailsRecord.Job);
+ DBMS_OUTPUT.PUT_LINE('Department:'||EmpDetailsRecord.DName);
+ DBMS_OUTPUT.PUT_LINE('Location:'||EmpDetailsRecord.Loc);
+ DBMS_OUTPUT.PUT_LINE('      Manager:'||NVL(TO_CHAR(EmpDetailsRecord.MGR),'(Not Managable)')||' ,his Name Is :'||NVL(EmpDetailsRecord.MGRName,EmpDetailsRecord.EName));
+ DBMS_OUTPUT.PUT_LINE('       Salary:'||EmpDetailsRecord.Sal||', With SalGrade : '||EmpDetailsRecord.Grade);
+END;
+/
+
+=====================
+
+DECLARE
+ TYPE AtomicType IS RECORD
+ (
+  Empno Emp.Empno%TYPE,
+  MgrName Emp.Ename%TYPE
+ );
+ TYPE AllRecordType IS RECORD
+ (
+ EmpRecord Emp%ROWTYPE,
+ SalGradeRecord SalGrade%ROWTYPE,
+ AtomicRecord AtomicType
+ );
+ AllRecord AllRecordType;
+BEGIN
+ DBMS_OUTPUT.PUT_LINE('Processing Employee Details Start.');
+ AllRecord.AtomicRecord.Empno:=&GiveEmpno;
+ DBMS_OUTPUT.PUT_LINE('User Entered Employee Number: '||AllRecord.AtomicRecord.Empno);
+ 
+ SELECT * INTO AllRecord.EmpRecord
+ FROM Emp
+ WHERE Empno=AllRecord.AtomicRecord.Empno;
+ 
+ SELECT * INTO AllRecord.SalGradeRecord
+ FROM SalGrade 
+ WHERE AllRecord.EmpRecord.Sal BETWEEN LoSal AND HiSal;
+ 
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ DBMS_OUTPUT.PUT_LINE('Employee Information Details');
+ DBMS_OUTPUT.PUT_LINE('--------------0o0--------------');
+ DBMS_OUTPUT.PUT_LINE('  Employee ID:'||AllRecord.EmpRecord.Empno);
+ DBMS_OUTPUT.PUT_LINE('Employee Name:'||AllRecord.EmpRecord.Ename);
+ DBMS_OUTPUT.PUT_LINE('  Designation:'||AllRecord.EmpRecord.Job);
+ DBMS_OUTPUT.PUT_LINE('       Salary:'||AllRecord.EmpRecord.Sal||', With SalGrade : '||AllRecord.SalGradeRecord.Grade);
+ DBMS_OUTPUT.PUT_LINE('Processing Employee Details End.');
+END;
+
+
+===================
+Working With PL/SQL Table Data Type:
+====================================
+-- There Are 2 Simple Steps to Work With PL/SQL Table Data Type, as follows:-
+	1.Delare  PL/SQL Table Data Type
+	2.Create Instance Of PL/SQL Table 
+-- These PL/SQL Tables Are Also Called As Associative Array.
+
+
+Looping Example Of Single Column:
+--------------------------------
+DECLARE
+TYPE DnameTableType IS
+TABLE OF Dept.Dname%TYPE
+INDEX BY BINARY_INTEGER;
+DnameTable DnameTableType;
+V_COUNT NUMBER;
+BEGIN
+  SELECT COUNT(*) INTO V_COUNT
+  FROM Dept;
+  DBMS_OUTPUT.PUT_LINE('Loading Data Into PL/SQL Table.');
+  FOR MyIndex IN 1..V_COUNT
+  LOOP
+   SELECT Dname INTO DnameTable(MyIndex)
+   FROM Dept
+   WHERE Deptno=10*MyIndex;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE('Reading Data From PL/SQL Table.');
+  FOR MyIndex IN 1..DnameTable.LAST
+  LOOP
+   DBMS_OUTPUT.PUT_LINE(DnameTable(MyIndex));
+  END LOOP;
+END;
+/
+
+Looping Example Of Entire Row:
+-----------------------------
+
+DECLARE
+TYPE DnameTableType IS
+TABLE OF Dept%ROWTYPE
+INDEX BY BINARY_INTEGER;
+DnameTable DnameTableType;
+V_COUNT NUMBER;
+BEGIN
+  SELECT COUNT(*) INTO V_COUNT
+  FROM Dept;
+  DBMS_OUTPUT.PUT_LINE('Loading Data Into PL/SQL Table.');
+  FOR MyIndex IN 1..V_COUNT
+  LOOP
+   SELECT * INTO DnameTable(MyIndex)
+   FROM Dept
+   WHERE Deptno=10*MyIndex;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE('Reading Data From PL/SQL Table.');
+  FOR MyIndex IN 1..DnameTable.LAST
+  LOOP
+   DBMS_OUTPUT.PUT_LINE('Dept. '||DnameTable(MyIndex).Deptno||' '||DnameTable(MyIndex).Dname||' Is Located In '||DnameTable(MyIndex).Loc||'.');
+  END LOOP;
+END;
+/
+=====================
+
+DECLARE
+TYPE DnameTableType IS
+TABLE OF Dept%ROWTYPE
+INDEX BY BINARY_INTEGER;
+DnameTable DnameTableType;
+V_COUNT NUMBER;
+BEGIN
+  SELECT COUNT(*) INTO V_COUNT
+  FROM Dept;
+  DBMS_OUTPUT.PUT_LINE('Loading Data Into PL/SQL Table.');
+  FOR MyIndex IN 1..V_COUNT
+  LOOP
+   SELECT * INTO DnameTable(MyIndex)
+   FROM Dept
+   WHERE Deptno=10*MyIndex;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE('Reading Data From PL/SQL Table.');
+  FOR MyIndex IN 1..DnameTable.LAST
+  LOOP
+   DBMS_OUTPUT.PUT_LINE('Dept. '||DnameTable(MyIndex).Deptno||' '||DnameTable(MyIndex).Dname||' Is Located In '||DnameTable(MyIndex).Loc||'.');
+  END LOOP;
+DBMS_OUTPUT.PUT_LINE('The First Index Is: '||DnameTable.FIRST);  
+DBMS_OUTPUT.PUT_LINE('The Last Index Is: '||DnameTable.LAST);
+DBMS_OUTPUT.PUT_LINE('The Total Number Of Records:'||DnameTable.COUNT);
+DBMS_OUTPUT.PUT_LINE('The Previous Index Of The Last Index Is: '||DnameTable.PRIOR(DnameTable.LAST)||' and The Deptno Is:'||DnameTable(DnameTable.PRIOR(DnameTable.LAST)).Deptno||','||DnameTable(DnameTable.PRIOR(DnameTable.LAST)).Dname||','||DnameTable(DnameTable.PRIOR(DnameTable.LAST)).Loc);
+END;
+/
+
+
+Data Manipulation Statements Within PL/SQL Block:
+================================================
+DECLARE
+V_Deptno Dept.Deptno%TYPE;
+V_Dname Dept.Dname%TYPE:='&GiveDname';
+V_Loc Dept.Loc%TYPE:='&GiveLoc';
+BEGIN
+ SELECT MAX(Deptno) INTO V_Deptno
+ FROM Dept;
+ 
+ IF V_Deptno IS NULL THEN
+  V_Deptno:=10;
+ ELSE
+  V_Deptno:=V_Deptno+10;
+ END IF;
+ INSERT INTO Dept VALUES(V_Deptno,V_Dname,V_Loc);
+ DBMS_OUTPUT.PUT_LINE('The New Record Inserted With Data :'||V_Deptno||','||V_Dname||','||V_Loc);
+END;
+
+
+====================================
+
+DECLARE 
+EmpInfo Emp%ROWTYPE;
+V_MGRName Emp.Ename%TYPE;
+BEGIN
+ EmpInfo.Empno:=&GiveEmpno;
+ EmpInfo.Ename:='&GiveEname';
+ EmpInfo.Job:='&GiveJob';
+ EmpInfo.MGR:=&GiveMGR;
+ EmpInfo.HireDate:='&GiveDate';
+ EmpInfo.Sal :=&GiveSal;
+ EmpInfo.Comm:=&GiveComm;
+ EmpInfo.Deptno:=&GiveDeptno;
+ 
+ INSERT INTO Emp VALUES EmpInfo;
+
+ SELECT * INTO EmpInfo
+ FROM Emp
+ WHERE Empno=EmpInfo.Empno;
+ 
+ IF EmpInfo.MGR IS NOT NULL THEN
+  DBMS_OUTPUT.PUT_LINE('If Block');
+  SELECT Ename INTO V_MGRName
+  FROM Emp
+  WHERE Empno=EmpInfo.MGR;
+ ELSE 
+  DBMS_OUTPUT.PUT_LINE('Else Block');
+  SELECT Ename INTO V_MGRName
+  FROM Emp
+  WHERE MGR IS NULL;
+ END IF;
+ DBMS_OUTPUT.PUT_LINE('The New Employee Details Inserted With Details As Below:');
+ DBMS_OUTPUT.PUT_LINE(CHR(10));
+ 
+ DBMS_OUTPUT.PUT_LINE('--------------0o0--------------');
+ DBMS_OUTPUT.PUT_LINE('  Employee ID:'||EmpInfo.Empno);
+ DBMS_OUTPUT.PUT_LINE('Employee Name:'||EmpInfo.Ename);
+ DBMS_OUTPUT.PUT_LINE('  Designation:'||EmpInfo.Job);
+ DBMS_OUTPUT.PUT_LINE(' Joining Date:'||TO_CHAR(EmpInfo.HireDate,'FMDDTH, Month Year'));
+ DBMS_OUTPUT.PUT_LINE('      Manager:'||NVL(TO_CHAR(EmpInfo.MGR),'(Not Managable)')||' ,his Name Is :'||V_MGRName);
+ DBMS_OUTPUT.PUT_LINE('       Salary:'||EmpInfo.Sal);
+ DBMS_OUTPUT.PUT_LINE('    Commision:'||NVL(TO_CHAR(EmpInfo.Comm),'No Commision'));
+ DBMS_OUTPUT.PUT_LINE('   Department:'||EmpInfo.Deptno);
+END;
+
+Implicit CURSOR:
+----------------
+--Every Query Has One Active Set, Which Finalizes What Records Will Come out as a Result.
+--To Excecute Any SQL Statements, It Occupies Some Space In The Memory, Called As Process Global Area. 
+--CURSORs Are The Pointers Towards Process Global Area(PGA).
+--CURSOR Helps Us Writting Code More Intelligently Towards Business Requirement.
+--There Are 2 Types Of CURSOR:
+	1. Implicit CURSOR
+	2. Explicit CURSOR
+
+--Implicit CURSOR Is Internally Fully Managed By Oracle. Its Declaration,Opening,Operating And Closing Is Automatically Done.
+--SQL% Refers To Implicit CURSOR.
+--For Managing the Operational Startegies Of Both The Type CURSOR , Following Attributes are Used:
+	1.%ISOPEN
+	2.%ISFOUND
+	3.%ISNOTFOUND
+	4.%ROWCOUNT
+
+Insert Data In PL/SQL Using CURSOR Example:
+------------------------------------------	
+DECLARE
+V_Deptno Dept.Deptno%TYPE;
+V_Dname Dept.Dname%TYPE:='&GiveDeptName';
+V_Loc  Dept.Loc%TYPE:='&GiveLoc';
+BEGIN
+  SELECT MAX(Deptno) INTO V_Deptno
+  FROM Dept;
+  IF V_Deptno IS NULL THEN
+  V_Deptno:=10;
+  ELSE
+  V_Deptno:=V_Deptno+10;
+  END IF;
+  
+  INSERT INTO Dept VALUES(V_Deptno,V_Dname,V_Loc);
+  
+  IF SQL%FOUND THEN
+  DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT||' no. Of Records Inserted.');
+  DBMS_OUTPUT.PUT_LINE('The New Data Inserted Is:'||V_Deptno||','||V_Dname||','V_Loc);
+  ELSE 
+  DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT||' no. Of Records Inserted.');
+  DBMS_OUTPUT.PUT_LINE('New Record Insert Failed.');
+  END IF;
+END;
+==================
+Update Data In PL/SQL Using CURSOR Example:
+------------------------------------------
+DECLARE
+V_Deptno   Dept.Deptno%TYPE:='&GiveDeptno';
+V_Loc              Dept.Loc%TYPE:='&GiveLoc';
+V_OldLoc   Dept.Loc%TYPE;
+V_Status    NUMBER;
+V_OldRecord Dept%ROWTYPE;
+BEGIN
+  /*Check If The Department Exists In Database Server Or Not*/
+  SELECT COUNT(*) INTO V_Status
+  FROM Dept
+  WHERE Deptno=V_Deptno;
+  IF V_Status = 0 THEN
+  DBMS_OUTPUT.PUT_LINE('Given Department Information Identifed as Invalid. No Such Department Exists.');
+  DBMS_OUTPUT.PUT_LINE('Update Department Failed.');
+  ELSE
+  /*Protect Old Data In Backup Location*/
+  SELECT * INTO V_OldRecord
+  FROM Dept
+  WHERE Deptno=V_Deptno;
+  /*Update The Department Information*/
+  UPDATE Dept SET Loc =V_Loc
+  WHERE Deptno=V_Deptno;
+   IF SQL%FOUND THEN
+   DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT||' no. Of Records Updated.');
+    DBMS_OUTPUT.PUT_LINE('Department Information Updated OldLoc:'||V_OldRecord.Loc||', NewLoc:'||V_Loc);
+   ELSE
+   DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT||' no. Of Records Updated.');
+   DBMS_OUTPUT.PUT_LINE('Update Department Failed.');
+   END IF;
+  END IF;
+END;
+
+DELETE Data In PL/SQL Using CURSOR Example:
+------------------------------------------
+DECLARE
+V_Deptno   Dept.Deptno%TYPE:='&GiveDeptno';
+V_Status    NUMBER;
+V_OldRecord Dept%ROWTYPE;
+V_ChildRecordStatus NUMBER;
+BEGIN
+  /*Check If The Department Exists In Database Server Or Not*/
+  SELECT COUNT(*) INTO V_Status
+  FROM Dept
+  WHERE Deptno=V_Deptno;
+  IF V_Status = 0 THEN
+  DBMS_OUTPUT.PUT_LINE('Given Department Information Identifed as Invalid. No Such Department Exists.');
+  DBMS_OUTPUT.PUT_LINE('Delete Department Failed.');
+  ELSE
+   /*Identify Child Records*/
+   SELECT COUNT(*) INTO V_ChildRecordStatus
+   FROM Emp
+   WHERE Deptno=V_Deptno;
+		IF V_ChildRecordStatus =0 THEN
+		/*Protect Old Data With Backup*/
+		SELECT * INTO V_OldRecord
+		FROM Dept
+		WHERE Deptno=V_Deptno;
+		/*Delete The Department Information*/
+		DELETE FROM Dept 
+		WHERE Deptno=V_Deptno;
+			IF SQL%FOUND THEN
+			DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT||' no. Of Records Deleted.');
+			DBMS_OUTPUT.PUT_LINE('Department Information Deleted:'||V_OldRecord.Deptno||','||V_OldRecord.Dname||','||V_OldRecord.Loc);
+			ELSE
+			DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT||' no. Of Records Deleted.');
+			DBMS_OUTPUT.PUT_LINE('Delete Department Failed.');
+			END IF;
+		ELSE
+		DBMS_OUTPUT.PUT_LINE(V_ChildRecordStatus||' no. Of Dependent Records Found.');
+		DBMS_OUTPUT.PUT_LINE('Record Deletion Cancelled.');
+		DBMS_OUTPUT.PUT_LINE('Record Can not Be Deleted When Child Records Exists.');
+		END IF;
+  END IF;
+ END;
+=====================
+
+Explicit CURSOR Example:
+-----------------------
+--Explicit CURSORs Are Totally Under Controll Of Programmer.Programmer Is Responsible For Its:
+	1.DECLARATION
+	2.OPENING
+	3.FETCHING
+	4.CLOSING
+	
+--Using EXPLICIT Cursors Total Controll Can Be Taken On  The Business Operations.
+DECLARE
+V_Ename Emp.Ename%TYPE;
+V_Sal Emp.Sal%TYPE;
+CURSOR EmpDetails
+IS
+SELECT Ename,Sal
+FROM Emp;
+BEGIN
+OPEN EmpDetails;
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+FETCH EmpDetails INTO V_Ename,V_Sal;
+DBMS_OUTPUT.PUT_LINE(V_Ename||'''s Salary is '||V_Sal);
+CLOSE EmpDetails;
+END;
+/
+==============
+DECLARE
+EmpDetailsType Emp%ROWTYPE;
+CURSOR EmpDetails
+IS
+SELECT Ename,Sal
+FROM Emp;
+BEGIN
+OPEN EmpDetails;
+FETCH EmpDetails INTO EmpDetailsType.Ename,EmpDetailsType.Sal;
+DBMS_OUTPUT.PUT_LINE(EmpDetailsType.Ename||'''s Salary is '||EmpDetailsType.Sal);
+CLOSE EmpDetails;
+END;
+/
+===============
+DECLARE
+CURSOR EmpDetails
+IS
+SELECT Ename,Sal
+FROM Emp;
+EmpRecord EmpDetails%ROWTYPE;
+BEGIN
+OPEN EmpDetails;
+FETCH EmpDetails INTO EmpRecord;
+DBMS_OUTPUT.PUT_LINE(EmpRecord.Ename||'''s Salary is '||EmpRecord.Sal);
+CLOSE EmpDetails;
+END;
+/
+
+--Working With Looping Concept To Easily Read Data From Cursors:
+
+===================================================
+Using SIMPLE LOOP For Accessing Records From CURSOR:
+===================================================
+DECLARE
+CURSOR EmpDetailsCursor
+IS
+SELECT Ename,Sal
+FROM Emp
+ORDER BY Ename;
+V_EmpData EmpDetailsCursor%ROWTYPE;
+BEGIN
+OPEN EmpDetailsCursor;
+LOOP
+FETCH EmpDetailsCursor INTO V_EmpData;
+EXIT WHEN EmpDetailsCursor%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE('Reord Number:('||EmpDetailsCursor%ROWCOUNT||') '||V_EmpData.Ename||'''s Salary is '||V_EmpData.Sal);
+END LOOP;
+DBMS_OUTPUT.PUT_LINE(CHR(10));
+DBMS_OUTPUT.PUT_LINE(EmpDetailsCursor%ROWCOUNT||' Record(s) Processed.');
+CLOSE EmpDetailsCursor;
+END;
+--------------------------------------------
+DECLARE
+CURSOR SalaryDetails
+IS
+SELECT * FROM
+(
+   SELECT DENSE_RANK()
+   OVER
+   (
+   ORDER BY Sal DESC
+   ) Rank,Ename,Sal
+   FROM Emp
+) E1
+WHERE E1.Rank<=5;
+SalRankData SalaryDetails%ROWTYPE;
+BEGIN
+OPEN SalaryDetails;
+DBMS_OUTPUT.PUT_LINE('Salary Ranking Information');
+DBMS_OUTPUT.PUT_LINE('---------------------------');
+LOOP
+FETCH SalaryDetails INTO SalRankData;
+EXIT WHEN SalaryDetails%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE(SalRankData.Rank||' '||SalRankData.Ename||'  '||SalRankData.Sal);
+END LOOP;
+END;
+
+===================================================
+Using WHILE LOOP For Accessing Records From CURSOR:
+===================================================
+DECLARE
+CURSOR EmpDetailsCursor
+IS
+SELECT Ename,Sal
+FROM Emp
+ORDER BY Ename;
+V_EmpData EmpDetailsCursor%ROWTYPE;
+BEGIN
+OPEN EmpDetailsCursor;
+FETCH EmpDetailsCursor INTO V_EmpData;
+WHILE EmpDetailsCursor%FOUND
+LOOP
+DBMS_OUTPUT.PUT_LINE('Reord Number:('||EmpDetailsCursor%ROWCOUNT||') '||V_EmpData.Ename||'''s Salary is '||V_EmpData.Sal);
+FETCH EmpDetailsCursor INTO V_EmpData; /*Acting as an Update Component Of the Loop*/
+END LOOP;
+DBMS_OUTPUT.PUT_LINE(CHR(10));
+DBMS_OUTPUT.PUT_LINE(EmpDetailsCursor%ROWCOUNT||' Record(s) Processed.');
+CLOSE EmpDetailsCursor;
+END;
+-------------------------------------------------
+DECLARE
+CURSOR SalaryDetails
+IS
+SELECT * FROM
+(
+   SELECT DENSE_RANK()
+   OVER
+   (
+   ORDER BY Sal DESC
+   ) Rank,Ename,Sal
+   FROM Emp
+) E1
+WHERE E1.Rank<=5;
+SalRankData SalaryDetails%ROWTYPE;
+BEGIN
+OPEN SalaryDetails;
+DBMS_OUTPUT.PUT_LINE('Salary Ranking Information');
+DBMS_OUTPUT.PUT_LINE('---------------------------');
+FETCH SalaryDetails INTO SalRankData;
+WHILE SalaryDetails%FOUND
+LOOP
+DBMS_OUTPUT.PUT_LINE(SalRankData.Rank||' '||SalRankData.Ename||'  '||SalRankData.Sal);
+FETCH SalaryDetails INTO SalRankData;
+END LOOP;
+END;
+
+=================================================
+Using FOR LOOP For Accessing Records From CURSOR:
+=================================================
+DECLARE
+V_RecordCount NUMBER;
+CURSOR EmpDetailsCursor
+IS
+SELECT Ename,Sal
+FROM Emp
+ORDER BY Ename;
+BEGIN
+FOR MyEmpData IN EmpDetailsCursor
+LOOP
+DBMS_OUTPUT.PUT_LINE('Reord Number:('||EmpDetailsCursor%ROWCOUNT||') '||MyEmpData.Ename||'''s Salary is '||MyEmpData.Sal);
+V_RecordCount:=EmpDetailsCursor%ROWCOUNT;
+END LOOP;
+DBMS_OUTPUT.PUT_LINE(CHR(10));
+DBMS_OUTPUT.PUT_LINE(V_RecordCount||' Record(s) Processed.');
+END;
+-------------------------------------
+DECLARE
+CURSOR SalaryDetails
+IS
+SELECT * FROM
+(
+   SELECT DENSE_RANK()
+   OVER
+   (
+   ORDER BY Sal DESC
+   ) Rank,Ename,Sal
+   FROM Emp
+) E1
+WHERE E1.Rank<=5;
+BEGIN
+DBMS_OUTPUT.PUT_LINE('Salary Ranking Information');
+DBMS_OUTPUT.PUT_LINE('---------------------------');
+FOR SalRankData IN SalaryDetails
+LOOP
+DBMS_OUTPUT.PUT_LINE(SalRankData.Rank||' '||SalRankData.Ename||'  '||SalRankData.Sal);
+END LOOP;
+END;
