@@ -1,3 +1,37 @@
+=================================================================
+Difference Between JPA, Hibernate, Spring Data , Spring Data JPA:
+=================================================================
+JPA - Standard Abstraction Part Of Java EE Platform For Object Relational Mapping.
+
+Hibernate - A Popular Implementation Of JPA Used In The Market.
+
+Spring Data 
+	- Is An Umbrella Project Which Has Many SubProject ,Where Each Sub Project Is Specific To One Particular Data Store.
+
+	- It Provides A High Level Abstraction For Different Technologies To Implement Data Access Layer Of The Enterprise Application With A Spring Based Programming Model.
+	
+	- It Makes The Application Easy To Access Data Store Where The DataStore Can Be Of Relational, Non-Relational,Map-Reduce Frameworks And Cloud-based Data Services.
+	
+Spring Data JPA 
+	- Spring Data Is One Of Such Sub-Project Of Under Spring Data.
+	- Using JPA In Implementing Data Access Layer Involves Lots Of Boiler Plate Code To Write.
+	- Too Much Boilerplate Code Has To Be Written To Execute Simple Queries As Well As Perform Pagination, And Auditing.
+	- Spring Data JPA Aims To Provides A Simplified Solution Implementing Data Access Layer Using JPA.
+	- If We Are USing Spring Framework In Our Project , JPA With Hibernate In Our Project , Then We Are Most Likely To Use Spring Data JPA, Which Can Help Us To Reduce The Code Significantly And By  Utilize The Resources More Effectively.
+	
+	
+	
+	Key Features Of Spring Data JPA:
+	================================
+	1. Sophisticated support to build repositories based on Spring and JPA
+	2. Pagination support, Dynamic Query Execution, Ability to Integrate Custom Data Access Code.
+	3. Validation of @Query annotated queries at bootstrap time
+	4. Support for XML based entity mapping
+	5. JavaConfig based repository configuration by introducing @EnableJpaRepositories.
+	6. Transparent auditing of domain class.
+	
+========================================  *  ==========================================  *  =======================================	
+
 Spring Data:
 -----------
 -  The main goal of Spring Data Framework is to reduce the amount of boiler plate code involved in implementing the data access 
