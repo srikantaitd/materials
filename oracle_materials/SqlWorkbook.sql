@@ -1,3 +1,201 @@
+SingleRow Date Function:
+=======================	
+SELECT Empno,Ename,Job,Sal,ADD_MONTHS(HireDate,3) "3Months"
+FROM Emp
+/
+
+SELECT Empno,Ename,Job,Sal,ADD_MONTHS(HireDate,-3) "3Months"
+FROM Emp
+/
+
+SELECT Empno,Ename,Job,Sal,MONTHS_BETWEEN(SYSDATE,HireDate) "N'Months",TRUNC(MONTHS_BETWEEN(SYSDATE,HireDate)/12) "N'Years"
+FROM Emp
+/
+
+SELECT NEXT_DAY(SYSDATE,"TUE") NextDay
+FROM DUAL;
+
+SELECT Ename,Job,Sal,HireDate,LAST_DAY(HireDate)-HireDate "N'Days"
+FROM Emp
+/
+
+SELECT E.*,ROUND(E."N'Days"*(Sal/30),2) Payscale
+FROM
+(
+SELECT Ename,Job,Sal,HireDate,LAST_DAY(HireDate)-HireDate "N'Days"
+FROM Emp
+) E
+/
+
+SELECT E.*,TO_CHAR(ROUND(E."N'Days"*(Sal/30),2),'09999D99') Payscale
+FROM
+(
+SELECT Ename,Job,Sal,HireDate,LAST_DAY(HireDate)-HireDate "N'Days"
+FROM Emp
+) E
+/
+
+Rounding And Truncating Of Dates:
+=================================
+SELECT SYSDATE,ROUND(SYSDATE),TRUNC(SYSDATE)
+FROM DUAL;
+
+- When ROUND And TRUNCATE Are Implemented Upon The Dates And Do Not Provide Any Arguments Oracle Divides The Total Day Into 2 Parts With 12
+Hours Each.
+- The Clock is Running With A.M. ROUND Returns The Same Date That Is Running In The Clock.
+- Whenever The Clock Is Running With P.M. ROUND Automatically Advances The Dates To The Next Day.
+- In Both The Above Cases TRUNCATE Always Returns The Same Date Running In The Clock.
+
+DAY Indicator:
+-------------
+SELECT SYSDATE,ROUND(SYSDATE,'DAY'),TRUNC(SYSDATE,'DAY')
+FROM DUAL;
+
+- When DAY Indicator Is Provided Oracle Divides The Total Week Day Into Two Parts.
+  1. <= Wednessday Before 12 OClock in The Afternoon
+		- In This Case ROUND Returns The Prior Sunday
+		
+  2. >= Wednessday After 12 OClock in The Afternoon
+		- In This Case ROUND Returns The Next Upcoming Sunday
+		
+- In Both The Above Cases TRUNCATE Always Returns The Prior Sunday.
+
+MONTH Indicator:
+---------------
+SELECT SYSDATE,ROUND(SYSDATE,'MONTH'),TRUNC(SYSDATE,'MONTH')
+FROM DUAL;
+
+- When MONTH Indicator Is Provided Oracle Divides The Total Month Into Two Parts 15 Days Each.
+	1. <=15th
+		- In This Case ROUND Retunrs The 1st Of The Current Month Of The Given Date 
+
+	2. >=16th
+		- In This Case ROUND Retunrs The 1st Of The Upcoming Month Of The Given Date 
+
+- In Both The Above Cases TRUNCATE Always Returns 1st Of The Same Month.
+
+YEAR Indicator:
+--------------
+SELECT SYSDATE,ROUND(SYSDATE,'YEAR'),TRUNC(SYSDATE,'YEAR')
+FROM DUAL;
+
+- When YEAR Indicator Is Provided Oracle Divides The Total Year Into Two Parts 6 Months Each.
+	1. <= June 
+		- In This Case ROUND Returns 1st-January Of The Same Year.
+
+	2. >=July
+		- In This Case ROUND Retunrs 1st-January Of The Upcoming Year.
+
+- In Both The Above Cases TRUNCATE Always Retunrs 1st-January Of The Same Year.
+
+Conversion Function:
+===================
+TO_CHAR()
+
+===============================================
+	TO_CHAR(Number Conversion)
+===============================================	
+Format Indicator:
+D 	 -> Decimal Indicator
+. 	 -> Natural Decimal Indicator
+G 	 -> Group Separator Indicator
+,    -> Natural Group Separator Indicator
+9EEEE -> Scientific Notation Format Indicator
+L	 -> Local Currency Indicator
+$	 -> Natural Currency Format Indicator
+C	 -> Country Curreny Format Indicator. The Country With Which The Server OS is Configured.
+
+Negative Number Format Indicator:
+================================
+MI	-> 9999MI It Returns -ve Numbers With a Trailing Minus - Sysmbole And Positive Numbers With a Trailing Blank.
+PR  -> -ve Numbers Are Represented In Angular Brackets. Example <150>
+PT	-> -ve Numbers Are Represented In Brackets. Example (150)
+S	-> Sign Indicator . Can Be Used In Both Left Or Right Side As Per Demand, Other Indicators Can Only Be Used At The Right Side.
+	-> -ve Numbers Are Represented With -ve Symbole And Positive Numbers Are Represented With +ve Symbole.
+	
+SELECT TO_CHAR('1235.40','9G999D99') Num1, TO_CHAR('4560.60','9G999D99') Num2,TO_CHAR('1235.40' + '4560.60','9G999D99') Sum FROM DUAL;
+
+SELECT TO_CHAR('1235.40','9,999.99') Num1, TO_CHAR('4560.60','9,999.99') Num2,TO_CHAR('1235.40' + '4560.60','9,999.99') Sum FROM DUAL;
+
+SELECT TO_CHAR('1235.40','9,999.99L') Num1, TO_CHAR('4560.60','9,999.99L') Num2,TO_CHAR('1235.40' + '4560.60','9,999.99L') Sum FROM DUAL;
+
+SELECT TO_CHAR(1234567890,'9.999EEEE') Num1,12345678901 Num2 FROM DUAL;
+
+SELECT TO_CHAR('1235.40','L9,999.99') Num1, TO_CHAR('4560.60','L9,999.99') Num2,TO_CHAR('1235.40' + '4560.60','L9,999.99') Sum FROM DUAL;
+
+SELECT TO_CHAR('1235.40','L9,999.99','NLS_CURRENCY=INR') Num1, TO_CHAR('4560.60','L9,999.99','NLS_CURRENCY=INR') Num2,TO_CHAR('1235.40' + '4560.60','9,999.99L','NLS_CURRENCY=INR') Sum 
+FROM DUAL;
+
+SELECT TO_CHAR('1235.40','L9,999.99') Num1, TO_CHAR('4560.60','L9,999.99') Num2,TO_CHAR('1235.40' + '4560.60','L9,999.99') Sum FROM DUAL;
+
+SELECT Ename, Job, TO_CHAR(Sal,'C9999') Salary,TO_CHAR(Comm,'9999.99C') Comm
+FROM Emp;
+
+SELECT Ename,Job,Sal,Comm,TO_CHAR(Sal-Comm,'9999MI') Difference
+FROM Emp;
+
+SELECT Ename,Job,Sal,Comm,TO_CHAR(Sal-Comm,'9999PR') Difference
+FROM Emp;
+
+SELECT Ename,Job,Sal,Comm,TO_CHAR(Sal-Comm,'9999PT') Difference
+FROM Emp;
+
+SELECT Ename,Job,Sal,Comm,TO_CHAR(Sal-Comm,'9999S') Difference
+FROM Emp;
+
+SELECT Ename,Job,Sal,Comm,TO_CHAR(Sal-Comm,'S9999') Difference
+FROM Emp;
+
+Roman Number And HexaDecimal Number Format Indicator:
+====================================================
+SELECT TO_CHAR(&GiveNum,'RN'),TO_CHAR(&GiveNum01,'rn') 
+FROM DUAL;
+
+SELECT TO_CHAR(&GiveNum,'XXXXX'),TO_CHAR(&GiveNum01,'xxxxx') 
+FROM DUAL;
+
+Leading Zero Indicator:
+======================
+SELECT Ename,TO_CHAR(Sal,'0999.99'),TO_CHAR(Sal-Comm,'0999D99') Differnce
+FROM Emp;
+
+===================================================
+	TO_CHAR(Date Conversion) / Date Format Elements:
+===================================================
+A.D 
+CC  -> Current Century Indicator
+SCC -> Signed Current Century Indicator
+
+Week Day Indicator:
+==================
+Oracle Cann Return The Week Day In Three Different Formats.
+
+D	-> Numberic WeekDay Indicator
+Day -> Full WeekDay Indicator
+DY	-> Abbribated WeekDay Indicator	
+
+
+Q- Get All Employees Who Are Recruited On Friday.
+Ans: SELECT * FROM Emp WHERE TRIM(TO_CHAR(HireDate,'Day'))='Friday';
+
+DD	-> Numeric Month Day Indicator.
+DDD	-> Numeric Year Day Indicator.
+
+IW	-> ISO Week Number Indicator.
+
+YYYY	->ISO Four Digit Year Indicator.
+IYYY	->Four Digit Year Indicator.
+
+YEAR	-> Spelled Year Indicator
+
+W	-> Month Week Number Indicator
+
+Q	-> Quarter Of The Year Indicator
+
+
+SELECT TO_CHAR(SYSDATE,'(Day) DDth Month, Year A.D. " - ( Century : " CC ")"') Century
+FROM DUAL;
+
 --AD or BC Indicator
 SELECT TO_CHAR(SYSDATE,'A.D.') FROM DUAL;
 --Am or PM Indicator
@@ -52,6 +250,100 @@ SELECT TO_CHAR(SYSDATE,'DDTH-Month-YYYYSP') FROM DUAL;
 
 --FillMode Indicator
 SELECT TO_CHAR(SYSDATE,'FMDD-MON-YYYY') FROM DUAL;
+
+--Today Is: (Friday(Day 30) 2:32:37 P.M.) 30th  Of  November Two Thousand Eighteen  21ST  Century  A.D.
+SELECT INITCAP(TO_CHAR(SYSDATE,'"Today Is: ("FMDay"(Day "DD")" HH:MI:SS A.M.")" DDTH " Of " Month YYYYSP'))||
+TO_CHAR(SYSDATE,'  CCTH " Century " A.D.') Today
+FROM DUAL
+/
+
+
+===================================================
+	TO_NUMBER
+===================================================
+SELECT '1,234.40' Num1,'3,456.60' Num2 , TO_NUMBER('1,234.40','9G999D99')+TO_NUMBER('3,456.60','9G999D99') Sum
+FROM DUAL
+/
+
+SELECT '1,234.40INR' Num1,'3,456.60INR' Num2 , 
+TO_CHAR(TO_NUMBER('1,234.40INR','9G999D99L','NLS_CURRENCY=INR')+TO_NUMBER('3,456.60INR','9G999D99L','NLS_CURRENCY=INR'),'9G999D99L','NLS_CURRENCY=INR') Sum
+FROM DUAL
+/
+
+===================================================
+	TO_DATE Conversion
+===================================================
+SELECT TO_DATE('Today Is: (29) 6:46:1 A.M.','"Today Is: ("DD")" HH:MI:SS A.M.')
+FROM DUAL;
+
+SELECT 
+'29-XI-2018' RomanDate,TO_DATE('29-XI-2018','FMDD-RM-YYYY') ActualDate 
+,TO_DATE('29-XI-2018','FMDD-RM-YYYY')+3 "Actual + 3Days"
+FROM DUAL
+/
+
+
+SingleRow Function Revisit Examples:
+------------------------------------
+Q: Advance The HireDate Of Mr.SMITH By 1 Month With 4 digit Year.
+   
+    SELECT Ename,HireDate,TO_CHAR(ADD_MONTHS(HireDate,1),'DD-MON-YYYY') NextMonth
+	FROM Emp
+	WHERE Ename='SMITH'
+	/
+
+Q. For a Given Date Print The New Year Date Of That Year.
+
+	SELECT '27-OCT-1991' SampleDate,TO_CHAR(TRUNC(TO_DATE('27-OCT-1991'),'YEAR'),'DD-MON-YYYY') NewYear
+	FROM DUAL
+	/
+
+Q: Adjust Mr.MARTIN s Joining to The Terminal Date Of Its 5th Month.
+
+	SELECT Ename,HireDate,TO_CHAR(LAST_DAY(ADD_MONTHS(HireDate,5)),'DD-MON-YYYY') TerminalDay5thMonth
+	FROM Emp
+	WHERE Ename='MARTIN';
+	
+
+Q: For A Given Data Print The Nearrest SATURDAY.
+
+	SELECT TO_CHAR(TO_DATE('27-OCT-91'),'FMDD-MON-YYYY "("Day")"') GivenDate,
+			TO_CHAR(NEXT_DAY('27-OCT-1991','SAT'),'FMDD-MON-YYYY - "("Day")"') SATURDAY
+	FROM DUAL
+	/
+
+Q: For a Given Date Print The New Year Date Of Its Next Year.
+
+	SELECT '27-OCT-1991' SampleDate,TO_CHAR(ROUND(TO_DATE('27-OCT-1991'),'YEAR'),'DD-MON-YYYY') NewYear
+	FROM DUAL
+	/
+
+Q: For a Given Set of 2 Different Dates, Find The Difference In Months.
+	
+	SELECT '02-02-1995' Date1,'01-01-1995' Date2,MONTHS_BETWEEN(TO_DATE('02-02-1995','DD-MM-YYYY') , TO_DATE('01-01-1995','DD-MM-YYYY')) Difference
+	FROM DUAL
+	/
+
+Q: Print The Commision Value As 'Not Applicable' Wherever Null is Available.
+
+	SELECT Ename,Job,Sal,NVL(TO_CHAR(Comm),'Not Applicable') Commision
+	FROM Emp
+	/
+
+Q: Spell The Amount In a Cheque Book.
+	SELECT TO_CHAR(TO_DATE(123,'J'),'JSP') Spelling
+	FROM DUAL
+	/
+
+Q: Spell A Given -ve Number.	
+	SELECT 'MINUS '|| TO_CHAR(TO_DATE(ABS(-123),'J'),'JSP') Spelling
+	FROM DUAL
+	/
+
+Q: Spell A Given Decimal Number.	
+	SELECT TO_CHAR(TO_DATE(SUBSTR('&&GiveNum',1,(INSTR('&&GiveNum','.',1,1)-1)),'J'),'JSP')|| ' dot ' || TO_CHAR(TO_DATE(SUBSTR('&&GiveNum',(INSTR('&&GiveNum','.',1,1)+1)),'J'),'JSP') Spelling
+	FROM DUAL
+	/
 
 
 

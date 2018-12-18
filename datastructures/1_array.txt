@@ -1,0 +1,28 @@
+1>array:
+  ------
+- array is selfindexd, fixed size collection of homogeneous elements.
+- Easy to manage and access multiple elements with a same memory address just  by adding offset value to a base address.
+- Usally the base address is nothing but the starting address of the memory location, denoted by the name of the variable.
+
+2>Advantages:
+  -----------
+  Allows random access on the elements using direct index. this really makes the process fast.
+
+3>array in Java:
+  --------------
+- arrays in Java are dynamically allocated. Meaning the Class definition of arrays are going to be generated at runtime.
+- Since arrays in Java are Objects, the length of the array can be easily calculated using member length, this is not same in C++ we    use sizeof operator for this.
+- Every array type object in Java directly implements, Clonable and Serialzable.
+
+4>array Members:
+  ---------------
+- Since the arrays are object of a class and direct superclass of arrays is class Object.
+- The members of an array type are all of the following:
+	-The public final field length, which contains the number of components of the array. length may be positive or zero.
+	-All the members inherited from class Object; the only method of Object that is not inherited is its clone method.
+	-The public method clone(), which overrides clone method in class Object and throws no checked exceptions.
+5>Cloning Of array:
+  -----------------
+When you clone a single dimensional array, such as Object[], a “deep copy” is performed with the new array containing copies of the original array’s elements as opposed to references.
+
+A clone of a multidimensional array (like Object[][]) is a “shallow copy” however, which is to say that it creates only a single new array with each element array a reference to an original element array but subarrays are shared.
