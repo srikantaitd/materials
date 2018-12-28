@@ -1,0 +1,296 @@
+=====================================	
+Denial of Service: Regular Expression
+=====================================	
+1.
+	pulic void fillFruitBasket(String fruits, String basketId)throws Exception {
+		try {
+			logger.info("The fruits selected by customer are: "  text);
+			String[] fruitBasket = text.split(LINE_SEPERATOR);
+			logger.info("No of Fruit In Basket Are: " + fruitBasket.length);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+
+2.
+	String mt103 = new String(msgTO.getMessageContent());
+	mt103 = mt103.replaceAll(System.getProperty("line.separator"), "<BR>");
+	
+Reason: 
+------
+Untrusted data is passed to the application and used as a regular expression. This can cause the thread to over-consume CPU resources.	
+
+Solution:
+---------
+	String[] fruitBasket = fruitBasket.split(ESAPI.validator().getValidInput("Line Separator", LINE_SEPERATOR, "SafeString", 2, false)); 
+
+-----------------------------------------------------------------------------------------------
+=============================	
+XML External Entity Injection
+=============================	
+Reason:
+-------
+XML parser configured here does not prevent nor limit external entities resolution. This can expose the parser to an XML External Entities attack.	
+
+Problem Code Snippet-1:
+----------------------
+	public String handleAcctLienModResponse(String rspMsg, String rxnTransRef, List<TransactionHistPO> tranHistList, List<STPErrorPO> errorList) throws Exception {
+		String result = CommonConstants.ACCOUNT_LIEN_RESULT_LIEN_MOD_FAIL;
+		
+		Reader reader = new StringReader(rspMsg);
+		JAXBContext jaxbContext = JAXBContextUtil.newInstance().getJaxbContext(FIXML.class, 
+		AcctLienModResponse.class, AcctLienModRequest.class, AcctLienModNotification.class);
+		
+		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+		
+		FIXML fiXml = (FIXML)unmarshaller.unmarshal(reader);
+		result=result.getResult();
+		return result;
+	}
+
+Solution:
+--------
+	public void process(){
+	 JAXBContext jaxbContext = ... ;
+	 Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+	 Reader reader = new StringReader(message);
+	 Source xmlSource = new SAXSource(createSAXParser.getXMLReader(),new InputSource(reader));
+	 Object o = unmarshaller.unmarshal(xmlSource);
+	}
+	
+	public static final SAXParserFactory createSAXParser()
+			throws SAXNotRecognizedException, SAXNotSupportedException, ParserConfigurationException {
+		final SAXParserFactory spf = SAXParserFactory.newInstance();
+		spf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+		spf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+		spf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+		spf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+		return spf.newSAXParser();
+	}
+	
+
+Problem Code Snippet-2:
+-----------------------
+private static final XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+
+private List<Account> processResponse(String acctId,String responseMsg) throws Exception {	
+	javax.xml.stream.XMLStreamReader reader = null;
+	try {
+		inputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false); // This disables DTDs entirely for that factory
+		inputFactory.setProperty("javax.xml.stream.isSupportingExternalEntities", false); // disable external entities
+		reader = inputFactory.createXMLStreamReader(stringReader);
+		// get EnvelopeTO
+		Envelope envelope = null;
+		envelope = getEnvelope(reader);
+			if (envelope != null) {
+				final List<Object> anyHeader = envelope.getHeader().getAny();
+				//.. do processing
+			}
+			else{
+				//..do alternate processing
+			}
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+}
+
+Solution:
+--------	
+
+
+private List<Account> processResponse(String acctId,String responseMsg) throws Exception {	
+	javax.xml.stream.XMLStreamReader reader = null;
+	try {
+	reader = inputFactory.createXMLStreamReader(new StringReader(responseMsg));
+				// get EnvelopeTO
+				Envelope envelope = null;
+				envelope = getEnvelope(reader);
+				if (envelope != null) {
+					final List<Object> anyHeader = envelope.getHeader().getAny();
+					//.. do processing
+				}
+				else{
+					//..do alternate processing
+				}
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+}
+
+
+
+============================
+Server-Side Request Forgery:
+============================
+
+Code Sample 1:
+--------------
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+	logger.info(">>call va url:" + url);
+	URL restServiceURl = new URL(url);
+	HttpURLConnection httpConn = (HttpURLConnection) restServiceURl.openConnection();
+	httpConn.setRequestMethod("GET");
+	httpConn.setRequestProperty("Accept", "text/html");
+	if (httpConn.getResponseCode() != 200) {
+		logger.info(">>call va Exception!");
+		throw new RuntimeException("HTTP GET Request Failed with error code: " + httpConn.getResponseCode());
+	}
+Reason:
+=======
+The function openConnection() on line 47 initiates a network connection to a third-party system using user-controlled data for resource URI. An attacker may leverage this vulnerability to send a request on behalf of the application server since the request will originate from the application server's internal IP address.
+
+
+Solution1:
+---------
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+
+import org.apache.commons.lang.StringUtils;
+import org.owasp.esapi.ESAPI;
+import org.owasp.esapi.errors.EncodingException;
+
+method code snippet:
+-------------------
+	logger.info(">>call va url:" + url);
+	final URL restServiceURl = new URL(ESAPI.encoder().encodeForURL(url));
+	final HttpsURLConnection httpConn = (HttpsURLConnection) restServiceURl.openConnection();
+	httpConn.setRequestMethod("GET");
+	httpConn.setRequestProperty("Accept", "text/html");
+	if (httpConn.getResponseCode() != 200) {
+		logger.info(">>call va Exception!");
+		throw new RuntimeException("HTTP GET Request Failed with error code: " + httpConn.getResponseCode());
+	}
+	try (InputStreamReader in = new InputStreamReader(httpConn.getInputStream());
+			BufferedReader bf = new BufferedReader(in);) {
+		if ((output = bf.readLine()) != null) {
+			logger.info(">>CustomerAndAccountServiceImpl:va call url,return data:[" + output + "]");
+			output = output.replace("[", "").replace("]", "").replaceAll("'", "").replaceAll(" ", "");
+			if (StringUtils.isNotBlank(output)) {
+				if (output.contains(",")) {
+					vaArray = output.split(",");
+					logger.info(">>call va sucessful![va:" + vaArray[0] + "][flag:" + vaArray[1] + "]");
+				} else {
+					vaArray = new String[2];
+					vaArray[0] = output;
+					vaArray[1] = "";
+					logger.info(">>call va sucessful![va:" + vaArray[0] + "][flag:" + vaArray[1] + "]");
+				}
+			}
+
+		} else {
+			logger.info(">>CustomerAndAccountServiceImpl:va call url,return data is empty");
+		}
+	} catch (final IOException e) {
+		throw new IPEBaseException(e);
+	}
+	
+
+Problem Code Snippet-2:
+-----------------------
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
+
+private Socket cSocket = null;
+
+@Override
+	public void run() {
+		OutputStream os = null;
+		ObjectOutputStream oos = null;
+		InputStream is = null;
+		ObjectInputStream ois = null;
+
+		final Map<String, String> resultMap = new HashMap<String, String>();
+		resultMap.put("status", "1");
+		try {
+			is = cSocket.getInputStream();
+			ois = new ObjectInputStream(is);
+			os = cSocket.getOutputStream();
+			oos = new ObjectOutputStream(os);
+			Map<String, String> requestMap = null;
+			requestMap = (Map<String, String>) ois.readObject();
+			final String countryCode = requestMap.get("countryCode");
+			final String jobId = requestMap.get("scheduleJobId");
+			final String jobParam = requestMap.get("jobParam");
+
+			//some processing logic
+			
+		} catch (final Throwable t) {
+			//some alternate operation
+		} finally {
+			try {
+				if (oos != null) {
+					/***(Security Issue lies here)*/
+					oos.writeObject(resultMap);				
+				} else {
+					logger.error("ObjectOutputStream didn't initialization.");
+				}
+			} catch (final IOException e) {
+				logger.error("", e);
+			}	
+		}
+	}	
+	
+Reason:
+-------
+The function writeObject() on line 93 initiates a network connection to a third-party system using user-controlled data for resource URI. An attacker may leverage this vulnerability to send a request on behalf of the application server since the request will originate from the application server's internal IP address.	
+
+Solution For Problem Code Snippet-2:
+------------------------------------
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.net.ssl.SSLSocket;
+import org.apache.commons.io.serialization.ValidatingObjectInputStream;
+
+	@Override
+	public void run() {
+		final Map<String, String> resultMap = new HashMap<>();
+		resultMap.put("status", "1");
+		try (InputStream is = cSocket.getInputStream();
+				ObjectInputStream ois = new ObjectInputStream(is);
+				OutputStream os = cSocket.getOutputStream();
+				ObjectOutputStream oos = new ObjectOutputStream(os);) {
+
+			Map<String, String> requestMap = null;
+			
+			try(ValidatingObjectInputStream objectInStream = new ValidatingObjectInputStream(ois);){
+				objectInStream.accept(Map.class);
+				requestMap = (Map<String, String>) objectInStream.readObject();
+			}
+			// requestMap processing business logic
+
+		} catch (final Exception t) {
+			logger.error("", t);
+			resultMap.put("msg", "Fail to trigger job. " + t.getMessage());
+		}
+	}
+	
+====================
+Path Manipulation
+====================
+	
+	
+	
+
+
