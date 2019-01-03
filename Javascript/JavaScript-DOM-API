@@ -1,0 +1,129 @@
+DOM:
+---
+-> DOM Is W3C Standard Model For Accessing Documents.
+-> By Standard DOM Is Represented In Tree Based Structure, With A Parent & Child Relation.
+-> DOM Is Platform & Programming Language Neutral Interface That Allows Any Scripting or Programming 	Language to Access,Update & Modify Content Of The Elements In The Document Making It More Dynamic.
+-> W3C Has Defined 3 Categories Of DOM :-
+	1. Core DOM	- Standard Model For All Documents
+	2. HTML DOM - Standard Model For HTML Documents
+	3. XML DOM  - Standard Model For XML Documents
+
+What Is HTML DOM:
+-----------------
+-> HTML DOM Is a Standard Object Model And Programming Interface for HTML.
+-> This Model Defines :
+	-- All HTML Elements As Objects
+	-- Properties Of HTML Elements
+	-- Methods To Access All HTML Elements
+	-- Events For All Elements
+-> It Provides A Standard Abstraction For How To Access,Change And Modify The HTML Elements.
+-> When A Web Page Is Loaded, The Browser Creates A Document Object Model Of The Page.
+-> With HTML DOM , Javascript Can Add,Update & Modify The Structure,Content And Style Of the HTML Documents And As Follows:
+	1.JavaScript can change all the HTML elements in the page
+	2.JavaScript can change all the HTML attributes in the page
+	3.JavaScript can change all the CSS styles in the page
+	4.JavaScript can remove existing HTML elements and attributes
+	5.JavaScript can add new HTML elements and attributes
+	6.JavaScript can react to all existing HTML events in the page
+	7.JavaScript can create new HTML events in the page
+
+The HTML DOM Programming Interface:	
+-----------------------------------
+-> All Elements In HTML Are Defined As Objects Having Some properties And methods.
+-> Example:
+		The following example changes the content (the innerHTML) of the <p> element with id="demo":	
+		
+	<HTML>
+		<HEAD>
+		</HEAD>
+		<BODY>
+			<H2>HTML DOM Programming Interface Application Example</H2>
+			<P id="demo"></P>
+			<SCRIPT>
+				document.getElementById("demo").innerHTML="HTML DOM Programming Interface Demo";
+			</SCRIPT>
+		</BODY>
+	</HTML>
+
+ Points:
+ ------
+ The most common way to access an HTML element is to use the id of the element.
+ The easiest way to get the content of an element is by using the innerHTML property.
+ The innerHTML property can be used to get or change any HTML element, including <html> and <body>.
+ 
+The HTML DOM Document Object:
+-----------------------------
+-> The document Object Is The Parent Object Of All Other Objects In The Entire Hirarchy.
+-> It Represents The Entire Web Page. Under The Controll Of document Object All Other Objects Will Operate.
+-> This Object Is The main Entry Point For Accessing Any Other Objects In The Document.
+-> It Has Some Methods To Operate On The Document:
+	Finding HTML Elements:
+	---------------------
+	document.getElementById(id)	
+		=> Find an element by element id
+	document.getElementsByTagName(name)
+		=> Find elements by tag name
+	document.getElementsByClassName(name)
+		=> Find elements by class name
+		
+	Changing HTML Elements:
+	----------------------
+	element.innerHTML =  new html content	
+		=> Change the inner HTML of an element
+	element.attribute = new value	
+		=> Change the attribute value of an HTML element
+	element.setAttribute(attribute, value)	
+		=> Change the attribute value of an HTML element
+	element.style.property = new style	
+		=> Change the style of an HTML element
+
+	Adding and Deleting Elements:
+	-----------------------------
+	document.createElement(element)	
+		=> Create an HTML element
+	document.removeChild(element)	
+		=> Remove an HTML element
+	document.appendChild(element)	
+		=> Add an HTML element
+	document.replaceChild(element)	
+		=> Replace an HTML element
+	document.write(text)	
+		=> Write into the HTML output stream
+	
+	Adding Events Handlers:
+	-----------------------
+	document.getElementById(id).onclick = function(){code}	
+		=> Adding event handler code to an onclick event
+
+-> As Part Of HTML DOM Level-1 Specification document Object Has 11 objects, object collections, and properties. These are still valid in HTML5. 
+	
+	document.anchors	Returns all <a> elements that have a name attribute	
+	document.applets	Returns all <applet> elements (Deprecated in HTML5)	
+	document.body		Returns the <body> element	
+	document.cookie		Returns the document's cookie	
+	document.domain		Returns the domain name of the document server
+	document.forms		Returns all <form> elements
+	document.images		Returns all <img> elements
+	document.links		Returns all <area> and <a> elements that have a href attribute
+	document.referrer	Returns the URI of the referrer (the linking document)
+	document.title		Returns the <title> element	
+	document.URL		Returns the complete URL of the document	
+	
+-> As Part Of HTML DOM Level-3 Specification document Object Has Been Added With Few More objects, object collections, and 	properties as follows:
+	
+	document.baseURI				Returns the absolute base URI of the document
+	document.doctype				Returns the document's doctype	
+	document.documentElement		Returns the <html> element	
+	document.documentMode			Returns the mode used by the browser	
+	document.documentURI			Returns the URI of the document	
+	document.domConfig	Obsolete. 	Returns the DOM configuration	
+	document.embeds					Returns all <embed> elements	
+	document.head					Returns the <head> element	
+	document.implementation			Returns the DOM implementation	
+	document.inputEncoding			Returns the document's encoding (character set)	
+	document.lastModified			Returns the date and time the document was updated	
+	document.readyState				Returns the (loading) status of the document	
+	document.scripts				Returns all <script> elements	
+	document.strictErrorChecking	Returns if error checking is enforced	
+	
+	
