@@ -1,0 +1,125 @@
+Read more at:
+//economictimes.indiatimes.com/articleshow/55574701.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst
+										 USSD
+					>>>>>>>	Unstructured Supplementary Service Data <<<<<<<<
+Q: What Is USSD Service ?
+Ans:- USSD Is A Technology Platform That Facilitates For Digital Payment Without Using Internet Service.
+	- It Provides Sessions Of Communication That Can Be Used In Various Areas Of Life Including Banking.
+	- USSD Based Payment Method Can Be Used Only For Small Value Transactions Up To Rs 5000 As Per RBI Guidelines.
+	- National Unified USSD Platform or NUUP Is A Mobile Banking Service Based On USSD. 
+	- USSD Is Abbreviated For - Unstructured Supplementary Service Data.
+	- It's A Technology That Transmits Information Through GSM Network Channels - These Channels Are Normally Used For Voice Calls Via Phone. Here The Telecom Operator And The Bank Will Become Parties With Whome The Communication Takes Place Via USSD.
+	- This Service Can Be Accessible On Every Phone Which Has The Ability To Send And Receive Messages, Be It Smartophone Or Feature Phone.
+
+Q: How USSD Technology Can Be Used In Mobile Banking?
+Ans:- USSD Can Be Used To Balance Enquiry,Generate Mini-Statement, Funds Transfer Using Aadhar Number, IFSC Code,MMID (A Unique Number Allocated By Bank As Part Of Mobile Banking Registration).
+	- Some Of The Other Services Provided By NUUP(National Unified USSD Platform) 
+
+Q: USSD Transactions Cannot Be Cancelled ?
+Ans:- NUUP System Uses IMPS For The Funds Transfer ,Which Is An Immediate  Transfer Service,So Once 
+	  The Transaction Is Initated, It Can Not Be Stopped Or Cancelled Unlike The Online Transaction 
+	  Done Through Mobile Or Laptop Which Can Be Cancelled After Initiation.
+
+Points To Note:
+---------------
+According to NPCI , NUUP Is An "Additional Channel For Banking Which Is A Key Catalyst For Expanding 
+Financial Inclusion" As Low Income Groups With No Smartphone Can Also Easily Use This Service.
+Keeping This In Mind The Service Is Made Available In 12 Languages.
+
+	English			*99#
+	Hindi			*99*22#
+	Oriya			*99*32#
+	Marathi			*99*28#
+	Telugu			*99*24#			etc..
+	
+	
+Q: Do The User Must Need To Register For Mobile Banking Inorder To Use USSD Service ?
+Ans:- Yes, The User Must Have To Register For Mobile Banking To Access USSD Facility.
+	  The Same Is Not Mandatory for Beneficiary.
+	  
+Points To Note:
+--------------	  
+	- User Just Need To Type *99# For English Language From Mobile Phone.
+	- This USSD Code Is Common Across All Telecom Operators.
+	- This Service Does Not Require Any Application To Install In Mobile.
+	- There is also a transaction limit of Rs. 5000, set by RBI, Which Is Enough For day-to-day Requirements 
+	- For Any Common Citizen Till The Case Crunch Due to Demonetization Is Resolved. 
+	- This Service Was Provided By NPCI During The Period Of Demonetization.
+	
+Q: What Are The Charges For Using This Payment Method & Transaction Limit?
+Ans:- Initially When This Service Rolled Out For The Consumer, The Telecom Operators Were 
+	  Charging RS:1.50 For A Transaction Irrespective Of The Txn Success / Failure. 
+	- Because Of This Reason This USSD Service Had Not Taken Up Popularity Even After 3 Years Of Its Launch.
+	- This Charge War Varying From One Telecom Operator to Other, Which Was Discouraging Consumer To Use 
+	  This Service.
+	- So Later TRAI On 22nd November, 2016 , Has Announced The Reduction Of Fee Charge 
+	  From RS:1.50 to RS:0.50 Per Transaction, Which Will Be Added To Consumers Mobile Bill.
+	- In Case Of Any Complaints, Customer Can Contact Their Banks (For Transaction Related Bugs) or 
+	  TSP (For Network Related Bugs).
+
+
+
+Mobile Banking Service:
+	1. Application Based Mobile Banking Service
+	2. USSD Based Mobile Banking Service
+
+Q: Who can apply for this service?
+Ans: - The Service Is Available To All Customers Having A Current/ Savings Bank Account In the Bank.
+	 - The Customers Already Using Application Based Mobile Banking Service Are Not Permitted To Use The 
+	   Service Over NUUP.
+	 - Existing Users Of The Application Based Service, If Desirous Of Using The Service Over NUUP, 
+	   Should De-Register From The Application Based Mobile Banking Service, Fefore Attempting To Register 
+	   Under NUUP.  
+	 
+Q: How To Register For The Service Under NUUP?
+Ans: - There Are Two Steps Involved To Register For The Service 
+			(1) Over The Mobile Handset 
+					-- Obtain User id and default mpin by sending SMS “MBSREG” to 9223440000
+					-- Change 	default mpin by dialling *99#
+			(2) At The ATM or INB or Branch.
+					-- Complete Registration Process By Visiting Any State Bank ATM / Internet Banking / Branch
+					
+
+Q: What Is The Difference Between Application Based Service And NUUP Based Service?
+Ans: - The differences are :
+
+		Application based service	
+		-------------------------
+		Mobile Banking application has to be downloaded and installed onto the mobile handset	
+		Mobile handset must be java enabled
+		Mobile connection can be CDMA or GSM
+		Can be used over SMS or GPRS
+		
+		Service using NUUP:
+		-------------------
+		No application to be downloaded.
+		Can be used over any mobile
+		Mobile connection can be only GSM
+		Can be used over SMS/Dial
+
+Q: How To Get The User ID and MPIN?
+Ans: - Send SMS “MBSREG” to 9223440000
+	 - You will receive User ID and default MPIN over SMS.
+
+Q: How to change the Default MPIN?
+Ans: - Dial *99# from your Mobile handset.
+	 - NUUP Welcome Screen Will Appear Asking You To Enter Your 3 Letters Of Bank's Short Name Or 
+	   First 4 Letters Of Bank’s IFS code.
+	 - After Entering Valid Short Name or IFS code, NUUP Menu Will Appear With Different Options Of 
+	   Available Services Enabled For Your Bank.
+	 - Enter 7 For Change MPIN And Submit.
+	 - Enter Old M-PIN, New MPIN And Confirm.
+	 - A Confirmation Screen Will Appear Displaying Change Of M-PIN Successfully.	 
+
+Q: What Is To Be Done Next, After Changing The Default MPIN?	 
+Ans: - You Have To Activate Your Account At Any SBI ATM Or Your Branch. 
+	 - At ATM > Swipe Debit Card > Choose Mobile Registration > Enter Debit Card PIN 
+					> Select Mobile Banking > Registration > Enter Mobile Number > Choose Yes
+						> The Mobile Number Will Be Displayed Over The Screen For Confirmation 
+							> Confirm The Same.
+							
+	 - You Will Get A SMS Regarding Activation Of The Primary Account Of The Debit Card For The Mobile Banking 
+	 Service. 
+	 - You Will Be Able To Enquire The Balance And Take Out Mini Statement For This Account Only. 
+	 - This Account Will Be Debited When You Transfer Funds/ Do Mobile Top up. 
+	 
