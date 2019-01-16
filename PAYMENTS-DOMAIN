@@ -13,7 +13,7 @@ Ans:- USSD Is A Technology Platform That Facilitates For Digital Payment Without
 
 Q: How USSD Technology Can Be Used In Mobile Banking?
 Ans:- USSD Can Be Used To Balance Enquiry,Generate Mini-Statement, Funds Transfer Using Aadhar Number, IFSC Code,MMID (A Unique Number Allocated By Bank As Part Of Mobile Banking Registration).
-	- Some Of The Other Services Provided By NUUP(National Unified USSD Platform) 
+	- Some Of The Other Services Provided By NUUP(National Unified USSD Platform) Are Change MPIN, Generate OTP..etc.
 
 Q: USSD Transactions Cannot Be Cancelled ?
 Ans:- NUUP System Uses IMPS For The Funds Transfer ,Which Is An Immediate  Transfer Service,So Once 
