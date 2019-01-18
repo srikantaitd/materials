@@ -1,3 +1,101 @@
+Document Object Model:(DOM):
+===========================
+DOM Connects The Webpage With Programming Language.
+DOM Is An Programming Interface For HTML & XML Document.
+DOM Represents The Document , So That Programs Can Connect To It.
+DOM Represents Elements In The Form Of Nodes And Objects, This Way Programming Languages Can Access & Manipulate The Document Style,Structure & Data..etc.
+
+A Webpage Is a Document, Which Can Be Displayed In The Browser Or As a HTML Source File. 
+The DOM Represents The Same Document So That It Can Be Manipulated.
+DOM Is An Object Oriented Representation For The Web Page, Which Can Be Modified With A Scripting Language Such As Javascript.
+
+The W3C DOM Standard Is Implemented Into Most Modern Webbrowsers.
+Many Browsers Extend This Standard, So There Is A Chance That Same DOM May Get Accessed And Manipulated By Different Browsers With Different DOMs.
+
+All The Properties,Methods,Events Available For Manipulating And Creating WebPages Are Organized Into Objects. 
+	For Example, document Object Represents The Document Itself.
+	The table Object That Implements The Special HTMLTableElement DOM Interface For Accessing HTML Tables, And So Forth.
+
+DOM and JavaScript:
+=================
+-> DOM Is Not A Programming Language, But Without This Javascript Would Not Have Any Model Or Notion OF WebPage,HTML Documents, XML Documents And Their Component Parts.
+-> Every Element In A Document — The document As a Whole, The head, tables Within The document, table headers, text within the table cells — Is Part Of The Document Object Model For That Document And  So They Can Be Accessed Using DOM And a Scripting Language Like JavaScript.
+-> In The Beginning, JavaScript And The DOM Were Tightly Intertwined, But Eventually, They Evolved Into Separate Entities. 
+-> The Page Content Is Stored In The DOM And May Be Accessed And Manipulated Via JavaScript, So That We May Write This Approximative Equation:  API (HTML or XML page) = DOM + JS (scripting language)
+
+-> The DOM Was Designed To Be Independent Of Any Particular Programming Language, Making The Structural Representation Of The Document Available From a Single Consistent API.
+-> Though We Focus Implementation Of DOM In JavaScript In This Discussion, DOM Can Be Built For Any Programming Language.
+
+How Do I Access the DOM?:
+========================
+-> We Don't Have To Do Anything Special To Begin Using The DOM.
+-> Different Browsers Have Different Implementations Of The DOM, And These Implementations Exhibit Varying Degrees Of Conformance To The Actual DOM Standard. But Every Web Browser Uses Some Document Object Model To Make Web Pages Accessible Via JavaScript.
+-> When We Create a Script – Whether It's Inline In a <script> Element Or Included In The Web Page By Means Of a Script Loading Instruction – We Can Immediately Begin Using The API For The document or window Elements To Manipulate The Document Itself Or To Get At The Children Of That Document, Which Are The Various Elements In The Web Page.
+
+-> DOM Programming May Be Something Like As Simple As Showing An Alert Message By Using The alert() Function From The window Object When The Webpage Is Loaded And The Whole DOM Is Available For Use,  Or It May use More Sophisticated DOM Methods To Actually Create New Content/Element, Add to The Webpage. 
+
+-> 
+	Example 1:
+	---------
+	This following JavaScript will display an alert when the document is loaded (and when the whole DOM is available for use):
+
+			<body onload="window.alert('Welcome to my home page!');">
+			
+	Example 2:
+    ---------
+	This function creates a new H1 element, adds text to that element, and then adds the H1 to the tree for this document:
+	
+		<html>
+		  <head>
+			<script>
+			   // run this function when the document is loaded
+			   window.onload = function() {
+
+				 // create a couple of elements in an otherwise empty HTML page
+				 var heading = document.createElement("h1");
+				 var heading_text = document.createTextNode("Big Head!");
+				 heading.appendChild(heading_text);
+				 document.body.appendChild(heading);
+			  }
+			</script>
+		  </head>
+		  <body>
+		  </body>
+		</html>
+-> 
+
+										
+=> Important Data Types:
+   ====================
+   API reference typically refer to nodes as elements, to arrays of nodes as nodeLists (or simply elements), and to attribute nodes simply as attributes.
+   
+   Document		-> 
+		When a member returns an object of type document (e.g., the ownerDocument property of an element returns the document to which it belongs), this object is the root document object itself. The DOM document Reference chapter describes the document object.
+   
+   Element		->
+		element refers to an element or a node of type element returned by a member of the DOM API. Rather than saying, for example, that the document.createElement() method returns an object reference to a node, we just say that this method returns the element that has just been created in the DOM. element objects implement the DOM Element interface and also the more basic Node interface, both of which are included together in this reference.
+   
+   NodeList		->
+		A nodeList is an array of elements, like the kind that is returned by the method document.getElementsByTagName(). Items in a nodeList are accessed by index in either of two ways:
+				list.item(1)
+				list[1]
+
+		These two are equivalent. In the first, item() is the single method on the nodeList object. 
+		The latter uses the typical array syntax to fetch the second item in the list.
+		
+   Attribute
+		When an attribute is returned by a member (e.g., by the createAttribute() method), it is an object reference that exposes a special (albeit small) interface for attributes. Attributes are nodes in the DOM just like elements are, though you may rarely use them as such.
+	
+   NamedNodeMap
+		A namedNodeMap is like an array, but the items are accessed by name or index, though this latter case is merely a convenience for enumeration, as they are in no particular order in the list. A namedNodeMap has an item() method for this purpose, and you can also add and remove items from a namedNodeMap.
+
+		
+		NOTE: Above Points Are Form JavaScript/ECMA Script Specification Official Guide:
+========================================================================================================
+
+Below Notes Collected From W3Schools.com
+========================================
+
 DOM:
 ---
 -> DOM Is W3C Standard Model For Accessing Documents.
@@ -125,5 +223,876 @@ The HTML DOM Document Object:
 	document.readyState				Returns the (loading) status of the document	
 	document.scripts				Returns all <script> elements	
 	document.strictErrorChecking	Returns if error checking is enforced	
+
+Examples:
+--------
+<!DOCTYPE html>
+<html>
+	<script>
+    </script>
+	<body>
+		<h2>My First Page</h2>
+		<a name="myAnchor" myCustomeProp="myCustomeProp Value" title="This Anchor Tag Is Created For Demonstration Purpose" href="www.google.com"></a>
+
+			<form action="/myForm" method="POST" id="myFirstForm">
+			</form>
+			<script>
+					document.write(document.anchors[0].name);
+					document.write('<br/>');
+					document.write(document.anchors[0].title);
+					document.write('<br/>');
+					document.write(document.anchors[0].myCustomeProp);
+					document.write('<br/>');
+					document.write("Base URI Of This Document : "+document.baseURI);
+					document.write('<br/>');
+					document.write("Body Of This Document : "+document.body);
+					document.write('<br/>');
+					document.write("Cookies Stored In This Document : "+document.cookie);
+					document.write('<br/>');
+					document.write('Domin Name Of The Current Server : '+document.domain);
+					document.write('<br/>');
+					document.write('Form Elements Collection  : '+document.forms);
+					document.write('<br/>');
+					document.write('Form Action: '+document.forms[0].action);
+					document.write('<br/>');
+					document.write('Form Method: '+document.forms[0].method);
+					document.write('<br/>');
+					document.write('Form Name: '+document.forms[0].id);
+					document.write('<br/>');
+					document.write('Complete URL Of This Document : '+document.URL);
+					document.write('<br/>');
+					document.write('Document Type: '+document.doctype);
+					document.write('<br/>');
+					document.write('Document URI: '+document.documentURI);
+					document.write('<br/>');
+					document.write('Document HTML Element: '+document.documentElement);
+					document.write('<br/>');
+					document.write('Document Implementation: '+document.implementation);
+					document.write('<br/>');
+					document.write('Document Scripts 1: '+document.scripts[0]);
+					document.write('<br/>');
+					document.write('Document Scripts 2: '+document.scripts[1]);
+					document.write('<br/>');
+					document.write('Document Scripts 3: '+document.scripts[2]);
+					document.write('<br/>');
+					document.strictErrorChecking='true';
+					document.write('Is This Document Configured For Strict Error Checking: '+document.strictErrorChecking);
+					document.write('<br/>');
+					document.write('Ready State Of This Document : '+document.readyState);
+			</script>
+	</body>
+</html>
+
+
+Difference Between window Object and document Object:
+-----------------------------------------------------	
+-> The window Object Represents An Open Window In A Browser.
+-> window Object Is The First Object That Gets Loaded Into The Browser.
+-> window Object Has The Properties Like name, length , innerWidth , innerHeight..etc.
+-> document Object Actually Gets Loaded Inside The window Object. Its Works Under The Control of window Object.
+-> document object Has Properties Like title, URL, cookie .. etc.
+-> Window Properties Can Be Accessed Using window.property-name , And The Document Properties Can Be Accessed Using window.document.property-name And Can Also Be Accessed Using document.property.
+-> If A document Contain Frames (<iframe> tags), The Browser Creates One window Object For the HTML document, And One Additional window Object For Each Frame.
+
+Window Object Properties
+------------------------
+closed				Returns a Boolean value indicating whether a window has been closed or not
+console				Returns a reference to the Console object, which provides methods for logging information to the browser's console (See Console object) defaultStatus	Sets or returns the default text in the statusbar of a window
+
+document			Returns the Document object for the window (See Document object)
+frameElement		Returns the <iframe> element in which the current window is inserted
+frames				Returns all <iframe> elements in the current window
+history				Returns the History object for the window (See History object)
+innerHeight			Returns the height of the window's content area (viewport) including scrollbars
+innerWidth			Returns the width of a window's content area (viewport) including scrollbars
+length				Returns the number of <iframe> elements in the current window
+localStorage		Allows to save key/value pairs in a web browser. Stores the data with no expiration date
+location			Returns the Location object for the window (See Location object)
+name				Sets or returns the name of a window
+navigator			Returns the Navigator object for the window (See Navigator object)
+opener				Returns a reference to the window that created the window
+outerHeight			Returns the height of the browser window, including toolbars/scrollbars
+outerWidth			Returns the width of the browser window, including toolbars/scrollbars
+pageXOffset			Returns the pixels the current document has been scrolled (horizontally) from the upper left corner of the window 
+
+pageYOffset			Returns the pixels the current document has been scrolled (vertically) from the upper left corner of the window 
+
+parent				Returns the parent window of the current window
+screen				Returns the Screen object for the window (See Screen object)
+screenLeft			Returns the horizontal coordinate of the window relative to the screen
+screenTop			Returns the vertical coordinate of the window relative to the screen
+screenX				Returns the horizontal coordinate of the window relative to the screen
+screenY				Returns the vertical coordinate of the window relative to the screen
+sessionStorage		Allows to save key/value pairs in a web browser. Stores the data for one session
+scrollX				An alias of pageXOffset
+scrollY				An alias of pageYOffset
+self				Returns the current window
+status				Sets or returns the text in the statusbar of a window
+top					Returns the topmost browser window
+
+
+Window Object Methods:
+----------------------
+alert()				Displays an alert box with a message and an OK button
+atob()				Decodes a base-64 encoded string
+blur()				Removes focus from the current window
+btoa()				Encodes a string in base-64
+clearInterval()		Clears a timer set with setInterval()
+clearTimeout()		Clears a timer set with setTimeout()
+close()				Closes the current window
+confirm()			Displays a dialog box with a message and an OK and a Cancel button
+focus()				Sets focus to the current window
+getComputedStyle()	Gets the current computed CSS styles applied to an element
+getSelection()		Returns a Selection object representing the range of text selected by the user
+matchMedia()		Returns a MediaQueryList object representing the specified CSS media query string
+moveBy()			Moves a window relative to its current position
+moveTo()			Moves a window to the specified position
+open()				Opens a new browser window
+print()				Prints the content of the current window
+prompt()			Displays a dialog box that prompts the visitor for input
+requestAnimationFrame()	Requests the browser to call a function to update an animation before the next repaint
+resizeBy()			Resizes the window by the specified pixels
+resizeTo()			Resizes the window to the specified width and height
+scroll()			Deprecated. This method has been replaced by the scrollTo() method.
+scrollBy()			Scrolls the document by the specified number of pixels
+scrollTo()			Scrolls the document to the specified coordinates
+setInterval()		Calls a function or evaluates an expression at specified intervals (in milliseconds)
+setTimeout()		Calls a function or evaluates an expression after a specified no. of milliseconds
+stop()				Stops the window from loading
+
+Finding HTML Elements:
+---------------------
+-> Its A Quite Common Requirement To Access The HTML Elements Using Javascript.
+-> There Are Multiple Ways To Do This As Follows:
+	- Finding Element By Id
+		var myElement = document.getElementById("intro");
+		
+		If the element is found, the method will return the element as an object (in myElement).
+		If the element is not found, myElement will contain null.
+		
+	- Finding Element By Tag Name
+		Example 1:
+		---------
+		var x = document.getElementsByTagName("p");
+		
+		Example 2:
+		----------
+		This example finds the element with id="main", and then finds all <p> elements inside "main":
+		
+		var x = document.getElementById("main");
+		var y = x.getElementsByTagName("p");
+		
+	- Finding Element By Class Name
+		We Can Find All HTML Elements With The Same Class Name By Using getElementsByClassName().
+		This Method Returns A List Of All Elements With class="intro".
+		
+		var myElements=document.getElementsByClassName("intro");
+		
+	- Finding Element By CSS Selectors
+		-- We Can Find All HTML Elements That Matches Specified CSS Selector(id, class names, types, attributes, values of attributes, etc) Using querySelectorAll(selector) Method.
+		-- This Method Returns A Collection Of Elements.
+		-- The Below Example Returns All <p> elements with class as "intro"
+		
+			var x = document.querySelectorAll("p.intro");
+			
+	- Finding Element By HTML Object Collection
+		-- We Can Dynamically Read All The Elements And Its Content As Follows:
+			
+		Example:
+		-------
+		<!DOCTYPE html>
+		<html>
+		<body>
+
+		<h2>Finding HTML Elements Using document.forms</h2>
+
+		<form id="frm1">
+			<h2>Finding Elements Using forms</h2><br/>
+			Basket One : <input type="text" name="input1" value="Banana"/><br/>
+			Basket Two : <input type="text" name="input2" value="Litchi"/><br/>
+			
+		</form> 
+
+		<p>Click "Try it" to display the value of each element in the form.</p>
+
+		<button onclick="myFunction()">Try it</button>
+
+		<p id="demo"></p>
+		<script>
+		function myFunction() {
+		  var formList=document.forms["frm1"];
+		  var text="";
+		  var i;
+		  for (i = 0; i < formList.length ;i++) {
+			text += formList.elements[i].value + "<br>";
+		  }
+		  document.getElementById("demo").innerHTML=text;
+		}
+		</script>
+
+		</body>
+		</html>
+
+-> Some Exercise Examples:
+   ------------------------
+   Example1:
+   -Use the getElementById method to find the <p> element, and change its text to "Hello".
+    <p id="demo"><p>
+
+	<script>
+		document.getElementById("demo").innerHTML= "Hello"";
+	</script>
+
+    
+	Example2:
+	-Use the getElementsByTagName method to find the first <p> element, and change its text to "Hello".
+	<p id="demo"><p>
+
+	<script>
+	document.getElementsByTagName("p")[0].innerHTML= "Hello";
+	</script>
+
+	Example3:
+	-Change the text of the first element that has the class name "test".
+	<p class="test"><p>
+	<p class="test"><p>
 	
+	<script>
+	document.getElementsByClassName("test")[0].innerHTML = "Hello";
+	</script>
 	
+	Example4:
+	-Use HTML DOM to change the value of the image's src attribute.
+	<img id="image" src="smiley.gif"><p>
+	
+	<script>
+	document.getElementById("image").src = "pic_mountain.jpg";
+	</script>
+	
+	Example5:
+	-Use HTML DOM to change the value of the input field.
+	<input type="text" id="myText" value="Hello"><p>
+
+	<script>
+	document.getElementById("myText").value = "Hello";
+	</script>
+	
+	Example6:
+	-Change the (text) color of the p element to "red".
+	<p id="demo"><p>
+
+	<script>
+	document.getElementById("demo").style.color= "red";
+	</script>
+	
+	Example7:
+	-Change the font size of the p element to 40 pixels.
+	<p id="demo"><p>
+
+	<script>
+	document.getElementById("demo").style.fontSize = "40px";
+	</script>
+	
+	Example8:
+	-Use the CSS display property to hide the p element.
+	<p id="demo"><p>
+
+	<script>
+	document.getElementById("demo").style.display = "none";
+	</script>
+	
+	Example9:
+	-Use the eventListener to assign an onclick event to the button element.
+	<button id="demo">Click me1<button>
+	
+	<script>
+	document.getElementById("demo").addEventListener("click", myFunction);
+	</script>
+	
+-> The following HTML objects (and object collections) are also accessible:
+
+	document.anchors 
+		Example:
+			<html>
+				<body>
+					<h2>Finding HTML Elements Using document.anchors</h2>
+					<a name="html">HTML Tutorial</a><br>
+					<a name="css">CSS Tutorial</a><br>
+					<a name="xml">XML Tutorial</a><br>
+					<p id="demo"></p>
+					<script>
+						document.getElementById("demo").innerHTML ="Number of anchors are: " + document.anchors.length;
+					</script>
+				</body>
+			</html>
+			
+	document.body
+		Example:
+			<html>
+				<body>
+					<h2>Finding HTML Elements Using document.body</h2>
+					<p id="demo"></p>
+					<script>
+					alert(document.body.innerHTML);
+					</script>
+				</body>
+			</html>
+			
+	document.documentElement
+		Example:
+			<html>
+				<body>
+					<h2>Finding HTML Elements Using document.documentElement</h2>
+					<p id="demo"></p>
+					<script>
+					alert(document.documentElement.innerHTML);
+					</script>
+				</body>
+			</html>
+	
+	document.embeds
+		Example:
+			<script>
+				document.getElementById("demo").innerHTML ="Number of embeds: " + document.embeds.length;
+			</script>
+			
+	document.forms
+		Example:
+			<script>
+				document.getElementById("demo").innerHTML ="Number of forms: " + document.forms.length;
+			</script>
+			
+	document.head
+		Example:
+			<script>
+				document.getElementById("demo").innerHTML =document.head;
+			</script>
+			
+	document.images
+		Example:
+			document.getElementById("demo").innerHTML ="Number of images: " + document.images.length;
+		
+	document.links
+		Example:
+			document.getElementById("demo").innerHTML ="Number of links: " + document.links.length;
+			
+	document.scripts
+		Example:
+			document.getElementById("demo").innerHTML ="Number of scripts: " + document.scripts.length;
+			
+	document.title	
+		Example:
+			document.getElementById("demo").innerHTML ="The title of this document is: " + document.title;
+
+
+-> JavaScript HTML DOM - Changing HTML Elements:			
+   ---------------------------------------------
+  - The HTML DOM allows JavaScript to change the content of HTML elements.
+  - Javascript Can Be Used To Dynamically Create The HTML Elements.
+  - Using document.write() , data Can Be Written Into HTML OutputStream.
+	Example:
+		<script>
+			document.write(Date());
+		</script>
+
+-> JavaScript HTML DOM - Changing CSS
+   ----------------------------------
+	- The HTML DOM Allows javascript To Change The Style Of The HTML Elements
+	- To Change The CSS Style Of The HTML Element We Use The Following JavaScript Syntax.
+			document.getElementById(id).style.<property> = <new style>
+
+->  JavaScript HTML DOM - Operating On  Events		
+    ------------------------------------------
+	- HTML DOM Allows Javascript To Execute function Upon A Particular  Event.
+	- In Web Environment Often Events Are Generated By Browser When User Performs Any Action On HTML Elements.
+	   For Example:
+		An element is clicked on
+		The page has loaded
+		Input fields are changed
+
+-> JavaScript HTML DOM Events		
+   --------------------------
+   - HTML DOM Allows Javascript To React To HTML Events
+   - To execute code when a user clicks on an element, add JavaScript code to an HTML event attribute:
+		Syntax:   onclick=JavaScript
+		Example:
+			<body>
+				<h1 onclick="this.innerHTML = 'Ooops!'">Click on this text!</h1>
+			</body>
+		
+		Example:
+			<body>
+				<h1 onclick="changeText(this)">Click on this text!</h1>
+				<script>
+					function changeText(id) { 
+					  id.innerHTML = "Ooops!";
+					}
+				</script>
+			</body>
+	- To Assign An Event To A HTML Element We Can Use Various event Attributes in HTML, As Below:
+			Assign an onclick event to a button element:
+			<button onclick="displayDate()">Try it</button>
+
+	- We Can Also Attach An Event to The HTML Elements Using JavaScript As Below:
+			<script>
+				document.getElementById("myBtn").onclick = displayDate;
+			</script>
+	- Below Are Some Of the Event Attributes Of Various HTML Elements:
+			The onload and onunload events are triggered when the user enters or leaves the page.
+			The onload event can be used to check the visitor's browser type and browser version, and load the proper version of the web page based on the information.
+			The onload and onunload events can be used to deal with cookies.
+			
+		Example:
+			<!DOCTYPE html>
+			<html>
+				<body onload="checkCookies()">
+
+				<p id="demo"></p>
+
+				<script>
+				function checkCookies() {
+				  var text = "";
+				  if (navigator.cookieEnabled == true) {
+					text = "Cookies are enabled.";
+				  } else {
+					text = "Cookies are not enabled.";
+				  }
+				  document.getElementById("demo").innerHTML = text;
+				}
+				</script>
+
+				</body>
+			</html> 
+	- The onchange event is often used in combination with validation of input fields.
+
+		Below is an example of how to use the onchange. The upperCase() function will be called when a user changes the content of an input field.
+		
+		<head>
+		<script>
+		function myFunction() {
+		  var x = document.getElementById("fname");
+		  x.value = x.value.toUpperCase();
+		}
+		</script>
+		</head>
+		<body>
+
+		Enter your name: <input type="text" id="fname" onchange="myFunction()">
+
+		<p>When you leave the input field, a function is triggered which transforms the input text to upper case.</p>
+
+		</body>
+	
+	-onmousedown 
+	-onmouseup 
+	-onclick
+	-onfocus
+	etc..
+-> JavaScript HTML DOM EventListener
+   ---------------------------------
+	- HTML DOM Allows Javascript to Add Event Listeners To The HTML Elements.
+		Example:
+			Add an event listener that fires when a user clicks a button:
+			
+			<button id="myBtn">Try it</button>
+			<p id="demo"> </p>
+			document.getElementById("id1").addEventListener("click",displayDate);
+			
+			<script>
+				function displayDate(){
+					document.getElementById("demo").innerHTML=Date();
+				}
+			</script>
+			
+	- The addEventListener() Method Attahches An Event To The Specified Element, Without Overwritting Existing Event Handlers.
+	- Multiple Event Handlers Can Be Added To The Same Element.
+	- We Can Even Add Multiple Event Handlers Of Same Type To One Element.
+	- Event Handlers Can Be Added Onto Any Elements, Not Just HTML Elements i.e the window object.
+	- When Using The addEventListener() Method, T JavaScript Is Separated From The HTML Markup, For Better Readability.
+	- Event Handlers Can Be Removed By Calling removeEventListener() Method.
+	
+	Syntax to Use addEventListener() method:
+	---------------------------------------
+	element.addEventListener(event, function, useCapture);
+	
+	event : The first parameter is the type of the event (like "click" or "mousedown")
+	function : The second parameter is the function we want to call when the event occurs.
+	useCapture : The third parameter is a boolean value specifying whether to use event bubbling or event capturing. This parameter is optional.
+	
+Note: We Don't Use The "on" prefix For The Event; Use "click" Instead of "onclick".
+
+	Example: Same Event Type Multiple Times For Same Element
+		element.addEventListener("click", myFunction);
+		element.addEventListener("click", mySecondFunction);
+	
+	Example: Different Event Multiple Times For The Same Element
+		element.addEventListener("mouseover", myFunction);
+		element.addEventListener("click", mySecondFunction);
+		element.addEventListener("mouseout", myThirdFunction);
+		
+-> The addEventListener() method allows you to add event listeners on any HTML DOM object such as HTML elements, the HTML document, the window object, or other objects that support events, like the xmlHttpRequest object.
+
+	Example: (Add an event listener that fires when a user resizes the window)
+	
+	window.addEventListener("resize", function(){
+		document.getElementById("demo").innerHTML = sometext;
+	});
+	
+	Example Of  Function With Parameters:
+		element.addEventListener("click", function(){ myFunction(p1, p2); });
+
+-> Event Bubbling or Event Capturing?
+   =================================
+	-There are two ways of event propagation in the HTML DOM, bubbling and capturing.
+
+	-Event propagation is a way of defining the element order when an event occurs. If you have a <p> element inside a <div> element, and the user clicks on the <p> element, which element's "click" event should be handled first?
+
+	-In bubbling the inner most element's event is handled first and then the outer: the <p> element's click event is handled first, then the <div> element's click event.
+
+	-In capturing the outer most element's event is handled first and then the inner: the <div> element's click event will be handled first, then the <p> element's click event.
+
+	-With the addEventListener() method you can specify the propagation type by using the "useCapture" parameter:
+
+		addEventListener(event, function, useCapture);
+	
+	-The default value is false, which will use the bubbling propagation, when the value is set to true, the event uses the capturing propagation.	
+	
+	Example:
+	=======
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<style>
+			#myDiv1, #myDiv2 {
+			  background-color: coral;
+			  padding: 50px;
+			}
+
+			#myP1, #myP2 {
+			  background-color: white; 
+			  font-size: 20px;
+			  border: 1px solid;
+			  padding: 20px;
+			}
+			</style>
+			<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		</head>
+		<body>
+			<h2>JavaScript addEventListener()</h2>
+			<div id="myDiv1">
+			  <h2>Bubbling:</h2>
+			  <p id="myP1">Click me!</p>
+			</div><br>
+
+			<div id="myDiv2">
+			  <h2>Capturing:</h2>
+			  <p id="myP2">Click me!</p>
+			</div>
+
+			<script>
+			document.getElementById("myP1").addEventListener("click", function() {
+			  alert("You clicked the white element!");
+			}, false);
+
+			document.getElementById("myDiv1").addEventListener("click", function() {
+			  alert("You clicked the orange element!");
+			}, false);
+
+			document.getElementById("myP2").addEventListener("click", function() {
+			  alert("You clicked the white element!");
+			}, true);
+
+			document.getElementById("myDiv2").addEventListener("click", function() {
+			  alert("You clicked the orange element!");
+			}, true);
+			</script>
+
+		</body>
+	</html>
+
+-> The removeEventListener() method	:
+   ---------------------------------
+	- The removeEventListener() method removes event handlers that have been attached with the addEventListener() method:
+		element.removeEventListener("mousemove", myFunction);
+	
+	- The addEventListener() and removeEventListener() methods are not supported in IE 8 and earlier versions. However, for these specific browser versions, you can use the attachEvent() method to attach an event handlers to the element, and the detachEvent() method to remove it: 
+			
+			element.attachEvent(event, function);
+			element.detachEvent(event, function);
+			
+	Example: Cross Browser Solution:
+	--------------------------------
+	var x = document.getElementById("myBtn");
+	if (x.addEventListener) {     // For all major browsers, except IE 8 and earlier
+	  x.addEventListener("click", myFunction);
+	} else if (x.attachEvent) {   // For IE 8 and earlier versions
+	  x.attachEvent("onclick", myFunction);
+	}
+
+=> JavaScript HTML DOM Navigation
+   ==============================
+-> According To W3C Specificational Standard, Everything In HTML Is A Node.
+-> The Entire document Is A Document Node.
+-> Every HTML Element Is an Element Node.
+-> Every Text Under The HTML Element Is a TextNode.
+-> Every Attribute In HTML Is AttributeNode.
+-> All Comments Are Comment Node.
+-> With HTML DOM, All Node Tree Can Be Accessed Using Javascript.
+-> HTML DOM Allows, Javascript To Create , Modify And Delete Nodes From node Tree.
+-> As We Know HTML DOM Tree Is Hierarchical By Nature i.e It Is Represented Using Tree DataStructure With Parent Child Relationship.
+-> The Top Most Element Is Called as Root Node And It Will Not Have Any Parent Node.
+-> In a Hirarchical DataStructure, Each Element Will Have Only One Parent And Can Have Any No.Of Siblings.
+
+JavaScript Api Support For HTML DOM Tree Navigation:
+----------------------------------------------------
+-> Following Methods From JavaScript api Can Be Used To Navigate Between Nodes :
+	We Can Use The Following Node Properties To Navigate Between Nodes With JavaScript:
+
+		parentNode
+		childNodes[nodenumber]
+		firstChild
+		lastChild
+		nextSibling
+		previousSibling
+
+Note:
+	A Commomn Error In Javascript Is To Expect Any Element Node To Contain Text.
+	For Example:
+		<title id="myTitle">Apple Is a Fruit</title>
+		
+		In The Above Example title Node Doest Not Contain Any Text. Instead It Contains A TextNode With Value As "Apple Is a Fruit". And This Value Of The Text Node Can Be Accessed By innerHTML Property.
+
+		For Example:
+			var value=document.getElementById("demo").innerHTML;
+			
+		Accessing The innerHTML Property Directly On A Node Is Equivalent To Accessing The NodeValue Of The First Child. That Is Reason Why The Above Example Will Print The Result As "Apple Is a Fruit"
+			
+		It Can Also Be Done Like Below :
+			var value=document.getElementById("demo").firstChild.nodeValue;
+		
+		We Can Even Use The Below Syntax To Read The Text Node Value :
+			var value=document.getElementById("demo").childNodes[0].nodeValue;
+
+-> There are two special properties that allow access to the full document:
+
+		document.body - The body of the document
+		document.documentElement - The full document 			
+		
+	Example:
+	--------
+	<!DOCTYPE html>
+	<html>
+		<body>
+			<p>Hello World!</p>
+			<div>
+				<p>The DOM is very useful!</p>
+				<p>This example demonstrates the <b>document.body</b> property.</p>
+			</div>
+			
+			<script>
+			alert(document.body.innerHTML);
+			</script>
+		</body>
+	</html>
+	
+	Example:
+		<script>
+			alert(document.documentElement.innerHTML);
+		</script>
+		
+		
+-> The nodeName Property
+   ---------------------
+	The nodeName property specifies the name of a node.
+
+		nodeName is read-only
+		nodeName of an element node is the same as the tag name
+		nodeName of an attribute node is the attribute name
+		nodeName of a text node is always #text
+		nodeName of the document node is always #document
+		nodeName always contains the uppercase tag name of an HTML element.
+		
+	Example:
+    --------
+		<h1 id="id01">My First Page</h1>
+		<p id="id02"></p>
+
+		<script>
+		document.getElementById("id02").innerHTML = document.getElementById("id01").nodeName;
+		</script>	
+
+-> The nodeValue Property		
+   ----------------------	
+	The nodeValue property specifies the value of a node.
+
+		nodeValue for element nodes is null
+		nodeValue for text nodes is the text itself
+		nodeValue for attribute nodes is the attribute value
+		
+-> The nodeType Property
+   ---------------------
+	The nodeType property is read only. It returns the type of a node.
+	
+	<h1 id="id01">My First Page</h1>
+	<p id="id02"></p>
+
+	<script>
+	document.getElementById("id02").innerHTML = document.getElementById("id01").nodeType;
+	</script>
+	
+-> For Type Of Element An Integer Number Is Assigned As nodeType Value. 
+	The most important nodeType Are :
+
+		               
+		ELEMENT_NODE		1		<h1 class="heading">W3Schools</h1>
+		ATTRIBUTE_NODE		2	 	class = "heading" (deprecated)
+		TEXT_NODE			3		W3Schools
+		COMMENT_NODE		8		<!-- This is a comment -->
+		DOCUMENT_NODE		9		The HTML document itself (the parent of <html>)
+		DOCUMENT_TYPE_NODE	10		<!Doctype html>
+
+Note: Type 2 is deprecated in the HTML DOM (but works). It is not deprecated in the XML DOM.		
+
+==========================
+Creating new HTML Elements :
+==========================
+-> To Add A New Element To The HTML DOM. First The Element Node Needs To Be Created and Than It Would Be Added To The Existing Element. Below Is The Code Snippet :
+	Example 1:
+	---------
+	<html>
+		<head>
+			<script>
+				function addPara(){
+					var newPara=document.createElement("p");
+					var newText=document.createTextNode("New Fruit Added");
+					newPara.appendChild(newText);
+					
+					var myDiv=document.getElementById("myDiv");	
+					myDiv.appendChild(newPara);
+				}
+			</script>
+		</head>
+		<body>
+				<div id="myDiv">
+					<p id="para1">Apple Is a Fruit</p>
+					<p id="para2">Banana Is a Fruit</p>
+				</div>
+			<button id="myButton" onclick="addPara()">Add New Paragraph</buttton>
+		</body>
+	</html>
+	
+	Example 2:
+	---------
+	<html>
+	<head>
+		<script>
+			function addPara(){
+            	var newPara=document.createElement("p");
+                var newText=document.createTextNode("New Fruit Added");
+                newPara.appendChild(newText);
+                
+				var myDiv=document.getElementById("myDiv");	
+                var para1=document.getElementById("para1");	
+                myDiv.insertBefore(newPara,para1);
+			}
+		</script>
+	</head>
+	<body>
+			<div id="myDiv">
+				<p id="para1">Apple Is a Fruit</p>
+				<p id="para2">Banana Is a Fruit</p>
+			</div>
+		<button id="myButton" onclick="addPara()">Add New Paragraph</buttton>
+	</body>
+	</html>
+	
+	Example 3: Remove Element From HTML DOM
+	---------
+	<script>
+			function addPara(){
+            	var newPara=document.createElement("p");
+                var newText=document.createTextNode("New Fruit Added");
+                newPara.appendChild(newText);
+                
+				var myDiv=document.getElementById("myDiv");	
+                var para1=document.getElementById("para1");	
+                myDiv.removeChild(para1);
+			}
+	</script>
+	
+	Example 4: Replace The Exisiting HTML Element With a New Element
+	---------
+	<script>
+		function addPara(){
+			var newPara=document.createElement("p");
+			var newText=document.createTextNode("New Fruit Added");
+			newPara.appendChild(newText);
+			
+			var myDiv=document.getElementById("myDiv");	
+			var para1=document.getElementById("para1");	
+			myDiv.replaceChild(newPara,para1);
+		}
+	</script>
+	
+=========================
+The HTMLCollection Object:
+=========================	
+-> HTMLCollection Represents Collection Of Html Elements Put Together In One Container Object.
+-> It Looks Like An Array But Not Exactly An Array. It Means We Can not Call methods Like push(),pop(), etc..
+-> HTMLCollection has length Property Which is Useful To Loop through The Collection Of Elements Within It.
+-> Methods like getElementsByClassName(), getElementsByTagName() etc.. Returns HTMLCollection Object Instance Representing Multiple Elements.
+   Example 1:
+	<script>
+		var myCollection = document.getElementsByTagName("p");
+		document.getElementById("demo").innerHTML = myCollection.length;
+	</script>	
+
+   Example 2: (Change the background color of all <p> elements)
+	<script>
+		var myCollection = document.getElementsByTagName("p");
+		var i;
+		for (i = 0; i < myCollection.length; i++) {
+		  myCollection[i].style.backgroundColor = "red";
+		}
+	</script>	
+   
+=========================
+The NodeList Object:
+=========================	
+-> A NodeList object is a list (collection) of nodes extracted from a document.
+
+-> A NodeList object is almost the same as an HTMLCollection object.
+
+->	Some (older) browsers return a NodeList object instead of an HTMLCollection for methods like 		getElementsByClassName().
+
+-> All browsers return a NodeList object for the property childNodes. 
+
+-> Most browsers return a NodeList object for the method querySelectorAll().
+
+-> The following code selects all <p> nodes in a document:
+		var myNodeList = document.querySelectorAll("p");
+-> The Elements Within NodeList Can Be Access Using index number. For Example To Access 2nd Element We Can Use Below Code.
+		y = myNodeList[1];
+		
+-> The length property defines the number of nodes in a node list:
+		
+		Example1:
+		--------
+		var myNodelist = document.querySelectorAll("p");
+		document.getElementById("demo").innerHTML = myNodelist.length;
+		
+		Example2:
+		---------
+		var myNodelist = document.querySelectorAll("p");
+		var i;
+		for (i = 0; i < myNodelist.length; i++) {
+		  myNodelist[i].style.backgroundColor = "red";
+		}
+
+====================================================
+Difference Between an HTMLCollection and a NodeList:
+====================================================		
+1. An HTMLCollection is a collection of HTML elements ,Whereas A NodeList is a collection of document nodes.
+2. HTMLCollection items can be accessed by their name, id, or index number,Whereas NodeList items can only be accessed by their index number.
+3. Only the NodeList object can contain attribute nodes and text nodes.
+		
