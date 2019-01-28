@@ -1,0 +1,109 @@
+
+There Are Two Aspects Of Problem Solving , They Are -
+	1. Programming Methodology
+	2. Data Structures
+
+These 2 Terms Are Quite Integrated With Each Other And They Go Hand to Hand In Solving Any Problem 
+For Which A Computer Program Is Required To Be Developed.
+
+Given a Problem And We have To Solve The Problem Efficiently. 
+The Issue At Hand In Most Of The Task Of The Computer Science Is  The Issue Of Problem Solving.
+
+Unless We Understand How To Solve a Problem In a Computer Quite Efficiently And What Are The Steps
+To Do It, It Will Be Difficult For Us To Understand , What Programming Methodology & Data Structuring 
+Means Because These Are Two Derived Items Of The System Of Problem Solving.
+
+We Need To Remember That We Are Solving The Problem In A Particular Computer, And This Computer Has 
+Got Some Structure And Architecture.
+
+On The Other Hand Problem Solving Is Not A Merely A Process Of Programming.
+
+It Is The Process Of Developing The Solution For The Problem Which Is Expressed In a Natural Form.
+For Example If Somebody Gives a Problem To Find Maximum Of n Numbers. Here The Problem Is Posed In 
+Natural Language.
+
+It Is Our Responsibility To Convert  This Problem Posed In Natural Language To a Computer Understandable Language 
+Which Will Solve The Problem.
+
+If We Had Technology  Which Could Understand The Natural Language Itself ,Then We Would Not Require This 
+Series Of Tasks Of Programming Or The Concept Of Programming Methodology And Data Structures Would Have Been Automated
+Already.
+
+So Since We Are Having Programming Language / Computer Which Can Understand A Restricted Form Of Language
+And The Problem Is Posed In a Natural Language. It Is Our Task To Convert This Problem Into The Language 
+Of The Computer So That It Works Efficiently. So This Is The Core Concept Of Problem Solving.
+
+Our Task Is To Understand the Technique Of Problem Solving.
+
+----=======
+
+- The Very First Aspect Of Problem Solving Is To Convert The Problem Into A Sequence Of Steps.
+- The Terms Like Algorithm Design, Programming Methodology, Data Structuring. These All Are Related To 
+ Converting The Problem Into Series Of Steps Which Can Be Executed In The Computer.
+ 
+- Problem Solving Is a Style Of Thinking Which We We Refer As Problem Decomposition.
+
+
+- When We Solve a Problem , These Are The Broad Steps One Of The Guidelines Which Can Be Used In Problem 
+Solving. There Are Not Hard And Fast Rule In Problem Solving. And These Steps Can Be Broken To Obtain 
+Better Solution In Some Problems, But These Are The General Techniques Which Can Be Used To Obtain 
+Solutions To a Large Number Of Problems.
+	1. The First Step is INITIAL SOLUTION GENERATION i.e. You Have To Try And Solve The Problem Which
+	Is Posed To You In Some Form. And In This Point In Initial Solution Generation , There Is Something 
+	Called Inherent Solution In a Person's Mind. That Is You Must Be Able to  Solve The Problem In Your 
+	Own Mind First Before You Can Really Solve It On The Computer.
+	Solving Teh Problem In Own Mind Is Something Which Is Vague And Inorder To Make it More Concrete, 
+	We Would Say  We Need To Decompose The Problem In Some Way.
+	Decomposition Inherently Gives a Sequence Of Steps But It Gives a Very Broad Outline In That Sequence Of
+	Steps.Therefore The First Thing Is INITIAL SOLUTION GENERATION.
+	How To Generate Initial Solution , There Is No hard And Fast Rule, We Must Learn It Only Through 
+	Experience. And Once We Got The Hang Of It , We Will Be Able To Handle  Possibly Solved Several Problem
+	In Our Own Ways.
+	So Getting An Initial Solution And This Initial Solution Contains a Set Of Actual Potential Programs.
+	In This Step The Prime Condition That We Need To Take Care Of Is CORRECTNESS i.e The Solution Must 
+	Produce Correct Result.
+	The Issue Of Correctness Is Tested And Validated At This First Step.
+		
+	2. The Second Step Is INITIAL SOLUTION REFINEMENT i.e Given The Initial Solution We Would Like To Find
+	Out Which Final Solution To Take . And To Decide That The Below Criterias Will Be Used.
+		a. EFFICIENCY
+				- TIME EFFICIENCY
+				- SPACE EFFICIENCY
+		b. ALGORITHM DESIGN		(Selection Of Exact Set Of Steps From Set Of Potential Programs)
+		c. DATA STRUCTURING  	(Organization Of The Data)
+	Whenever We Do a Refinement We Will Try To Maintain The Correctness Achieved In Step 1.
+	And The Main Issue In Refinement Is EFFICIENCY.	
+	Here We Have To Make Sure Our Program Will Run As Fast As Possible.
+	 Sometimes There Will Be a Space-Time Trade-Off i.e There Will Be a Situation In Which To Reduce
+	 The Space We May Have To Increase The Time And Vice Versa.
+	 So Given An INITIAL SOLUTION, We Have To Choose From Set Of Potential Programs, The Final Solution.
+	 And The Criteria For Choosing It Will Be EFFICIENCY.
+	 
+	 This Is Where The Standard Steps Which We Call Programming Methodology & Data Structuring Coming.
+	 
+	 
+	 In Step 1 We Have To Have An Insight Into The Problem , We Have To Know Several Problem 
+	 Solution Technique.And In Combination Of These Things With Our Own Intelligence And Experience 
+	 Will be Able To Get The Initial Solution. Here In This Steps 2 Different People Can Generate 
+	 2 Different Solution For The Same Problem. But Once The Initial Solution Is Ready, Now In Step 2 There
+	 Are Some Methodology Which Are Quite Standard And Well Known, And These Form Part Of Programming 
+	 Methodology & Data Structures. 
+	 
+	 3. FINAL SOLUTION.
+	 
+	Now After The Step 3. The Programming Comes Into Picture. Given The Final Solution Defined In Some
+	Steps In Our Own Natural Language. Some People Call It As Pseudo Code, Some Refer It As Flow Chart.
+	Now We Have To Write a Program , And When We Come To Write s Program, We Take Help Of a 
+	VEHICLE LANGUAGE(C,C++,JAVA,C#).
+	
+	So People In Computer Science  Are Developing Languages Which Can Understand And Realize More
+	And More Structured Form Into Machine Codes. Such Language Are Referred As High Level Languages.
+	These High Level Languages Require Some Features Which Makes It Quite Useful To Write Programs. And
+	These Features Are Related To Data Structuring ,Algorithm Design And Specially Problem Decomposition.
+	
+	
+
+ 
+
+
+
