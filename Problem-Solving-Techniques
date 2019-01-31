@@ -84,3 +84,61 @@ And The Problem Is Posed In a Natural Language. It Is Our Task To Convert This P
 	Call By Value Result
 	Call By Reference
 	
+=================================================================================
+
+
+Find MAX And MIN Of N Numbers:
+------------------------------
+No. Of Comparison To Find MAX = (N-1)
+
+MINIMUM Can Be Found  By Comparing  Between Those Numbers Who Have Lost In Their First Comparasion
+In The Tournament.
+
+The Above Set  Is To Be MINIMIZED To Make The Algorithm More Efficient.
+
+The Looser Set Size Of The First Comparison In The Tournament Can Never Be Less Than N/2.
+
+Approach 1:
+----------
+	READ(n)
+	READ(number)
+	MAX = number
+	MIN = MAX
+	loop: i=2,n,1
+		READ(number)
+		IF MAX < number THEN 
+		MAX = number
+		ELSE IF MIN > number THEN 
+		MIN = number
+	loop:End	
+	PRINT (MAX)
+	PRINT (MIN)
+
+In This Approach , The No Of Comparison Would Be : 2(N-1)
+
+Alternative Approach 2:
+----------------------	
+For Even Number Of Elements, The No Of Comparison Would Be As Below:
+	N/2 + (N/2)-1 + (N/2)-1 = ((3/2)N)-2
+
+For Odd Number Of Elements, The No Of Comparison WOuld Be As Below:
+	N/2 + (N/2)-1 + (N/2)-1 = ((3/2)N)-2 + 2 = ((3/2)N)
+
+	
+	
+
+	
+- The Second Largest Is The One Who Must Have Definetly Defeated By The Largest Number.
+- Example Set : {8,7,15,1,6,9,4,3}
+
+Key Observation:
+1. The Second Largest Element Must Necessarily Lose To The Largest Element In The Tournament
+2. The Second Largest Element Can Be Found By Comparing Only Those Numbers Who Lost to/were Compared
+To The Largest.
+3. This Set Must Be Minimized.
+
+
+
+1. In Worst Case The No.Of Comparasion To Find The Second Largest = Lenght Of The Longest Path In The Tournament.
+2. The Length Of The Longest Path Is Minimized If The Tournament Tree Is Minimized.
+	
