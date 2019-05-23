@@ -654,6 +654,60 @@ CONNECT TargetDB/TargetDB
 
 SELECT * FROM TAB;
 
+Day-33:
+======
+What is Mapping in Informatica?
+------------------------------
+1. As Per Informatica, Mapping is a Structureal Flow Of Data From The Identified Source System To The Designated Target System.
+2. A Mapping is a Logic Either Designed Or Developed By The ETL Developer For Loading The Data As Per The Requirement Of The Subject Of Analysis.
+3. A Mapping is a Collection Of Transformations Or a Pipeline Of Data Flows That Instructs Integration Services, How The Data Should Be Handled In The Process Of Loading. 
+
+What Are The Feature That Support The ETL Process Using Informatica?
+--------------------------------------------------------------------
+1. Mapping Designer, Using Which We Can Create The Mapping Logic With Integration Of Transformations.
+2. A Set Of Pre-Defined Transformation Objects Which Can Give The Logic On Hand To The ETL Developer To Configure The State Of The Transformation By Scenario.
+3. Mapplet Designer,Which Can Be Used To Create Reusable Mappings That Can Be Utilized in Other Subjects By Necessity
+4. Transformation Developer, Which Can Be Used To Create Re-Usable Transformations That Can Be Utilized in Other Mappings As Per The Subject Requirements.
+
+What Are The Minimum Components Of a Mapping?
+---------------------------------------------
+1. Atleast One Single Source For Data Extraction.
+2. Atleast One Transformation Object For Mapping To The Target.
+3. Atleast One Target Object To Load The Data.
+
+What is a Transformation in Informatica?
+---------------------------------------
+1. A Transformation in Informatica is an Informatica Object, Which Creates, Modifies OR Helps in Passing The Data To The Target 
+   Structures As Per The Change That is Expected By The Rule Of The Subject.
+2. The Basic Purpose Of a Transformation in Informatica is to Modify The Source Data As Per The Requirement Of The Target System.
+
+Can Only One Transformation Provide Logic For The Data Loading?
+---------------------------------------------------------------
+1. It All Depends On The Requirement And The Subject Of Analysis, Hence A Mapping May Use Only One Transformation OR an Integration Of
+   Multiple Transformations To Complete The Total Data Loading Process.
+
+Different Type Of Transformation:
+--------------------------------
+1. Active Transformation
+2. Passive Transformation
+3. Active/Passive Transformation
+4. Connected/Passive Transformation
+5. Multi-Group Transformation
+6. Blocking Transformation
+
+Note: Every Transformation is an Object. Every Object Has Its Own Properties. Few Can Be Changed And Few Can Not.
+
+Steps To Create a Mapping Object In PowerCenter Designer:
+--------------------------------------------------------
+1. Connect To Informatica User 
+2. Connect To Required Repository
+3. Open The Required Folder
+4. Select Mapping Designer In The PowerCenter Designer Tool Bar
+5. Select Mapping => Create From The Menu
+6. Provide a Name For The Mapping And Click OK
+7. Save The Mapping
+
+
 
 
 
