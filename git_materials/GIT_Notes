@@ -1,0 +1,99 @@
+What is a Distributed Version Control System?
+---------------------------------------------
+1. In Software Development, Distributed Version Control System is a Form Of Version Control Where The Complete Codebase - Including Its Full History - Is Mirrored on Every Developer's Computer.
+2. Distributed Version Control System Allows Branching And Merging To Be Managed Automatically.
+
+What Are The Benifits Of Distributed Version Control System?
+------------------------------------------------------------
+1. Distributed Version Control System:
+	1.1. Increases The Performance Except Pushing And Pulling Operation
+	1.2. Enables The Ability For Developer To Work Offline
+	1.3. Maintains The Code Backup in Multiple Machines In Distributed Fashion
+	1.4. Does Not Rely On a Single Machine For a Single Point Of Failure
+
+Advantages Of DVCS Over CVCS?
+-----------------------------
+DVCS  - Distributed Version Control System 
+CVCS  - Centralized Version Control System
+
+1. Distributed Version Control System Takes a peer-to-peer Approach to Version Control, Unlike to The Client-Server Approach in Centralized Version Control System.
+
+2. Distributed Version Control System Synchronizes The Central Repository By Exchaning Patches From peer-to-peer.
+
+3. Distributed Version Control System Does Not Maintain A Single Central Version Of Codebase, Instead Each User Has a Working Copy With Full Change History, Which Potentially Enables The Developers To Work Offline And Later When Needed Share The Code With Other Fellow Developers.
+
+4. Increases The Productivity By Allowing The Users Work When Not Connected To The Network.
+
+5. Common Operations Such As Commit, Viewing History And Reverting Changes Are Relatively Faster Because There is No Need To Communicate With a Central Server. Communication With Central Server Is Only Needed When It is Required To Share The Changes Among Other Peers.
+
+6. It Allows Private Work, So Users Can Use Their Changes Even For Early Draft They Do Not Want To Publish.
+
+7. Working Copies Effectivly Function As Remote Backup, Which Avoids Relying On One Physical Machine As a Single Point Of Failure.
+
+8. Allows Various Development Models To Be Used, Such As Using Development Branches.
+
+9. Permits Centralized Control Of The "release version" Of The Project.
+
+Disadvantages of DVCS Compared With Centralized Version Control Systems?
+------------------------------------------------------------------------
+1. Distributed Version Control System Takes a Bit Extra Amount Of Time For The Initial Check-out Operation As It Copies All Branches And Revision History To The Local Machine By Default. \
+
+2. Each User Requires Additional Storage Architecture For Managing The Complete Codeabse With Complete Revision History.
+
+3. The Lack Of Locking Mechanisms That is Part of Most Centralized VCS And Still Plays An Important Role When It Comes To Non-Mergeable Binary Files Such As Graphic Assets Or Too Complex Single File Binary Or XML Packages (e.g. office documents, PowerBI files, SQL Server Data Tools BI packages, ...)
+
+What is Git?
+------------
+1. Git is a Free And Open Source Distributed Version Control System.
+2. Git Was Originally Created By Linus Torvalds In 2005.
+3. Unlike Other Older Centralized Version Control System Like CSV,SVn etc.. Git Is Distributed By Its Own Nature.
+
+How We Can Say That Git is Distributed Version Control System?
+--------------------------------------------------------------
+1. Git is Distributed By Nature Because Every Git Working Directory Contains a Full Fledged Repository Containing Complete History Of The Tree. Hence Every Individual Users Does Not Need Network Access For The Development Because The Local Tree Can Essentially Be The master.
+
+What Are The Benifits Of Git?
+-----------------------------
+1. Tools such as CVS and SVN offer a centralised repository model. Everybody commits their changes to the same central repository. Each committer keeps a copy of the latest version of the central repository. When they commit changes they send that change back to the main repository.
+
+2. The limitations here are that you always need to have the latest code on your local repository, and to see the history of changes you will need to ask the server for that information. You also always need to be able to access the remote repository to commit.
+
+3. A distributed SCN can emulate this model, but it offers so much more. Instead of just having one central repository that you send changes to, every committer has their own repository that has the entire commit history of the project. You don't need to connect to a remote repository, the change is just recorded on your local repository. You can still push to a centralised repository but you don't need to.
+
+4. One big benefit of this is that you can start a repository at any time on your local computer. Generally when ever I start a new project I'll git init and start committing updates straight away. Later on if I decide I want to share this project with another developer I can easily set up a centralised repository that we can both access. Or it might never leave my computer but I'll have local version control in place and can easily view my commit history.
+
+5. Another big benefit (perhaps less so with cloud computing now) is redundancy. If one copy of the repository is lost for whatever reason, any of the other repositories will contain the complete history so you could only potentially lose any work since your last push.
+
+How Git works:
+-------------
+Here is a basic overview of how Git works:
+	1. Create a "repository" (project) with a git hosting tool (like Bitbucket)
+	2. Copy (or clone) the repository to your local machine
+	3. Add a file to your local repo and "commit" (save) the changes
+	4. "Push" your changes to your master branch
+	5. Make a change to your file with a git hosting tool and commit
+	6. "Pull" the changes to your local machine
+	7. Create a "branch" (version), make a change, commit the change
+	8. Open a "pull request" (propose changes to the master branch)
+	9. "Merge" your branch to the master branch
+	
+
+Bitbucket Repository:
+---------------------
+Some fun facts about repositories:
+
+1. You have access to all files in your local repository, whether you are working on one file or multiple files.
+
+2. You can view public repositories without a Bitbucket account if you have the URL for that repository.
+
+3. Each repository belongs to a user account or a team. In the case of a user account, that user owns the repository. + In the case of a team, that team owns it.
+
+4. The repository owner is the only person who can delete the repository. If the repository belongs to a team, an admin can delete the repository.
+
+5. A code project can consist of multiple repositories across multiple accounts but can also be a single repository from a single account.
+
+6. Each repository has a 2 GB size limit, but we recommend keeping your repository no larger than 1 GB.	
+
+
+How To Copy Git Repository And Add Files?
+-----------------------------------------
