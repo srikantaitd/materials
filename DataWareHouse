@@ -1,0 +1,686 @@
+Day-7
+=====
+Data Warehousing Concepts:
+--------------------------
+Data Warehouse Always Operate With a Schema Identified.
+Relational Databases Has No Definite Schema, They Have Only Model.
+	1. Model - Tells About The Principle On Which We Can Develop The Application.
+	  For Example ER Model. It Never Tells Anything About How Many Tables And What Particular Type Of Schema Should be There . It Has No Fixed Definite Schema Structure.
+	  
+	2. Schema Fixes Us For Development, Model Fixes Us For Implementation And Analysis.
+
+What Is The Importance Of Dimensional Data Modelling?
+----------------------------------------------------
+1. It Is Simple To Navigate On The Data.
+	1.1. In DWH The Processes Are Executed And Designed In The Form Of Subjects.
+	1.2. As We Are Operating By Subject As The Major Focus , All The Relationships Are Questioned Only On The Subject As a Major Focus.
+	1.3. So Whenever We Have Some Data To Be Analysed With The Focus Of a Subject, Then We Go For Dimensional Modelling.
+2. It Provides Faster Database Performance.
+	2.1. Dimensional Model Makes The Designer Create The Database Schema , Which Is Optimized For High Query Performance
+	2.2. Dimensional Model As It Focuses On Subject As Priority It Has 
+		2.2.1. Fewer Joins In The System.
+		2.2.2. Minimized Redundancy Of The Data With Maximized Historical Integration
+		2.2.3. Major Part Of The Data Is Operated On Numbers Rather Than Text Because Of Which The CPU And Memory Efficiency Increases.
+3. It Provides The Flexibility To The Business Change
+	3.1. Has Great Elasticity For The Dynamics Of The Business Changes(Adaptability To Business Change)
+	3.2. The Model Is Fluid By Itself For Adding of New Columns Or Dropping Of Existing Columns For A Change That Arises In The Subject.
+
+What Is Dimensional Modelling?
+------------------------------
+1. Dimensional Modelling Is a Technique In Modelling A DWH System.
+2. Dimensional Modelling Is a Technique To Model The System With High Focus On Query And Analysis Optimization For Data Warehousing Tools.
+3. This Model Is Designed:
+	3.1. To Read The Data From The Business System.
+	3.2. Implement Summarization Of The Business Data
+	3.3. Implement Data Analysis Upon The Numerical Values Of The Business For	
+		3.3.1. Predictive Analytics
+		3.3.2. Forcasted Analytics
+		3.3.3. Pattern Cross Matching Analytics
+
+Who Initiated The Dimensional Model Concept?
+-------------------------------------------
+- First Time Initiated By Ralf Kimball, Who Proposed The System To Be Having Only 2 Types Of Tables :
+	1. Fact Table
+	2. Dimension Table
+
+What Is a Fact Table?
+---------------------
+1. It Is a Table In DWH Schema, Which Is The Most Basic Unit For Storing Warehouse Data, In The Unit Of Measurement In The Form Of Business Processes.
+2. It Represents One Subject Of Business That We Are Analysing.
+3. It Is The Central Table Within The Start Schema.
+4. A Fact Table Is Designed To Store The Quantitative Information For Subject Analysis.
+5. It Is Denormalized To Handle All The Combination Of The Data Useful In The Pattern Of The Subject Analysis.
+6. Fact Table Is Always Normalized At Second Normal Form.
+   2nd NF Speaks About Partial Functional Dependency. Means A Nonkey Attribute Can Be Dependent On Any One Of The Key Attribute, Not All The Key Attribute.
+7. Fact Table Always Works In Association With Dimensional Tables.
+8. Fact Tables Always Contain Only 2 Categories Of Columns:
+	8.1. Columns Acting As Foreign Keys ,Referencing To Dimensional Table Primary Key.
+	8.2. Measure Columns ,Which Are Containing The Actual Numerical Values For Data Analysis.
+		
+What Is A Dimension Table?
+--------------------------
+1. Dimension Table Captures The Information Relative To Properties With Which The Subject Of Analysis Can Be Conducted.
+2. The Main Logical Dimensions For Analysing The Subject Are Answered By Dimension Table:
+	-- Who
+	-- When 
+	-- What 
+	-- Where 
+3. Dimension Table Is The Main Table That Provides The Context Or Situation To Which The Business Process Event Is Associated.
+4. As Per The Warehousing Concepts Dimension Table Acts Like A Window To View The Information That Measures Business Process With Clear Identification Of    The State,Situation,Time,Object Of Reference From The Fact Table.
+
+Points Of Concentration:
+------------------------
+1. Dimension Table Contains The Dimensions That Describe The Value In The Fact Table.
+2. Dimension Tables Are Joined To a Fact Table Via a Foreign Key Applied In The Fact Table.
+3. Dimension Tables Are Generally Denormalized , With Third Normal Form.
+
+
+Day-8
+=====
+What Is An OLAP?(On Line Analytical Processing)
+-----------------------------------------------
+1. OLAP is a Computing Methodology, Because Of Which The End Users Are Enabled To Easily And Selectively Extract Required Data From The Business Systems To Make The Analysis Easier And Possible By The Dimension of Influence.
+2. OLAP is Like a Logical View Of The Data That Is Necessary For Analysis Of The Subject.
+3. OLAP System Influence The Areas Of:
+	3.1. Business Intelligence
+	3.2. Trend Analysis
+	3.3. Forcasted Analysis
+
+4.Data Warehouse/Data Mart Is a System That Is Ready For OLAP. So Data Warehouse/Data Marts Are Build To Support OLAP System.
+
+How OLAP System Make The Process Of Analysis Possible?
+------------------------------------------------------
+1. Data is Collected From Multiple Datasources, Which Are Well Designed Warehouses Or Data Marts.
+2. OLAP System Expects The Data In The Data Warehouse/Data Marts To Be In Cleaned State And Consolidated To The Standards Of Subject Of Analysis And Finally The Data Should Be Organized Into Data CUBE.
+3. Every OLAP CUBE Should Contain :
+	3.1. Data Categorized By Dimensions
+	3.2. Data Available By All The Expected Calculations
+	3.3. Should Have Data That Is Fully Derived For All The Analytical Combinations
+4. OLAP CUBEs Will Contain The Data That Is Pre-Summarized, On The Dimensions That Are Integrated By The Subject Of Analysis.
+
+What Are The Considerable Operations To Implement OLAP?
+------------------------------------------------------
+1. ROLL-UP : It is Also Called As Drill-up Or Data Consolidation, Which is Generally a Process Of Summarization Of Data Along a Dimension.
+2. Drill-Down : This is a Process That Allows The OLAP Professional To Analyze The Data By Navigating More Deeper On The Dimensions.
+3. Slicing : This is an Operation In OLAP That Helps In Presenting The Data By One Level.
+4. Dice : It is Mostly An Activity Applied By Data Analyst Where They Select The Data From Multiple Dimension For Cross Comparasion Analysis.
+5. Pivot : This Is a Process That Fundamentally Produces The New Combinations Of The Data By Rotating The Data On Different Properties Of The Dimensions(Rotating By Axis).
+
+Day-9:
+=====
+What Are The Different Types Of OLAP Systems?
+---------------------------------------------
+There Are 3 Different Types Of OLAP Systems In Implementation
+1. MOLAP : Multi Dimnesional On-Line Analytical Processing System
+2. ROLAP : Relational On-Line Analytical Processing System
+3. HOLAP : Hybrid On-Line Analytical Processing System, It is a Mixed Combination Of MOLAP And ROLAP.
+
+
+MOLAP:
+-----
+1. It is an OLAP Principle Which Operates On Self Indexing Directly Into a Multidimentional Database.
+2. In MOLAP The Data Is Always Available In The Form Of CUBE.
+3. MOLAP Always Has 
+	3.1. Pre-Computed Data 
+	3.2. Pre-Summarized Data
+	3.3. Pre-Joined Data
+	3.4. Pre-Patternized 
+	3.5. Pre-Combinations Data
+4. MOLAP Provides Data In Multi-Dimentional Views With Different Facets As Demanded By The Intelligent Reporting Users.
+5. MOLAP Has All The Combinations Of The Data For Analysis, Which Is Stored In a Structure Called As Multi-Dimentional Self Indexed Array.
+6. As The Data is Self Indexed By Nature The Reporting People Can Hit The Required Index Directly To Get The Pattern For Analysis.
+
+Technical Terminology To Be Concentrated:
+----------------------------------------
+1. In MOLAP All Operations Are Called As Processing.
+2. All MOLAP Tools Process The Data Almost To The Same Amount Of Responsive Time, Irrespective Of The Level Of The Aggregation.
+3. MOLAP Tools Will Eliminate All The Core Complications In Designing And Modelling The Data For Storage And Analysis.
+4. MOLAP Tools Provide Two Level Of Data Storage By Representation
+	4.1. Dense Storage Architecture
+	4.2. Sparse Storage Architecture
+5. We Have Analytical Data In The Form Of Fact Tables Which Are Stored In Multi-Dimentional Arrays And Dimentions Interconnected To The Array.
+
+What Are The Architectural Components Of The MOLAP Implementation?
+-----------------------------------------------------------------
+1. Database Server
+2. MOLAP Server
+3. Front End Tool(Reporting Tool)
+
+What Are The Bottlenecks In Implementing MOLAP ?
+-------------------------------------------------
+1. MOLAP Needs More Of Maintenence, And Storage Implications In Creating a Definite Startegy For Building Required CUBE's.
+2. We Need Proprietary Languages For Data Querying, Where These Queries Have Much Complications In Finalizing The Desired Combination Of Analytical Data.
+3. MOLAP Systems Are Very Difficult For Scalling As The Number And The Size Of The Cubes As They Are Increasing The Dimensions Can Get Duplicated OR Can Be Difficult To Handle.
+4. We Need Special Kind Of API's To Develope And Probe The Cubes For The Data.
+5. When The Subject Of Analysis Goes For a Change , We Should Either Reorganize OR Replace The Entire Cube Or The Data Structure.
+6. We Need Human Resource With Specialized Skill Sets Along With The Tools To Adminster The MOLAP, Build The MOLAP And Maintain The Database Of The MOLAP.
+
+Advantages Of MOLAP System:
+---------------------------
+1. MOLAP Can Manage , Analyze And Store Managable OR Considerable Amount Of Multidimentional Data
+2. Fastest Query Performance Is Guarenteed As MOLAP Is Optimized Storage With Self Indexing And Auto Caching.
+3. Manages Smaller Sizes Of The Data, When Compared To The Relational Database.
+4. MOLAP Has Automated Computation Of Higer Level Aggregates Of The Analytical Data.
+5. MOLAP Helps End Users To Analyzed Larger Data, And Less Defined Data.
+6. MOLAP is Easier To Handle For The End Users, Hence Can Even Be Operated By In-Experienced Managers.
+7. MOLAP Cubes Are Always Built Keeping In Mind Fastest Analysis In Data, Hence They Are Automatically Reliable For Data Slicing In Analysis.
+8. All The Data In MOLAP is Pre-Generated And Pre-Calculated When The CUBE is Being Created.
+
+Dis-Advantages Of MOLAP System:
+------------------------------
+1. MOLAP is Less Scalable As It Is Managed By Less Data.
+2. MOLAP Can Introduce High Level Data Redundancy, Because MOLAP is More Resource Intensive By Nature.
+3. MOLAP Solutions Can Be Lengthy, Especially When It Comes To Large Volume Of The Data.
+4. MOLAP May Get Into Problems While Updating The Data, in Data Querying Modules Where The Number Of Dimensions Are More Than 10.
+5. MOLAP Doesnot Stores Data in Detail, Hence Drillup Is Accurate But Drilldown Will Be Averaged.
+6. MOLAP Storage Utilization If It Low Then Data is Highly Scattered.
+7. The Managebility Level Of The MOLAP is For Small Data, If The Data Size Increases Then CUBE Cannot Handle The Data.
+
+
+Day-10:
+======
+ROLAP:
+------
+1. ROLAP Works With The Data That Is Existing In The Relational Database, In This Case We Design An Operational Data Store(ODS) Which is Nearest To Relational System Or Exactly Equal To The Relational System.
+2. Facts And Dimension Tables Are Stored As Part Of The Relational Tables With Primary Key And Foreign Key Relation.
+3. Keeping The Data In Relational State It Can Also Support Multi Dimensional Analysis.
+
+Advantages Of ROLAP Implementation:
+-----------------------------------
+1. Provides High Level Data Efficiency.
+	ROLAP Provides High Level Data Efficiency, As It Works With The Same Language Like SQL For Even The Multi-Dimensional Data Analysis.
+2. Provides Scalibility.
+	It Provides Steady Scalability Upon The Volume Of The Data By Time And Also Provides The Schema Level Extension As It Is Relational By Nature.
+
+Dis-Advantages Of ROLAP:
+------------------------
+1. Demand For Higher Resources
+	ROLAP Needs More Resources In All The Categories Of Software Requirements, Hardware Requirements And Man Power Requirement.
+2. Limitations On Data Aggregations
+	ROLAP Tools Are Designed To Provide Basic Aggregates Using Its SQL, Missing The Intelligent Analytics That Are Demanded.
+3. Slow In Query Execution And By Performance
+	Query Performance Is Slow Due To More Number Of Relations Associated To The Schema.
+
+HOLAP:
+-----
+1. HOLAP Is a Mixed Breed Of ROLAP And MOLAP Concepts Applied Together.
+2. HOLAP Provides Fast Computation Architecture Like MOLAP And Also Provides Higer Scalibility Of The System Like ROLAP.
+3. What Actually Happens In a HOLAP System:
+	3.1. When We Are Performing The Data Aggregations And Computations, We Move The Data Into Multi-Dimentional Queue, Due To Which Speed Increases.
+	3.2. When We Need More Detailed Analysis Upon The Data, We Keep Such Data In Relational System.
+
+Advantages Of The HOLAP:
+------------------------
+1. HOLAP Provides Economical Disk Space Usage, It Keeps The Overall System Compact By Nature, Giving The Benifit Over Issues With Access Speed And Improving Convinience Of Data Managenment.
+2. HOLAP Technology Uses The Queue Allowing The Faster Performance In Query Analytics, By Supporting All Types Of Data Influencing The Analytics.
+3. HOLAPs Are Instanteniously Updated With The Data Providing The Benifit Of Realtime Analysis Of The Data.
+
+Dis-Advantages Of The HOLAP:
+----------------------------
+1. Increases The Complexity Level In Practical Implementation As We Have To Plan a Very Perfect Architecture That Can Be Suitable To Manage Both ROLAP And MOLAP With Consistency.
+2. Since It is a Mixed Breed Of Both MOLAP And ROLAP, Overlaps Can Arise, With Same Functionalities Getting Designed In Both The Areas.
+
+What is a Schema in Data Warehouse?
+-----------------------------------
+As Per Data Warehouse a Schema is:
+1. Collection Of Objects
+	1.1. Metadata Objects
+	1.2. Data Objects
+	
+2. These Objects In Practicality Can Be:
+	1. Tables
+	2. Views
+	3. Indexes
+	4. Synonymns
+
+3. Within The Data Warehouse Schema The Objects Are Specifically Arranged By Following The Principles Of Dimensional Modelling, Where These Models Can Be Either
+	3.1. Star Schema Model
+	3.2. Snowflake Schema Model
+
+
+
+Day-11:
+======
+Bill Inmon VS Ralph Kimball Approaches
+--------------------------------------
+By Architecture:
+----------------
+1. In Common Both The Personalities Agree That a DWH OR Data Mart Should Be Integrated To a Repository Of Atomic Data.
+2. As Per Bill Inmon We Have To Keep Focus On Building Enterprise Level DWH.
+3. As Per Kimball We Have To Keep Focus On The Dimension Of Analysis And Build The DWH.
+4. Bill Inmon Uses Data Marts As a Physical Separation From The Enterprise Level DWH That is Built.
+5. Kimball Uses Only The Dimension Model in The Form Of STAR Schema OR Snow Flake Schema To Organize Organize The Data Answering Only Specific Area Of The Business, By Necessity Integrate The Data Marts And Push The To DWH.
+6. Bill Inmon System is Not Immidiately Reddy For Data Analytics.
+7. Kimball System Can Be Contacted Directly For Data Analytics.
+8. Bill Inmon Approach In Building The DWH is Top-Down Approach, Where We Build One Centralized DWH And Then Seggeregate into Data Marts As Per Requirement Of Analysis.
+9. Kimball Approach In Building The DWH is Bott-up Approach, Where We Build Subject Level Data Marts And Then By Requirement Integrate Them To Become Enterprise Level DWH.
+
+
+What is Meant By Fact Table In DWH?
+-----------------------------------
+1. Fact Table is a Component Of The DWH OR Data Mart Application
+2. A Fact Table In Reality Will Contain The Data In The Form Of:
+	2.1. Measures Of The Business Process
+	2.2. Metrics Of The Busniess Process
+	2.3. Fact Of The Business Process
+3. A Fact Table Is Always Part Of The STAR Schema OR Snow Flake Schema of The DWH OR Datamart, Placed in The Center Of The Schema Surrounded By The Dimensions.
+4. By Situation We Can Have Multiple Facts Represented In The Schema, These Kind Of Schemas Are Called As "Constellation Schema".
+
+What Are The Types Of Columns That Are Available in Fact Table?
+--------------------------------------------------------------
+1. Any Fact Table Will Contain 2 Types Of Columns:
+	1.1. Foreign Key Columns Which Are in Reference To Primary Key of The Dimension Table, In General All These Foreign Keys Are Together Associated As a Composite Primary Key.
+	1.2. Measure Columns, Which Are Actually Content Of Values That Help In Data OR Busniess Process Analysis.
+	What Are The Different Type Of Measures?
+	----------------------------------------
+	1. Additive Measures
+	2. Non-Aditive Measures
+	3. Semi-Aditive Measures
+
+What is a Factless Fact Table?
+------------------------------
+1. A Factless Fact Table Will Not Contain Any Measures.
+2. It Acts As an Intersection Point For All The Dimensions, Which Means This Table Contains Ony Foreign Keys For The Dimension Tables Dimensional Key.
+3. Factless Fact Tables Are Of 2 Types:
+	3.1. Factless Fact Table That Registers Only The Events Of The Business
+	3.2. Fcatless Fact Table That Registers The Values As Describing Condition Of The Business.
+
+
+
+Day-12:
+======
+Note Points:
+-----------
+In a DWH Application We Have Generally Two Types Of Fact Table:
+	1. Fact Table Containing Facts In The Form Of Measures
+	2. Fact Table Not Containing Any Facts Represented As Measures(Factless Fact Table)
+
+Dimension Is Anything That Qualifies The Measures In The Fact Table.
+Dimensions Are Basically Used As Textual Descriptions.
+Generally DWH Sends The Data To Reporting Architecture.
+In Reports, The Dimensions Are Represented As Lable In X-axis Or Y-axis; And Fact Values Are Represented in The Plotting Area Of The Graph.
+In SQL, Any Column That is Part Of GROUP BY Clause Are Dimensions.
+
+What Are The Types Of Dimension Table In DWH?
+--------------------------------------------
+1. Conformed Dimension
+2. Junk Dimension
+3. Degenerated Dimension
+4. Roll Playing Dimension
+5. Inferred Dimension
+6. Shrunken Dimension
+
+With The Type Of Frequency With Which The Dimension Table Is Updated With The Data, We Have Two Types Of Dimension.
+1. Static Dimension Table Or Un-Changed Dimension Table
+2. Slowly Changing Dimension
+3. Rapidly Changing Dimension
+
+
+Conformed Dimension
+-------------------
+1. A Conformed Dimension Table Is Connected To Two Or More Fact Tables In The DWH Schema.
+2. Any Application in DWH, With Conformed Dimension Will Definitely Contain A Constellation Schema Having Multiple Facts.
+3. Conformed Dimensions Can Be Shared Between Two Facts In The Same DWH, OR Between Two Data Marts Getting Integrated To One DWH.
+
+
+Day-13:
+======
+Junk Dimension
+--------------
+1. A Junk Dimension is a Convenient Way Of Grouping The Low-Cardinality And Indicator.
+2. Junk Dimensions Are Used To Reduce The no.Of Dimension Table In The DWH Schema, Where The No.Of Columns Are Reduced Increasing The Potential Performance On The Fact Table.
+3. A Junk Dimension Will Combine 2 Or More Low-Cardinality Indicators OR Flags Into One Table.
+
+
+
+Day-14:
+======
+Note:
+Technically, Junk Dimensions Will Try to Decrease The Number Of Dimension Table Helping Us Come Up With a Criteria And Composition Of Designing a System Where We Can Get All Combinations Of Data From Multi Dimensions into One Single Place.
+
+Degenerated Dimension:
+---------------------
+- Degenerated Dimensions Are Mostly Found in Ralph Kimball Implementation.
+- Within a DWH , a Degenerated Dimension is a Dimension Key Found In The Fact Table Where This Dimension Key Does Not Has a Dimension Table.
+- Degenerated Dimensions Will Arise Mostly When The Fact Table is Managing The Data With a Single Grain Of The Transaction.
+
+
+Customer					Shipping			InvoiceFactTable
+--------					--------			----------------
+Cust_DimKey					Shipper_DimKey			Cust_DimKey
+Cust_ID						Shipper_ID			Prod_DimKey
+Cust_Name					Shipper_Name			Shipper_DimKey
+										Warehouse_DimKey
+Product						Warehouse			InvoiceNumber
+-------						---------			Quantity_Purchased
+Prod_DimKey					Warehouse_DimKey		Date_Of_Purchase
+Prod_ID						Warehouse_ID
+Prod_Name					Warehouse_Name
+
+
+Role Playing Dimension:
+----------------------
+- It is a Single Dimension Operating As Different Dimension As Per The Situation of Analysis.
+
+Day-15:
+======
+- In Certain Cases in Data Analysis Conducted On Facts Table, We Need To Analyze The Data Without Having Specific Information Exactly To The Need Of Analysis, But The Analysis Will Be Conducted On The Fact Table, This Kind of Scenario is Called as Inferreed Dimension. Where The Dimension Value May Be Supplied OR Updated At Later Stage.
+
+Day-16:
+======
+What Are The Different Types Of Measures?
+-----------------------------------------
+1. Additive Measures
+	1.1. These Measures Which Are Part Of The Fact Table Can Be Added With All The Dimensions That Are Associated To The Fact Table in The Schema.
+	1.2. Additive Measures Are Specifically Ready To Aggregate Functions Like SUM(),COUNT().
+
+2. Semi-Additive Measures
+	2.1. Semi-Additive Measures Are Part Of The Fact Table, Where The Measure Values Are Addititve To Only Certain Number Of Dimensions But Not All.
+	2.2. Semi-Additive Measures Are Specifically Associated With Aggregated Functions Like FIRST(),LAST(),TOP10,BOTTOM10,Balance,Average
+
+3. Non-Additive Measures
+	3.1. Non-Additive Measures Are Part Of The Fact Table Where The Measure Values Can Not Be Addedd To Any Dimension That is Associated To The Fact Table.
+	3.2. Non-Additive Measures Are Specifically Associated With Data That is Percentages Or Ratios.
+
+What Are The Different Types Of Fact Tables?
+--------------------------------------------
+i)Transaction Fact Table:
+  ----------------------
+1. A Transaction Fact Table Will Contain The Most Basic Atomic Data Of The Business Operation, And Acts Like a View For The Business Operations.
+2. Transaction Fact Table Will Represent An Event That Has Occured At an Instantaneous Part Of The Time in The Busniess System.
+3. Transaction Fact Tables Are Found While Designing Operational Data Stores(ODS).
+
+ii)Snapshot Fact Table:
+   -------------------
+1. The Snapshot Fact Table Describes The State Of the Things Happening in The Business Operations Environment To The Particular Instance Of Time.
+2. The Snapshot Fact Table Will Contain Either Semi-Additive Or Non-Additive Fact Data.
+
+iii)Accumulated Fact Table:
+    -----------------------
+1. Accumulated Fact Table is Used to See a Cumulative Performance Of The Business Operations, With a Well Defined Begining And End Of The Business Process.
+
+
+Day-17
+======
+
+What is The Domain Of The Business For Analysis ?
+What is The Subject Of Focus In This Domain ?
+What are The Objects Of Focus For Analysis ? (Dimension Of Analysis)
+	Dimensions Of Analysis 
+		Sales People
+		Customer Wise
+		Area Wise
+		By Calendar
+		By Product Category
+		By Promotions
+
+What is Exactly The Focus Of Analysis in The Subjects?(Measures Of Analysis)
+	Measures Of Analysis 
+		TotalSales
+		AverageSales
+		CountSales
+		MaxSalValue
+		MinSalValue
+		%ofSales
+
+Day-18:
+======
+
+What is a Star Schema?
+---------------------
+
+
+
+
+Day-19:
+======
+1. Repository Service
+	1.1. Informatica Repository Service is The Main Component To Manage All The Metadata That is Responsible To Run Informatica.
+	1.2. Repository Service is Also Responsible For Providing Access To Its Own Services And Also Other Services That Are Running In Informatica.
+
+2. Integration Service
+	2.1. Informatica Integration Service is The Main Component That Takes The Responsibility To Migrate The Data From The Sources To Targets.
+	2.2. Integration Service Will Take The Details Of the Data Connectivity Standards From The Informatica Respository Services For Every Source And Target That Is Registered in The Informatica Domain.
+
+3. Reporting Service
+	3.1. Informatica Reporting Service Enables The Generation Of The Reports That Are Essential For The Informatica Administrators w.r.t The Monitoring And Managing Of The Informatica Domain And Its Components.
+
+4. Nodes
+	4.1. A Node in Informatica Architecture is Any Machine That is Part Of The Informatica Computing Platform, Where These Nodes Will Run The Services That Are Essential To Implement ETL Tasks.
+	
+5. Informatica PowerCenter Designer
+	5.1. Informatica PowerCenter Designer is a Component Which is a Part of The Informatica Domain And Operated Under The Influence Of The Informatica Repository Service, Used For The Creation Of The ETL Logic, in The Form of Mapping Objects Embedded With, Sources, Transformations And Targets.
+	
+6. Informatica Workflow Manager
+	6.1. Informatica Workflow Manager is The Main Component That is Responsible For Executing The ETL Process. 
+	6.2. Workflow Manager Will Take The Responsibility of Creating The Tasks And Scheduling These Tasks For Execution , To Finally Complete The ETL Loading Process.
+	6.3. Workflow Manager Works in Association With Integration Services.
+	
+7. Workflow Monitor
+	7.1. Informatica Workflow Monitor is Responsible For Monitoring The Execution of The Workflows That Are Initiated By The Workflow Manager.
+	
+8. Repository Manager
+	8.1. Informatica Repository Manager is Responsible For Managing The Different Objects Created And Operated in The ETL Process w.r.t The Informatica Repository.
+	8.2. Informatica Repository Manager is The Actual Component That is Responsible To Prepare The Stage For Any Project That is Initiated Specific to Client in Realtime.
+	
+	
+	
+Day-20:
+======
+
+
+Day-21, 22, 23 & 24:
+===================
+Informatica Installation & Configuration Theory Practicals.
+
+
+Day-25:
+======
+	(Informatica Admin Console Screen Discussions)
+
+Day-26:
+======
+Before Any Project Is Begining, Users Are Definitely Created.
+
+Creating Groups & Users	 Discussions
+
+Day-27:
+=======
+HSBC - Domain - 
+Repository Manager Client Tool Various Option Discussion
+
+Day-28:
+======
+Repository Manager Discussion Continuation
+
+
+ETL Execution - IS
+
+
+Day-30:
+======
+Where Are Sources Identified And Designed in Informatica?
+---------------------------------------------------------
+1. Sources in Informatica Are Identified And Designed Using "Source Analyzer" Tool Provided in PowerCenter Designer Client Tool.
+
+What Are The Different Type Of Sources We Can Define Using Source Analyzer?
+---------------------------------------------------------------------------
+1. The Different Sources That Can Be Identified in Source Analyzer Are 
+	1.1. Flat File Sources
+		1.1.1. Fixed Length
+		1.1.2. Variable Length With Delimeter
+	1.2. ODBC OR Relational Sources
+	1.3. VSAM OR Cobol Sources
+	1.4. XML Sources
+Note: Even Though Excel Sources Are Supported By PowerCenter Designer, But Can Just Get Ignored in Workflow Manager, Hence It is Always Good To Use Excel Sources As .csv Sources.
+
+What is The Metadata Captured By Source Analyzer For Relational Sources?
+-----------------------------------------------------------------------
+1. Source Name OR Table Name
+2. Column Names
+3. Datatypes And Sizes
+4. Database Location
+5. Constraints From The Database
+
+When a Source is Imported, What Exactly Comes into Informatica Repository?
+-------------------------------------------------------------------------
+1. When The Source is Imported Into Source Analyzer We Are Actually Importing Only The Structure Of The Source Table(Metadata Of The Source Table)
+
+What Are The Pre-Requisites To Increase Performance On The Relational Sources?
+------------------------------------------------------------------------------
+1. To Gain Performance On The Relational Sources, It is Always Suggested To Create Indexes Upon The Key Columns Of The Source Table Of The Database.
+
+
+What Do You Mean By ODBC Connection in Informatica?
+--------------------------------------------------
+1. ODBC Refers To "Open Database Connectivity"
+2. To Establish We Need An ODBC Driver Specific To The Kind Of Database Driver Vendor Upon Which We Can Design The Connection.
+3. ODBC Connection is Establised By Creating A DSN(Data Source Name) Object At The Operating System Level
+4. DSN Can Be Created Either As:
+	4.1. SYSTEM DSN
+	4.2. FILE DSN
+5. The ODBC Conenction Along With Its DSN Will Help Informatica Tools To Connect And Operate Upon The Corresponding Database And Execute The Required SQL Statements.
+
+
+ODBC Connections Can Be Created From Where?
+------------------------------------------
+1. From The Operating Systems ODBC Administrator Utility
+2. From The Power Center Designer 
+
+
+Using Operating System ODBC Administrator Utility:
+-------------------------------------------------
+1. Start => Control Panel => Administrative Tools => Data Sources(ODBC)
+2. In The ODBC Window , Select "System DSN" Tab, Which Lists All The ODBC Connections That Are Already Available 
+3. Click Add Button In The Window
+4. In The Create View DataSource Window , Select The Required ODBC Driver For The Correct Database(Oracle in OraDb11g_home1), Click Finish
+5. In The ODBC Driver Configuration Window 
+	5.1. Give Data Source Name: SCOTTConnection
+	5.2. Provide Description If Necessary
+	5.3. Provide Or Select The TNS Service Name: SKYESSDB
+	5.4. Provide The User ID :  SCOTT
+	5.5. Provide The User Password:  tiger
+   If The Connection is Successful Then We Get A Window With Success Message.
+6. Click OK Until All The Windows Are Closed
+
+Referencing The ODBC Connection in Informatica Source Analyzer?
+---------------------------------------------------------------
+1. Open The Informatica PowerCenter Designer
+2. Connect To The Required Repository By Providing Informatica Username And Password
+3. Double Click To Activate Or Open The Required Folder 
+4. Select The Sources Folder In The Node
+5. Click Sources in The Menu => Import From Database
+6. In The Import Tables Window, Select The ODBC Conenction If Available From The List, Else Create A New ODBC Connection By Clicking on ... Button.
+7. Provide The Username , Ownername, password And CLick Connect
+8. In The Table List Area Expand The User Node And Select The Required Table And Click OK
+9. The Structure of The Table is Displayed in The Workspace of The Source Analyzer
+10. Click Save OR CTRL+S To Save The Source Structure into Repository Database
+
+
+Day-31:
+======
+Within The Source Analyzer, Can We Edit The Source Table?
+---------------------------------------------------------
+Yes, WE Can Edit Certain Properties That Are Imported into The Source Analyzer.
+
+Which Properties Of The Sources Can Be Edited?
+---------------------------------------------
+1. The Business Names Can Be Added
+2. The Primary Key And Foreign Key Status Can Be Removed 
+
+1. To Edit The Sources in Source Analyzer, Right Click On The Source And Select Edit Option OR Double Click The Source Title Bar, Which Opens The Source Editior.
+
+Can We Preview The Source Data From The Source Analyzer?
+-------------------------------------------------------
+1. Yes, Within The Source Analyzer We Can Preview The Data For Cross Reference Before Running The Mapping.
+2. To Preview The Data From The Source, Right Click On The Source in The Source Analyzer And Select Preview.
+	2.1. In The Preview Window Supply Select ODBC Name
+	2.2. Give The Username And Password
+	2.3. Click Connect Button
+
+
+Day-32:
+======
+Creating Targets in Informatica
+-------------------------------
+1. In a Data Warehouse We Can Create Targets Which Are Either
+	1.1  Exactly Equal In Structure To The Source
+	1.2. Major Part Of The Target Table is Similar To The Structure of The Source With Few Columns in Change OR Additionally Added
+2. When The Structure of The Target Table is Exactly Same, There Could Be Two Reasons Behind This in The Design.
+	2.1. The System Being Developed With The Target is For The Purpose Of Data Archiving By Time Lines
+	2.2. The System Being Developed With The Target is to Manage a Operation Data Store(ODS) For Developing The Actual DWH Or Data Marts.
+3. We Can Also Create Targets Only For Managing The Schema Of The DWH OR Data Marts Representing The :
+	3.1. Dimension Tables
+	3.2. Fact Tables
+4. We Can Also Create Target For Quick Migration of The Data For ADHOC Reports Demanded By The Startegic Manger
+5. We Can Also Create Target For Providing Test Data For The Testing Department Professionals For Implementing Their Testing Standards.
+
+
+The Target in Informatica Should Be Of Which Type?
+--------------------------------------------------
+1. The Target in Informatica Can Be Of 
+	1.1. Relational Or ODBC Target.
+	1.2. It Can Be A Flat File Target
+	1.3. XML Target
+
+What Kind Of Relational Targets Informatica Supports?
+----------------------------------------------------
+1. All The Type Of Relational Database Management System Vendors Are Supported By Informatica Using The Vendor Specific ODBC Drivers.
+2. To Associate With The Corresponding Relational Target Vendor We Have To Purchase The Corresponding Vendor Licence.
+
+What Happens If The Vendor Specific Licence is Not Available?
+------------------------------------------------------------
+1. When The Vendor Specific Licence is Not Available, The ETL Architects Should Propose The Client With Alternate Loading of The Data, in Coordination of The Technology For Which The Licence is Available.
+
+How Many Target Types Can Be There in a ETL Project For a Particular Client?
+---------------------------------------------------------------------------
+1. The no Of Target or Target Types Wil Depend On The Architecture And The Infrastructure With Which The Client System is Being Analyzed For The Analytics.
+2. The Actual Business System  Diversification Also Dictates The Criteria of The Number of Targets And Target Types.
+
+What Are The Situations Under Which The Flat File Targets Are Used?
+------------------------------------------------------------------
+1. When The Client is Not Interested to Give Direct Connectivity To His Database Or Transactional Resources in The Business, Then We Use The ETL Process To Extract The Data From The Client System And Transfer The Data to Flat File System. After The Data is Stored in Flat Files The ETL Developers Will Design The Transformation Logic Essential To The Data Warehouse OR Data Marts.
+2. Once The DWH OR Data Mart is Fully Completed, We Want To Test The Warehouse OR The Data Mart For The Actual Quality In Implementation Before Scheduling the Production.
+
+What Are The Situations Under Which The XML File Targets Are Used?
+------------------------------------------------------------------
+1. XML File Targets Are Used When The Reporting Architectures OR Reporting Tools Are Demanding The Data For Their Inputs As Web Services Data OR Restful Services.
+
+CREATE USER TargetDB IDENTIFIED BY TargetDB;
+GRANT CONNECT,RESOURCE,CREATE ANY VIEW
+TO TargetDB;
+
+CONNECT TargetDB/TargetDB
+
+SELECT * FROM TAB;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
