@@ -1,0 +1,144 @@
+					Programming Methodology   & Data Structures
+					===========================================	
+- These Two Terms Are Quite Integrated With Each Other And They Go Hand In Hand In Solving Any Problem For Which A Computer Program Is Required To Be Developed.
+- Given a Problem And We Have To Solve The Problem Efficiently. 
+- The Issue At Hand In Most Of The Task Of The Computer Science Is  The Issue Of Problem Solving.
+- Unless We Understand How To Solve a Problem In a Computer Quite Efficiently And What Are The Steps To Do It, It Will Be Difficult For Us To Understand , What Programming Methodology & Data Structuring Means Because These Are Two Derived Items Of The System Of Problem Solving.
+- It Is Very Difficult To Understand,Define And Present An Automated Way Saying That This Is The Theory Of Problem Solving. Till Today There Is No Such Well Defined Theory Of Problem Solving In Which We Will Define The Problem In a Natural Language And  The Problem Will Get Solved In The Computer.
+- Partial Solution To Such Automated Problem Solving Has Been Achived In Artifical Inteligence, But Still Its a Long Way To Go Inorder To Understand What Actually Mean By Automated Problem Solving.
+- Actually One Of The Goal Of Computer Science Itself Is To Achieve Automated Problem Solving Mechanisim.
+- We Need To Remember That We Are Solving The Problem In A Particular Computer, And This Computer Has Got Some Structure And Architecture.
+- On The Other Hand Problem Solving Is Not Merely a Process Of Programming.
+- It Is The Process Of Developing The Solution For The Problem Which Is Expressed In a Natural Form.For Example If Somebody Gives a Problem To Find Maximum Of n Numbers. Here The Problem Is Posed In Natural English Language.
+- It Is Our Responsibility To Convert  This Problem Posed In Natural Language To a Computer Understandable Language Which Will Solve The Problem.
+- If We Had Technology  Which Could Understand The Natural Language Itself ,Then We Would Not Require This Series Of Tasks Of Programming Or The Concept Of Programming Methodology And Data Structures Would Have Been Automated Already.
+- So Since We Are Having Computer Which Can Understand A Restricted Form Of Language
+And The Problem Is Posed In a Natural Language. It Is Our Task To Convert This Problem Into The Language Of The Computer So That It Works Efficiently. So This Is The Core Concept Of Problem Solving.
+
+- Our Task Is :
+	1. To Understand The Technique Of Problem Solving
+	2. To Convert The Final Solution Into a Program.
+
+- The Very First Aspect Of Problem Solving Is To Convert The Problem Into A Sequence Of Steps.
+- The Terms Like Algorithm Design, Programming Methodology, Data Structuring. These All Are Related To Converting The Problem Into Series Of Steps Which Can Be Executed In The Computer.
+- Problem Solving Is a Style Of Thinking Which We We Refer As Problem Decomposition.
+
+- When We Solve a Problem , These Are The Broad Steps One Of The Guidelines Which Can Be Used In Problem Solving. There Are Not Hard And Fast Rule In Problem Solving. And These Steps Can Be Broken To Obtain Better Solution In Some Problems, But These Are The General Techniques Which Can Be Used To Obtain Solutions To a Large Number Of Problems.
+	
+	1. INITIAL SOLUTION GENERATION
+	==============================
+	- This Is The Very First Step i.e. We Have To Try And Solve The Problem Which Is Posed To In Some Form. And In This Point In Initial Solution Generation , There Is Something Called Inherent Solution In a Person's Mind. That Is We Must Be Able to  Solve The Problem In Your Own Mind First Before You Can Really Solve It On The Computer.
+	- Solving The Problem In Own Mind Is Something Which Is Vague And Inorder To Make it More Concrete, We Would Say  We Need To Decompose The Problem In Some Way.
+	- Decomposition Inherently Gives a Sequence Of Steps But It Gives a Very Broad Outline In That Sequence Of Steps.Therefore The First Thing Is INITIAL SOLUTION GENERATION.
+	- How To Generate Initial Solution , There Is No Hard And Fast Rule, We Must Learn It Only Through Experience. And Once We Got The Hang Of It , We Will Be Able To Handle  Possibly Solved Several Problem In Our Own Ways. So We Have To Get An Initial Solution And This Initial Solution Contains a Set Of Actual Potential Programs.
+	- In This Step The Prime Condition That We Need To Take Care Of Is CORRECTNESS i.e The Solution Must Produce Correct Result.
+	- The Issue Of Correctness Is Tested And Validated At This First Step.
+	
+	2.INITIAL SOLUTION REFINEMENT
+	=============================
+	- The Second Step Is INITIAL SOLUTION REFINEMENT i.e Given The Initial Solution We Would Like To Find Out Which Solution To Take As The Final Solution. And To Decide That The Below Criterias Are Used.
+		a. EFFICIENCY
+				- TIME EFFICIENCY
+				- SPACE EFFICIENCY
+		b. ALGORITHM DESIGN		(Selection Of Exact Set Of Steps From Set Of Potential Programs)
+		c. DATA STRUCTURING  	(Organization Of The Data)
+	- Whenever We Do a Refinement We Will Try To Maintain The Correctness Achieved In Step 1. And The Main Issue In Refinement Is EFFICIENCY.	
+	- Here We Have To Make Sure Our Program Will Run As Fast As Possible.
+	- Sometimes There Will Be a Space-Time Trade-Off i.e There Will Be a Situation In Which To Reduce The Space We May Have To Increase The Time And Vice Versa.
+	- So Given An INITIAL SOLUTION, We Have To Choose From Set Of Potential Programs, The Final Solution, And The Criteria For Choosing It Will Be EFFICIENCY.
+	- This Is Where The Standard Steps Which We Call Programming Methodology & Data Structuring Coming.
+	- In Step-1 We Have To Have An Insight Into The Problem, We Have To Know Several Problem Solution Technique. And In Combination Of These Things With Our Own Intelligence And Experience Will be Able To Get The Initial Solution. 
+	- Here In This Steps 2 Different People Can Generate Different Solution For The Same Problem. But Once The Initial Solution Is Ready, Now In Step 2 There Are Some Methodology Which Are Quite Standard And Well Known, And These Form Part Of Programming Methodology & Data Structures. 
+	 
+	3. FINAL SOLUTION
+		- Final Sequence Of Steps From The Set Of Potential Programs (Initial Solutions) Is Decided.
+		
+- Now After The Step 3. The Programming Comes Into Picture. 
+- Given The Final Solution Defined In Some Steps In Our Own Natural Language. Some People Call It As Pseudo Code, Some Refer It As Flow Chart.
+- Now We Have To Write a Program , And When We Come To Write a Program, We Take Help Of a VEHICLE LANGUAGE(C,C++,JAVA,C#).
+- So People In Computer Science  Are Developing Languages Which Can Understand And Realize More And More Structured Form Into Machine Codes. Such Language Are Referred As High Level Languages.
+- These High Level Languages Require Some Features Which Makes It Quite Useful To Write Programs. And These Features Are Related To Data Structuring ,Algorithm Design And Specially Problem Decomposition.
+
+-> High Level Language Fetaures:
+   ----------------------------
+   - DATA STRUCTURING
+		- Data Types & Operations
+		- Data Procedure Encapsulation
+		- Dynamic Data Structuring
+		
+   - ALGORITHM EXPRESSION
+		- Control Structures
+		
+   - PROBLEM DECOMPOSITION
+		- Functions & Recursive Functions
+
+-> C Programming Language:
+	- C is a Block Structured Language. Each Block Starts And Ends in {}.
+
+- Data Input Output Standards In C Language.
+- Variables in C Language
+- Arrays in C Language
+- Functions:
+  ---------	
+	Call By Value
+	Call By Value Result
+	Call By Reference
+	
+=================================================================================
+
+
+Find MAX And MIN Of N Numbers:
+------------------------------
+No. Of Comparison To Find MAX = (N-1)
+
+MINIMUM Can Be Found  By Comparing  Between Those Numbers Who Have Lost In Their First Comparasion
+In The Tournament.
+
+The Above Set  Is To Be MINIMIZED To Make The Algorithm More Efficient.
+
+The Looser Set Size Of The First Comparison In The Tournament Can Never Be Less Than N/2.
+
+Approach 1:
+----------
+	READ(n)
+	READ(number)
+	MAX = number
+	MIN = MAX
+	loop: i=2,n,1
+		READ(number)
+		IF MAX < number THEN 
+		MAX = number
+		ELSE IF MIN > number THEN 
+		MIN = number
+	loop:End	
+	PRINT (MAX)
+	PRINT (MIN)
+
+In This Approach , The No Of Comparison Would Be : 2(N-1)
+
+Alternative Approach 2:
+----------------------	
+For Even Number Of Elements, The No Of Comparison Would Be As Below:
+	N/2 + (N/2)-1 + (N/2)-1 = ((3/2)N)-2
+
+For Odd Number Of Elements, The No Of Comparison WOuld Be As Below:
+	N/2 + (N/2)-1 + (N/2)-1 = ((3/2)N)-2 + 2 = ((3/2)N)
+
+	
+	
+
+	
+- The Second Largest Is The One Who Must Have Definetly Defeated By The Largest Number.
+- Example Set : {8,7,15,1,6,9,4,3}
+
+Key Observation:
+1. The Second Largest Element Must Necessarily Lose To The Largest Element In The Tournament
+2. The Second Largest Element Can Be Found By Comparing Only Those Numbers Who Lost to/were Compared
+To The Largest.
+3. This Set Must Be Minimized.
+
+
+
+1. In Worst Case The No.Of Comparasion To Find The Second Largest = Lenght Of The Longest Path In The Tournament.
+2. The Length Of The Longest Path Is Minimized If The Tournament Tree Is Minimized.
+	
